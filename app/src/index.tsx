@@ -1,12 +1,12 @@
 import {css, Global} from '@emotion/react'
-import {MyBoardGameOptionsSpec} from '@gamepark/board-game-template/MyBoardGameOptions'
-import MyBoardGame from '@gamepark/board-game-template/MyBoardGame'
+import {Trek12OptionsSpec} from '@gamepark/trek12/Trek12Options'
+import Trek12 from '@gamepark/trek12/Trek12'
 import {GameProvider, setupTranslation} from '@gamepark/react-client'
 import normalize from 'emotion-normalize'
 import {StrictMode} from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import MyBoardGameView from './MyBoardGameView'
+import Trek12View from './Trek12View'
 import translations from './translations.json'
 
 setupTranslation(translations)
@@ -60,7 +60,7 @@ const style = css`
 
 ReactDOM.render(
   <StrictMode>
-    <GameProvider game="my-board-game" Rules={MyBoardGame} RulesView={MyBoardGameView} optionsSpec={MyBoardGameOptionsSpec}>
+    <GameProvider game="trek12" Rules={Trek12} RulesView={Trek12View} optionsSpec={Trek12OptionsSpec}>
       <App/>
     </GameProvider>
     <Global styles={[normalize, style]}/>
