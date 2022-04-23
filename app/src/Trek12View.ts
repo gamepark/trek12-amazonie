@@ -1,8 +1,6 @@
 import GameView from '@gamepark/trek12/GameView'
-import {drawCardInPlayerView, drawCardInView, isDrawCardView} from '@gamepark/trek12/moves/DrawCard'
 import MoveType from '@gamepark/trek12/moves/MoveType'
 import MoveView from '@gamepark/trek12/moves/MoveView'
-import {spendGold} from '@gamepark/trek12/moves/SpendGold'
 import {Game} from '@gamepark/rules-api'
 
 /**
@@ -34,16 +32,7 @@ export default class Trek12View implements Game<GameView, MoveView> {
    * @param move The move that must be applied in the browser of the player or the spectator
    */
   play(move: MoveView): void {
-    switch (move.type) {
-      case MoveType.SpendGold:
-        return spendGold(this.state, move)
-      case MoveType.DrawCard:
-        if (isDrawCardView(move)) {
-          return drawCardInPlayerView(this.state, move)
-        } else {
-          return drawCardInView(this.state, move)
-        }
-    }
+
   }
 
 }

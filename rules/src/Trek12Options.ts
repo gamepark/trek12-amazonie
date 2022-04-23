@@ -1,53 +1,60 @@
 import {OptionsSpec} from '@gamepark/rules-api'
-import {TFunction} from 'i18next'
+import { TFunction } from 'i18next'
+import { ForestMap, forestMaps } from './forests/Forest'
 import GameState from './GameState'
-import PlayerColor, {playerColors} from './PlayerColor'
+import { ObservationMix, observationsMixes } from './material/Observation'
 
-/**
- * This is the options for each players in the game.
- */
-type Trek12PlayerOptions = { id: PlayerColor }
-
-/**
- * This is the type of object that the game receives when a new game is started.
- * The first generic parameter, "{}", can be changed to include game options like variants or expansions.
- */
 export type Trek12Options = {
-  players: Trek12PlayerOptions[]
+  players: number
+  forestType:ForestMap
+  observationMix:ObservationMix
 }
 
-/**
- * Typeguard to help Typescript distinguish between a GameState and new game's options, for you main class constructor.
- * @param arg GameState or Game options
- * @return true if arg is a Game options
- */
 export function isGameOptions(arg: GameState | Trek12Options): arg is Trek12Options {
-  return typeof (arg as GameState).deck === 'undefined'
+  return typeof (arg as GameState).round === 'undefined'
 }
 
-/**
- * This object describes all the options a game can have, and will be used by GamePark website to create automatically forms for you game
- * (forms for friendly games, or forms for matchmaking preferences, for instance).
- */
 export const Trek12OptionsSpec: OptionsSpec<Trek12Options> = {
-  players: {
-    id: {
-      label: (t: TFunction) => t('Color'),
-      values: playerColors,
-      valueSpec: color => ({label: t => getPlayerName(color, t)})
-    }
+  forestType:{
+    label: (t: Function) => t('map.type.label'),
+    help: (t: Function) => t('map.type.help'),
+    values: forestMaps,
+    valueSpec: forest => ({
+      label: t => {
+        switch (forest) {
+            case ForestMap.Basic:
+                return t('Basic Map')
+            case ForestMap.Mangrove:
+                return t('Mangrove Map')
+        }
+      },
+    }),
+    subscriberRequired:true
+  },
+
+  observationMix:{
+    label: (t: Function) => t('observation.mix.label'),
+    help: (t: Function) => t('observation.mix.help'),
+    values: observationsMixes,
+    valueSpec: obs => ({
+      label: t => {
+        switch (obs) {
+            case ObservationMix.Basic:
+                return t('Basic observations only')
+            case ObservationMix.BasicAndPlants:
+                return t('Basic + Plants observations')
+            case ObservationMix.BasicAndGoodies:
+                return t('Basic + Goodies observations')
+            case ObservationMix.BasicPlantsAndGooies:
+                return t('Basic + Plants + Goodies observations')
+        }
+      },
+    }),
+    subscriberRequired:true
   }
 }
 
-export function getPlayerName(playerId: PlayerColor, t: TFunction) {
-  switch (playerId) {
-    case PlayerColor.Red:
-      return t('Red player')
-    case PlayerColor.Blue:
-      return t('Blue player')
-    case PlayerColor.Green:
-      return t('Green player')
-    case PlayerColor.Yellow:
-      return t('Yellow player')
-  }
+export function getPlayerName(playerId: number, t: TFunction) {
+  return playerId
 }
+
