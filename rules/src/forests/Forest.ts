@@ -1,4 +1,5 @@
 import Spot, { Field } from "../material/Spot";
+import { Operand } from "../PlayerState";
 
 export enum ForestMap {Basic=1, Mangrove}
 export const forestMaps = Object.values(ForestMap).filter(isForestMap)
@@ -33,6 +34,28 @@ const forestMangroveField = [
     [_, F, _, F, _, W, _, _],
     [F, _, W, _, F, _, W, _],
 ]
+
+export enum ForestOperandFeats {Boat = 1, Plane}
+type OperandFeat = {
+    operand:Operand,
+    feat:ForestOperandFeats
+}
+
+const forestBasicOperandFeats: OperandFeat[] = [
+    {operand:Operand.high, feat:ForestOperandFeats.Boat}
+]
+
+const forestMangroveOperandFeats:OperandFeat[] = [
+    {operand:Operand.small, feat:ForestOperandFeats.Boat},
+    {operand:Operand.time, feat:ForestOperandFeats.Plane}
+]
+
+export function getOperandFeat(forestMap:ForestMap, operand:Operand):ForestOperandFeats|null{
+    switch(forestMap){
+        case ForestMap.Basic:return forestBasicOperandFeats.find(feat => feat.operand === operand)?.feat ?? null
+        case ForestMap.Mangrove:return forestMangroveOperandFeats.find(feat => feat.operand === operand)?.feat ?? null
+    }
+}
 
 function getForestField(type:ForestMap):(Field|null)[][]{
     switch(type){

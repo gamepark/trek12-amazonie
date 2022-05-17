@@ -22,6 +22,14 @@ export function isSpotEmpty(spot:Spot){
     return spot.digit === null
 }
 
+export function isSpider(spot:Spot){
+    return spot.isSpider
+}
+
+export function isPiranha(spot:Spot){
+    return spot.isPiranha
+}
+
 export function isAdjacent(spot1:Spot, spot2:Spot):boolean{
     if(spot1.x !== spot2.x) return Math.abs(spot1.x - spot2.x) === 1
     else if(spot1.y !== spot2.y) return Math.abs(spot1.y - spot2.y) === 2

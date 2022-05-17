@@ -4,12 +4,14 @@ import Animal, {getObservationMix, ObservationMix} from './material/Observation'
 import { Trek12Options } from './Trek12Options'
 import rollDice from './material/Dice'
 import { discoveringCards } from './material/DiscoveringCards'
+import { ForestMap } from './forests/Forest'
 
 type GameState = {
   players: PlayerState[],
   observation: Observation[],
   dice: number[]
   round:number
+  forestMap:ForestMap
 }
 export type Observation = {
   animal:number,
@@ -23,12 +25,14 @@ export function isObservationView(obs:Observation|ObservationView):obs is Observ
   return (obs as Observation).animal === undefined
 }
 
-export function setupNewGame(options: Trek12Options):GameState{
+export function setupNewGame(forestMap:ForestMap = ForestMap.Basic, nbPlayers:number, obsMix:ObservationMix = ObservationMix.Basic):GameState{
+  const obsToReturn:Observation[] = setupObservation(obsMix)
   return {
-    players:setupPlayers(options.forestType, options.players),
-    observation:setupObservation(options.observationMix),
+    players:setupPlayers(forestMap, nbPlayers, obsToReturn.map((obs, index) => obs.discoveringValue)),
+    observation:obsToReturn,
     dice:rollDice(),
-    round:1
+    round:1,
+    forestMap:forestMap
   }
 }
 

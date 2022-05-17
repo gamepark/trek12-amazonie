@@ -1,20 +1,27 @@
 import { createForest, ForestMap } from "./forests/Forest";
+import { Observation } from "./GameState";
 import Spot from "./material/Spot";
 
 export default interface PlayerState {
   isReady:boolean
-  observationsMade:number[]
+  observationsMade:PlayerObservation[]
+  observationActualTurn?:number
   penalties:number
   score:number
   operationTab:OperationCounter
   forest:Spot[]
 }
 
-export function setupPlayers(forest:ForestMap = ForestMap.Basic, nbPlayers:number):PlayerState[]{
+export type PlayerObservation = {
+  discoveringValue:number
+  discoveringCount:number
+}
+
+export function setupPlayers(forest:ForestMap = ForestMap.Basic, nbPlayers:number, discoveringValues:number[]):PlayerState[]{
   const playerTemplate:PlayerState={
         isReady:false,
         forest:createForest(forest), 
-        observationsMade:[0,0,0],
+        observationsMade:[{discoveringValue:discoveringValues[0], discoveringCount:0},{discoveringValue:discoveringValues[1], discoveringCount:0},{discoveringValue:discoveringValues[2], discoveringCount:0}],
         operationTab:{smallDigit:0, highDigit:0, addOperand:0, minusOperand:0, timeOperand:0},
         penalties:0,
         score:0
@@ -29,3 +36,5 @@ type OperationCounter = {
   addOperand:number
   timeOperand:number
 }
+
+export enum Operand {small=1, high, minus, add, time}

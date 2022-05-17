@@ -1,9 +1,13 @@
 import {IncompleteInformation, SimultaneousGame} from '@gamepark/rules-api'
 import GameState, { setupNewGame } from './GameState'
 import GameView from './GameView'
+import Spot, { isAdjacent, isSpider, isSpotEmpty } from './material/Spot'
 import Move from './moves/Move'
 import MoveType from './moves/MoveType'
 import MoveView from './moves/MoveView'
+import { setupNewRound, setupNewRoundMove } from './moves/SetupNewRound'
+import { writeNumber, writeNumberMove } from './moves/WriteNumber'
+import PlayerState, { Operand } from './PlayerState'
 import {isGameOptions, Trek12Options} from './Trek12Options'
 
 
@@ -14,7 +18,7 @@ export default class Trek12 extends SimultaneousGame<GameState, Move, number>
   constructor(arg: GameState | Trek12Options) {
     if (isGameOptions(arg)) {
       super(
-        setupNewGame(arg)
+        setupNewGame(arg.forestType, arg.players, arg.observationMix)
       )
     } else {
       super(arg)
@@ -22,22 +26,58 @@ export default class Trek12 extends SimultaneousGame<GameState, Move, number>
   }
 
   isOver(): boolean {
-    return this.state.round > 16
+    return this.state.round > 20
   }
 
   isTurnToPlay(playerId: number): boolean {
     return !this.state.players[playerId-1].isReady
   }
 
-  getLegalMoves(): Move[] {
-    return []
+  getLegalMoves(playerId:number): Move[] {
+    const moves:Move[] = []
+    const player:PlayerState = this.state.players[playerId-1]
+    if(!player.isReady){
+      if(player.forest.every(spot => spot.digit === null)){
+        player.forest.forEach(spot => {
+            moves.push(writeNumberMove(Operand.add,spot.x, spot.y, playerId))
+            moves.push(writeNumberMove(Operand.high,spot.x, spot.y, playerId))
+            moves.push(writeNumberMove(Operand.minus,spot.x, spot.y, playerId))
+            moves.push(writeNumberMove(Operand.small,spot.x, spot.y, playerId))
+            moves.push(writeNumberMove(Operand.time,spot.x, spot.y, playerId))          
+        })
+      } else {
+        const spotsAlreadyWrote:Spot[] = player.forest.filter(s => !isSpotEmpty(s) || s.isSpider)
+        const legalSpots:Spot[] = player.forest.filter(emptySpot => spotsAlreadyWrote.some(wroteSpot => isAdjacent(emptySpot, wroteSpot) && (isSpotEmpty(emptySpot) && !isSpider(emptySpot))))
+        legalSpots.forEach(spot => {
+          moves.push(writeNumberMove(Operand.add, spot.x, spot.y, playerId))
+          moves.push(writeNumberMove(Operand.high, spot.x, spot.y, playerId))
+          moves.push(writeNumberMove(Operand.minus, spot.x, spot.y, playerId))
+          moves.push(writeNumberMove(Operand.small, spot.x, spot.y, playerId))
+          moves.push(writeNumberMove(Operand.time, spot.x, spot.y, playerId))
+        })
+      }
+    }
+
+    return moves
   }
 
   play(move: Move): void {
-
+    switch(move.type){
+      case MoveType.WriteNumber:
+        return writeNumber(this.state, move)
+      case MoveType.SetupNewRound:
+        return setupNewRound(this.state)
+    }
   }
 
   getAutomaticMove(): void | Move {
+    if(this.state.players.every(p => p.isReady)){
+      if (this.state.players.some(p => p.observationActualTurn)){
+        // TODO : reveal and add obs move
+      } else {
+        return setupNewRoundMove
+      }
+    }
     return
   }
 
