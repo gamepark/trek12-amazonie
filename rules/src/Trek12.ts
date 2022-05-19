@@ -39,21 +39,21 @@ export default class Trek12 extends SimultaneousGame<GameState, Move, number>
     if(!player.isReady){
       if(player.forest.every(spot => spot.digit === null)){
         player.forest.forEach(spot => {
-            moves.push(writeNumberMove(Operand.add,spot.x, spot.y, playerId))
-            moves.push(writeNumberMove(Operand.high,spot.x, spot.y, playerId))
-            moves.push(writeNumberMove(Operand.minus,spot.x, spot.y, playerId))
-            moves.push(writeNumberMove(Operand.small,spot.x, spot.y, playerId))
-            moves.push(writeNumberMove(Operand.time,spot.x, spot.y, playerId))          
+            moves.push(writeNumberMove(Operand.add, spot.index, playerId))
+            moves.push(writeNumberMove(Operand.high, spot.index, playerId))
+            moves.push(writeNumberMove(Operand.minus, spot.index, playerId))
+            moves.push(writeNumberMove(Operand.small, spot.index, playerId))
+            moves.push(writeNumberMove(Operand.time, spot.index, playerId))          
         })
       } else {
         const spotsAlreadyWrote:Spot[] = player.forest.filter(s => !isSpotEmpty(s) || s.isSpider)
         const legalSpots:Spot[] = player.forest.filter(emptySpot => spotsAlreadyWrote.some(wroteSpot => isAdjacent(emptySpot, wroteSpot) && (isSpotEmpty(emptySpot) && !isSpider(emptySpot))))
         legalSpots.forEach(spot => {
-          moves.push(writeNumberMove(Operand.add, spot.x, spot.y, playerId))
-          moves.push(writeNumberMove(Operand.high, spot.x, spot.y, playerId))
-          moves.push(writeNumberMove(Operand.minus, spot.x, spot.y, playerId))
-          moves.push(writeNumberMove(Operand.small, spot.x, spot.y, playerId))
-          moves.push(writeNumberMove(Operand.time, spot.x, spot.y, playerId))
+          moves.push(writeNumberMove(Operand.add, spot.index, playerId))
+          moves.push(writeNumberMove(Operand.high, spot.index, playerId))
+          moves.push(writeNumberMove(Operand.minus, spot.index, playerId))
+          moves.push(writeNumberMove(Operand.small, spot.index, playerId))
+          moves.push(writeNumberMove(Operand.time, spot.index, playerId))
         })
       }
     }
