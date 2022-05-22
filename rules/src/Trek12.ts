@@ -2,9 +2,11 @@ import {IncompleteInformation, SimultaneousGame} from '@gamepark/rules-api'
 import GameState, { ObservationView, setupNewGame } from './GameState'
 import GameView from './GameView'
 import Spot, { isAdjacent, isSpider, isSpotEmpty } from './material/Spot'
+import { incrementObservation } from './moves/IncrementObservation'
 import Move from './moves/Move'
 import MoveType from './moves/MoveType'
 import MoveView from './moves/MoveView'
+import { revealNewObservation } from './moves/RevealNewObservation'
 import { setupNewRound, setupNewRoundMove } from './moves/SetupNewRound'
 import { writeNumber, writeNumberMove } from './moves/WriteNumber'
 import PlayerState, { Operand } from './PlayerState'
@@ -67,6 +69,10 @@ export default class Trek12 extends SimultaneousGame<GameState, Move, number>
         return writeNumber(this.state, move)
       case MoveType.SetupNewRound:
         return setupNewRound(this.state)
+      case MoveType.RevealNewObservation:
+        return revealNewObservation(this.state, move)
+      case MoveType.IncrementObservation:
+        return incrementObservation(this.state)
     }
   }
 

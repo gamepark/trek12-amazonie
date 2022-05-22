@@ -5,6 +5,7 @@ import {Game} from '@gamepark/rules-api'
 import { writeNumber } from '@gamepark/trek12/moves/WriteNumber'
 import { setupNewRound } from '@gamepark/trek12/moves/SetupNewRound'
 import { revealNewObservationView } from '@gamepark/trek12/moves/RevealNewObservation'
+import { incrementObservation } from '@gamepark/trek12/moves/IncrementObservation'
 
 export default class Trek12View implements Game<GameView, MoveView> {
   state: GameView
@@ -25,6 +26,8 @@ export default class Trek12View implements Game<GameView, MoveView> {
         return setupNewRound(this.state)
       case MoveType.RevealNewObservation:
         return revealNewObservationView(this.state, move)
+      case MoveType.IncrementObservation:
+        return incrementObservation(this.state)
     }
   }
 

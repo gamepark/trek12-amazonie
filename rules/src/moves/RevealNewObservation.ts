@@ -2,6 +2,7 @@ import GameState, { Observation, ObservationView } from "../GameState";
 import MoveType from "./MoveType";
 import GameView from '../GameView';
 import Animal, { observation1 } from "../material/Observation";
+import { incrementObservation } from "./IncrementObservation";
 
 type RevealNewObservation = {
     type:MoveType.RevealNewObservation,
@@ -29,10 +30,5 @@ export function revealNewObservationView(state:GameView, move:RevealNewObservati
     incrementObservation(state)
 }
 
-function incrementObservation(state:GameView|GameState){
-    state.players.forEach(p => {
-        p.observationsMade.find(obs => obs.discoveringValue === p.observationActualTurn)!.discoveringCount++
-        delete p.observationActualTurn
-    })
-}
+
 
