@@ -8,6 +8,11 @@ type Spot = {
 
 export default Spot
 
+export type PathwaySpot = {
+    digit:number
+    index:number
+}
+
 export enum Field {Forest=1, Water, OOB}
 
 export function isSpotWater(spot:Spot):boolean{
