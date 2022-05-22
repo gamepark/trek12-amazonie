@@ -4,6 +4,7 @@ import MoveView from '@gamepark/trek12/moves/MoveView'
 import {Game} from '@gamepark/rules-api'
 import { writeNumber } from '@gamepark/trek12/moves/WriteNumber'
 import { setupNewRound } from '@gamepark/trek12/moves/SetupNewRound'
+import { revealNewObservationView } from '@gamepark/trek12/moves/RevealNewObservation'
 
 export default class Trek12View implements Game<GameView, MoveView> {
   state: GameView
@@ -22,6 +23,8 @@ export default class Trek12View implements Game<GameView, MoveView> {
         return writeNumber(this.state, move)
       case MoveType.SetupNewRound:
         return setupNewRound(this.state)
+      case MoveType.RevealNewObservation:
+        return revealNewObservationView(this.state, move)
     }
   }
 

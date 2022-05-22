@@ -1,5 +1,5 @@
 import {IncompleteInformation, SimultaneousGame} from '@gamepark/rules-api'
-import GameState, { setupNewGame } from './GameState'
+import GameState, { ObservationView, setupNewGame } from './GameState'
 import GameView from './GameView'
 import Spot, { isAdjacent, isSpider, isSpotEmpty } from './material/Spot'
 import Move from './moves/Move'
@@ -90,7 +90,16 @@ export default class Trek12 extends SimultaneousGame<GameState, Move, number>
   }
 
   getMoveView(move: Move): MoveView {
-    return move
+    if(move.type === MoveType.RevealNewObservation){
+      const obsRevealed:ObservationView[] = this.state.observation.filter(obs => this.state.players.some(p => p.observationActualTurn === obs.discoveringValue))
+            .map((obs, index) => {return{discoveringValue:obs.discoveringValue, isRevealed:obs.isRevealed}})
+      const animals:number[] = this.state.observation.filter(obs => this.state.players.some(p => p.observationActualTurn === obs.discoveringValue))
+            .map((obs, index) => {return obs.animal})
+      return {
+        type:MoveType.RevealNewObservation,
+        obsRevealed:this.state.observation.filter(obs => this.state.players.some(p => p.observationActualTurn === obs.discoveringValue))
+      }
+    } else return move
   }
 
 }
