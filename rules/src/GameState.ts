@@ -25,6 +25,10 @@ export function isObservationView(obs:Observation|ObservationView):obs is Observ
   return (obs as Observation).animal === undefined
 }
 
+export function isNotObservationView(obs:Observation|ObservationView):obs is Observation{
+  return (obs as Observation).animal !== undefined 
+}
+
 export function setupNewGame(forestMap:ForestMap = ForestMap.Basic, nbPlayers:number, obsMix:ObservationMix = ObservationMix.Basic):GameState{
   const obsToReturn:Observation[] = setupObservation(obsMix)
   return {

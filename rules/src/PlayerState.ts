@@ -1,5 +1,4 @@
 import { createForest, ForestMap } from "./forests/Forest";
-import { Observation } from "./GameState";
 import Spot, { PathwaySpot } from "./material/Spot";
 
 export default interface PlayerState {
@@ -7,11 +6,18 @@ export default interface PlayerState {
   observationsMade:PlayerObservation[]
   observationActualTurn?:number
   penalties:number
-  score:number
+  score:ScoreTable
   operationTab:OperationCounter
   forest:Spot[]
   pathways:PathwaySpot[][]  // NEED TO BE SORTED BY DIGIT
   chooseBetweenPathways?:{pathwaySpotToAdd:PathwaySpot, pathsToChooseBetween:Spot[]}
+}
+
+export type ScoreTable = {
+  obsScore:number,
+  groupScore:number,
+  pathwayScore:number,
+  hazardScore:number
 }
 
 export type PlayerObservation = {
@@ -26,7 +32,7 @@ export function setupPlayers(forest:ForestMap = ForestMap.Basic, nbPlayers:numbe
         observationsMade:[{discoveringValue:discoveringValues[0], discoveringCount:0},{discoveringValue:discoveringValues[1], discoveringCount:0},{discoveringValue:discoveringValues[2], discoveringCount:0}],
         operationTab:{smallDigit:0, highDigit:0, addOperand:0, minusOperand:0, timeOperand:0},
         penalties:0,
-        score:0,
+        score:{groupScore:0,hazardScore:0,obsScore:0,pathwayScore:0},
         pathways:[]
   }
   return [...new Array(nbPlayers)].map(() => (playerTemplate))

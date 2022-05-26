@@ -101,10 +101,6 @@ export default class Trek12 extends SimultaneousGame<GameState, Move, number>
 
   getMoveView(move: Move): MoveView {
     if(move.type === MoveType.RevealNewObservation){
-      const obsRevealed:ObservationView[] = this.state.observation.filter(obs => this.state.players.some(p => p.observationActualTurn === obs.discoveringValue))
-            .map((obs, index) => {return{discoveringValue:obs.discoveringValue, isRevealed:obs.isRevealed}})
-      const animals:number[] = this.state.observation.filter(obs => this.state.players.some(p => p.observationActualTurn === obs.discoveringValue))
-            .map((obs, index) => {return obs.animal})
       return {
         type:MoveType.RevealNewObservation,
         obsRevealed:this.state.observation.filter(obs => this.state.players.some(p => p.observationActualTurn === obs.discoveringValue))
