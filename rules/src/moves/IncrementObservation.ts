@@ -8,9 +8,7 @@ type IncrementObservation = {
 
 export default IncrementObservation
 
-export function incrementObservationMove(){
-    return {type:MoveType.IncrementObservation}
-}
+export const incrementObservationMove:IncrementObservation = {type:MoveType.IncrementObservation}
 
 export function incrementObservation(state:GameView|GameState){
     state.players.forEach(p => {

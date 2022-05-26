@@ -11,7 +11,7 @@ type RevealNewObservation = {
 
 export default RevealNewObservation
 
-export function revealNewObservationMove(obsRevealed:Observation[]){
+export function revealNewObservationMove(obsRevealed:Observation[]):RevealNewObservation{
     return {type:MoveType.RevealNewObservation, obsRevealed}
 }
 

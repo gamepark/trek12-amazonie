@@ -24,6 +24,7 @@ export function writeNumber(state:GameState|GameView, move:WriteNumber){
     const player:PlayerState = state.players[move.playerId-1]
     const spotFilled:Spot = player.forest.find(s => s.index === move.index)!; 
 
+
     if(spotFilled.fieldType === Field.Water && getOperandFeat(state.forestMap,move.operand) !== ForestOperandFeats.Boat){
         spotFilled.isPiranha = true
     }
@@ -32,7 +33,7 @@ export function writeNumber(state:GameState|GameView, move:WriteNumber){
         spotFilled.isSpider = true
     } else {
         spotFilled.digit = numberWrote
-        player.isReady = true
+        
 
     // Managing pathways
 
@@ -61,6 +62,13 @@ export function writeNumber(state:GameState|GameView, move:WriteNumber){
         player.observationActualTurn = numberWrote
     }
 
-
+    player.isReady = true
+    switch(move.operand){
+        case Operand.add:player.operationTab.addOperand++;break;
+        case Operand.high:player.operationTab.highDigit++;break;
+        case Operand.minus:player.operationTab.minusOperand++;break;
+        case Operand.small:player.operationTab.smallDigit++;break;
+        case Operand.time:player.operationTab.timeOperand++;break;
+    }
 
 }

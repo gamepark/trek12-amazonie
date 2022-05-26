@@ -2,11 +2,11 @@ import {IncompleteInformation, SimultaneousGame} from '@gamepark/rules-api'
 import GameState, { ObservationView, setupNewGame } from './GameState'
 import GameView from './GameView'
 import Spot, { isAdjacent, isSpider, isSpotEmpty } from './material/Spot'
-import { incrementObservation } from './moves/IncrementObservation'
+import { incrementObservation, incrementObservationMove } from './moves/IncrementObservation'
 import Move from './moves/Move'
 import MoveType from './moves/MoveType'
 import MoveView from './moves/MoveView'
-import { revealNewObservation } from './moves/RevealNewObservation'
+import { revealNewObservation, revealNewObservationMove } from './moves/RevealNewObservation'
 import { setupNewRound, setupNewRoundMove } from './moves/SetupNewRound'
 import { writeNumber, writeNumberMove } from './moves/WriteNumber'
 import PlayerState, { Operand } from './PlayerState'
@@ -79,7 +79,11 @@ export default class Trek12 extends SimultaneousGame<GameState, Move, number>
   getAutomaticMove(): void | Move {
     if(this.state.players.every(p => p.isReady)){
       if (this.state.players.some(p => p.observationActualTurn)){
-        // TODO : reveal and add obs move
+        if (this.state.observation.filter(obs => this.state.players.some(p => p.observationActualTurn === obs.discoveringValue)).some(obs => obs.isRevealed === false) ){
+          return revealNewObservationMove(this.state.observation.filter(obs => this.state.players.some(p => p.observationActualTurn === obs.discoveringValue)).filter(obs => obs.isRevealed === false))
+        } else {
+          return incrementObservationMove
+        }
       } else {
         return setupNewRoundMove
       }
