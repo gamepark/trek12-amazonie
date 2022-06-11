@@ -2,6 +2,7 @@ import {IncompleteInformation, SimultaneousGame} from '@gamepark/rules-api'
 import GameState, { ObservationView, setupNewGame } from './GameState'
 import GameView from './GameView'
 import Spot, { isAdjacent, isSpider, isSpotEmpty } from './material/Spot'
+import { endGame, EndGameMove } from './moves/EndGame'
 import { incrementObservation, incrementObservationMove } from './moves/IncrementObservation'
 import Move from './moves/Move'
 import MoveType from './moves/MoveType'
@@ -73,6 +74,8 @@ export default class Trek12 extends SimultaneousGame<GameState, Move, number>
         return revealNewObservation(this.state, move)
       case MoveType.IncrementObservation:
         return incrementObservation(this.state)
+      case MoveType.EndGame:
+        return endGame(this.state)
     }
   }
 
@@ -85,6 +88,9 @@ export default class Trek12 extends SimultaneousGame<GameState, Move, number>
           return incrementObservationMove
         }
       } else {
+        if(this.state.round === 20){
+          return EndGameMove
+        }
         return setupNewRoundMove
       }
     }

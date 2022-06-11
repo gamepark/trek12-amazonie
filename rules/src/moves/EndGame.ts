@@ -2,7 +2,7 @@ import GameState, { isNotObservationView } from "../GameState";
 import GameView from "../GameView";
 import MoveType from "./MoveType";
 import Animal, {ObservationMix, getObservationMix} from "../material/Observation"
-import { getAdjacentSpots, PathwaySpot } from "../material/Spot";
+import { getAdjacentSpots, isPiranha, isSpider, PathwaySpot } from "../material/Spot";
 
 type EndGame = {
     type:MoveType.EndGame
@@ -13,7 +13,10 @@ export default EndGame
 export const EndGameMove:EndGame = {type:MoveType.EndGame}
 
 export function endGame(state:GameState|GameView){
+
     state.players.forEach(p => {
+
+        // Score Observation
         state.observation.forEach(obs => {
             if(isNotObservationView(obs)){
                 // TODO : find a way to get the good obsMix, with the good option !
@@ -21,6 +24,8 @@ export function endGame(state:GameState|GameView){
                 p.score.obsScore += animalArray.scoring[p.observationsMade.find(obsMade => obsMade.discoveringValue === obs.discoveringValue)!.discoveringCount]
             }
         })
+
+        // Score Groups
         const groupSpotsArray:PathwaySpot[][] = []
         p.forest.forEach(spot => {
             if (spot !== null){
@@ -34,5 +39,31 @@ export function endGame(state:GameState|GameView){
                 }
             }
         })
+
+        // Set Spider in each spot which is not in a group or a path
+        p.forest.forEach(spot => {
+            if (groupSpotsArray.filter(gs => gs.find(s => s.index === spot.index) && gs.length === 1).length !== 0 || p.pathways.filter(ps => ps.find(s => s.index === spot.index)  && ps.length === 1).length !== 0){
+                spot.isSpider = true
+            }
+        })
+
+        groupSpotsArray.filter(group => group.length > 1).forEach(group => {
+            p.score.groupScore += group[0].digit + group.length - 1
+        })
+
+        // Score Pathways
+        p.pathways.filter(path => path.length > 1).forEach(path => {
+            p.score.pathwayScore += path[0].digit + path.length - 1
+        })
+
+        // Score hazards
+        p.forest.filter(spot => isPiranha(spot) || isSpider(spot)).forEach(spot => {
+            p.score.hazardScore -= isPiranha(spot) ? 5 : 0
+            p.score.hazardScore -= isSpider(spot) ? 5 : 0
+        })
+
+        //End the game
+        state.round++
+
     })
 }
