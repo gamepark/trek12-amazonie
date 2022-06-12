@@ -33,7 +33,13 @@ export function endGame(state:GameState|GameView){
                 if (howManyGroups.length === 1){
                     groupSpotsArray.find(group => group.some(s1 => howManyGroups[0].some(s2 => s1.index === s2.index)))!.push({index:spot.index, digit:spot.digit!})
                 } else if (howManyGroups.length > 1){
-                    // TODO : HAVE TO FUSE GROUPS TOGETHER
+                    const outputGroup: PathwaySpot[] = []
+                    for (const group of howManyGroups){
+                        outputGroup.push(...group)
+                        groupSpotsArray.splice(groupSpotsArray.findIndex(groupGSA => groupGSA.some(s1 => group.some(s2 => s1.index === s2.index)))!,1)
+                    }
+                    groupSpotsArray.find(group => group.some(s1 => howManyGroups[0].some(s2 => s1.index === s2.index)))!.push({index:spot.index, digit:spot.digit!})
+
                 } else {
                     groupSpotsArray.push([{index:spot.index, digit:spot.digit!}])
                 }
