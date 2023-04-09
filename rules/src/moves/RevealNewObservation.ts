@@ -1,7 +1,6 @@
-import GameState, { Observation, ObservationView } from "../GameState";
+import GameState, { Observation } from "../GameState";
 import MoveType from "./MoveType";
 import GameView from '../GameView';
-import Animal, { observation1 } from "../material/Observation";
 import { incrementObservation } from "./IncrementObservation";
 
 type RevealNewObservation = {

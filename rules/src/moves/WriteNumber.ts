@@ -38,23 +38,32 @@ export function writeNumber(state:GameState|GameView, move:WriteNumber){
     // Managing pathways
 
         const adjacentNonNullSpots = getAdjacentSpots(spotFilled, player.forest).filter(as => as.digit !== null)
-        player.pathways.forEach(pathway => {
-            
-            const eligibleSpotForPathway:Spot[] = adjacentNonNullSpots.filter(as => (as.index === pathway[0].index && Math.abs(as.digit! - pathway[0].digit) === 1) 
-                || (as.index === pathway[pathway.length-1].index && Math.abs(as.digit! - pathway[pathway.length-1].digit) === 1))
-            
-            if (eligibleSpotForPathway.length === 0){
-                player.pathways.push([{index:spotFilled.index, digit:spotFilled.digit!}])
-            } else if(eligibleSpotForPathway.length === 1){
-                const pathToFill:PathwaySpot[] = player.pathways.find(path => path.some(s => s.index === eligibleSpotForPathway[0].index))!
-                pathToFill.push({index:spotFilled.index, digit:spotFilled.digit!})
-                pathToFill.sort((a,b) => a.digit-b.digit)
-            } else {
-                player.chooseBetweenPathways = {pathwaySpotToAdd:{index:spotFilled.index, digit:spotFilled.digit!}, pathsToChooseBetween:eligibleSpotForPathway}
-                player.isReady = false
-            }
+        console.log("Avant",player.pathways)
 
-        })
+        if(player.pathways.length === 0){
+            player.pathways.push([{index:spotFilled.index, digit:spotFilled.digit!}])
+        } else {
+            player.pathways.forEach(pathway => {
+            
+                const eligibleSpotForPathway:Spot[] = adjacentNonNullSpots.filter(as => (as.index === pathway[0].index && Math.abs(spotFilled.digit! - pathway[0].digit) === 1) 
+                    || (as.index === pathway[pathway.length-1].index && Math.abs(spotFilled.digit! - pathway[pathway.length-1].digit) === 1))
+        
+                if (eligibleSpotForPathway.length === 0){
+                    console.log("add to potential")
+                    player.pathways.push([{index:spotFilled.index, digit:spotFilled.digit!}])
+                } else if(eligibleSpotForPathway.length === 1){
+                    const pathToFill:PathwaySpot[] = player.pathways.find(path => path.some(s => s.index === eligibleSpotForPathway[0].index))!
+                    pathToFill.push({index:spotFilled.index, digit:spotFilled.digit!})
+                    pathToFill.sort((a,b) => a.digit-b.digit)
+                } else {
+                    player.chooseBetweenPathways = {pathwaySpotToAdd:{index:spotFilled.index, digit:spotFilled.digit!}, pathsToChooseBetween:eligibleSpotForPathway}
+                    player.isReady = false
+                }
+    
+            })
+        } 
+
+        console.log("Après : ",player.pathways)
 
     }
 

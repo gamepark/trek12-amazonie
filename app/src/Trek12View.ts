@@ -1,36 +1,36 @@
-import GameView from '@gamepark/trek12/GameView'
+import Move from '@gamepark/trek12/moves/Move'
+import MoveRandomized from '@gamepark/trek12/moves/MoveRandomized'
 import MoveType from '@gamepark/trek12/moves/MoveType'
-import MoveView from '@gamepark/trek12/moves/MoveView'
-import {Game} from '@gamepark/rules-api'
-import { writeNumber } from '@gamepark/trek12/moves/WriteNumber'
-import { setupNewRound } from '@gamepark/trek12/moves/SetupNewRound'
+import MoveView, { isMoveView } from '@gamepark/trek12/moves/MoveView'
 import { revealNewObservationView } from '@gamepark/trek12/moves/RevealNewObservation'
-import { incrementObservation } from '@gamepark/trek12/moves/IncrementObservation'
-import { endGame } from '@gamepark/trek12/moves/EndGame'
+import Trek12 from '@gamepark/trek12/Trek12'
+import SetSelectedOperand, { resetSelectedOperand, ResetSelectedOperand, RESET_SELECTED_OPERAND, setSelectedOperand, SET_SELECTED_OPERAND } from './localMoves/setSelectedOperand'
+import SetSelectedSpot, { resetSelectedSpot, ResetSelectedSpot, RESET_SELECTED_SPOT, setSelectedSpot, SET_SELECTED_SPOT } from './localMoves/setSelectedSpot'
 
-export default class Trek12View implements Game<GameView, MoveView> {
-  state: GameView
+type LocalMove = MoveView | SetSelectedOperand | ResetSelectedOperand | SetSelectedSpot | ResetSelectedSpot
 
-  constructor(state: GameView) {
-    this.state = state
+export default class Trek12View extends Trek12 {
+
+  getAutomaticMoves(): (Move & MoveView)[] {
+    const moves = super.getAutomaticMoves()
+    return moves.filter(isMoveView)
   }
 
-  getAutomaticMove(): void | MoveView {
-    return
-  }
-
-  play(move: MoveView): void {
-    switch(move.type){
-      case MoveType.WriteNumber:
-        return writeNumber(this.state, move)
-      case MoveType.SetupNewRound:
-        return setupNewRound(this.state)
+  play(move: MoveRandomized): void {
+    const localMove = move as LocalMove
+    switch(localMove.type){
       case MoveType.RevealNewObservation:
-        return revealNewObservationView(this.state, move)
-      case MoveType.IncrementObservation:
-        return incrementObservation(this.state)
-      case MoveType.EndGame:
-        return endGame(this.state)
+        return revealNewObservationView(this.state, localMove)
+      case SET_SELECTED_OPERAND:
+        return setSelectedOperand(this.state, localMove)
+      case RESET_SELECTED_OPERAND:
+        return resetSelectedOperand(this.state)
+      case SET_SELECTED_SPOT:
+        return setSelectedSpot(this.state, localMove)
+      case RESET_SELECTED_SPOT:
+        return resetSelectedSpot(this.state)
+      default:
+        super.play(localMove)
     }
   }
 

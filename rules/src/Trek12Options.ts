@@ -2,6 +2,7 @@ import {OptionsSpec} from '@gamepark/rules-api'
 import { TFunction } from 'i18next'
 import { ForestMap, forestMaps } from './forests/Forest'
 import GameState from './GameState'
+import GameView from './GameView'
 import { ObservationMix, observationsMixes } from './material/Observation'
 
 export type Trek12Options = {
@@ -10,7 +11,7 @@ export type Trek12Options = {
   observationMix:ObservationMix
 }
 
-export function isGameOptions(arg: GameState | Trek12Options): arg is Trek12Options {
+export function isGameOptions(arg: GameState | GameView | Trek12Options): arg is Trek12Options {
   return typeof (arg as GameState).round === 'undefined'
 }
 
