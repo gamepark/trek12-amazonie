@@ -5,6 +5,7 @@ import MoveType from "@gamepark/trek12/moves/MoveType";
 import PlayerState, { Operand } from "@gamepark/trek12/PlayerState";
 import { ResetSelectedSpot, resetSelectedSpotMove } from "../localMoves/setSelectedSpot";
 import SetSelectedOperand, { ResetSelectedOperand, resetSelectedOperandMove, setSelectedOperandMove } from "../localMoves/setSelectedOperand";
+import DiceAnimation from "./DiceAnimation";
 
 type Props = {
     dice:number[]
@@ -34,8 +35,7 @@ export default function DicePath({dice, player, operandSelected, selectedSpot}:P
     return (
         <div css={[dicePathStyle]}> 
         
-            <div css={[diceStyle, diceUpStyle]}> <span css={diceResultStyle}>{dice[0]}</span> </div>
-            <div css={[diceStyle, diceLowStyle]}> <span css={diceResultStyle}>{dice[1]}</span> </div>
+            <DiceAnimation dice={dice}/>
             {player.operationTab.highDigit != 4    && <div css={[operandStyle(1, operandSelected === Operand.high)]} onClick={() => clickOperand(Operand.high)} > <span css={diceResultStyle}> ⇧ </span> </div>}
             {player.operationTab.smallDigit != 4   && <div css={[operandStyle(2, operandSelected === Operand.small)]} onClick={() => clickOperand(Operand.small)}> <span css={diceResultStyle}> ⇩ </span > </div>}
             {player.operationTab.minusOperand != 4 && <div css={[operandStyle(3, operandSelected === Operand.minus)]} onClick={() => clickOperand(Operand.minus)}> <span css={diceResultStyle}> - </span> </div>}
