@@ -88,7 +88,7 @@ export default class Trek12 extends Rules<GameState | GameView, Move | MoveView,
 
   getAutomaticMoves(): Move[] {
     if(this.state.players.every(p => p.isReady)){
-      if (this.state.players.some(p => p.observationActualTurn)){
+      if (this.state.players.some(p => p.observationActualTurn !== undefined)){
         if (this.state.observation.filter(obs => this.state.players.some(p => p.observationActualTurn === obs.discoveringValue)).some(obs => obs.isRevealed === false) ){
           return [revealNewObservationMove(this.state.observation.filter(obs => this.state.players.some(p => p.observationActualTurn === obs.discoveringValue)).filter(obs => obs.isRevealed === false) as Observation[] )] 
         } else {
