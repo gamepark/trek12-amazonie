@@ -1,36 +1,33 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import { usePlayerId } from "@gamepark/react-client";
-import { Picture, PictureAttributes } from "@gamepark/react-components";
-import { isNotObservationView, isObservationView, Observation, ObservationView } from "@gamepark/trek12/GameState";
-import Animal, { AnimalEnum } from "@gamepark/trek12/material/Observation";
-import { t } from "i18next";
-import Images from "../images/Images";
+import { css } from '@emotion/react'
+import { PictureAttributes } from '@gamepark/react-game'
+import { ExplorationCard } from '@gamepark/trek12/material/ExplorationCard'
+import Images from '../images/Images'
 
 type Props = {
-    animal:(ObservationView|Observation)
 } & PictureAttributes
 
-export default function AnimalCard({animal, ...props}:Props){
-    const playerId = usePlayerId<number>()
-    return (
-        isNotObservationView(animal)
-            ? <Picture src={getAnimalPicture(animal.animal)} css={style} {...props}/>
-            : <Picture src={Images.animalBack} css={style} {...props}/>
-        
-    )
+export default function AnimalCard(){
+        // const playerId = usePlayerId<number>()
+        // return (
+        //     isNotObservationView(animal)
+        //         ? <Picture src={getAnimalPicture(animal.animal)} css={style} {...props}/>
+        //         : <Picture src={Images.animalBack} css={style} {...props}/>
+        //
+        // )
+    return null
 }
 
-function getAnimalPicture(animal:AnimalEnum):string{
+function getAnimalPicture(animal:ExplorationCard):string{
     switch(animal){
-        case AnimalEnum.Ara: return Images.ara
-        case AnimalEnum.Butterfly: return Images.butterfly
-        case AnimalEnum.Jaguar: return Images.jaguar
-        case AnimalEnum.PoisonDartFrog: return Images.poisonDartFrog
-        case AnimalEnum.PygmyMarmoset: return Images.oustiti
-        case AnimalEnum.RainbowBoa: return Images.aecSnake
-        case AnimalEnum.Tararind: return Images.tamarin
-        case AnimalEnum.Toucan: return Images.toucan
+        case ExplorationCard.Ara: return Images.ara
+        case ExplorationCard.Butterfly: return Images.butterfly
+        case ExplorationCard.Jaguar: return Images.jaguar
+        case ExplorationCard.PoisonDartFrog: return Images.poisonDartFrog
+        case ExplorationCard.PygmyMarmoset: return Images.oustiti
+        case ExplorationCard.RainbowBoa: return Images.aecSnake
+        case ExplorationCard.Tamarind: return Images.tamarin
+        case ExplorationCard.Toucan: return Images.toucan
         default : return Images.animalBack
     }
 }

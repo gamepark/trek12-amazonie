@@ -1,7 +1,6 @@
-import GameState, { Observation, ObservationView } from './GameState'
+import { GameState } from './GameState'
 
 type GameView = Omit<GameState, 'observation'> & {
-  observation: (ObservationView|Observation)[]
 }
 
 export default GameView

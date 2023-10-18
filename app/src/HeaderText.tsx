@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import GameView from '@gamepark/trek12/GameView'
-import {getPlayerName} from '@gamepark/trek12/Trek12Options'
-import {usePlayerId} from '@gamepark/react-client'
-import {useTranslation} from 'react-i18next'
+import { getPlayerName } from '@gamepark/trek12/Trek12Options'
+import { useTranslation } from 'react-i18next'
+import { usePlayerId } from '@gamepark/react-game'
 
 type Props = {
   loading: boolean

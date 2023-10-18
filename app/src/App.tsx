@@ -1,13 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import GameView from '@gamepark/trek12/GameView'
-import {FailuresDialog, FullscreenDialog, Menu, useGame} from '@gamepark/react-client'
-import {Header, ImagesLoader, LoadingScreen} from '@gamepark/react-components'
-import {useEffect, useState} from 'react'
-import {DndProvider} from 'react-dnd-multi-backend'
-import HTML5ToTouch from 'react-dnd-multi-backend/dist/cjs/HTML5toTouch'
-import GameDisplay from './GameDisplay'
-import HeaderText from './HeaderText'
-import Images from './images/Images'
+import { FC, useEffect, useState } from 'react'
+import { GameDisplay } from './GameDisplay'
+import { MaterialImageLoader, FailuresDialog, FullscreenDialog, Menu, useGame, MaterialHeader, LoadingScreen } from '@gamepark/react-game'
+import { RuleId } from '@gamepark/trek12/rules/RuleId'
 
 export default function App() {
   const game = useGame<GameView>()
@@ -18,14 +14,16 @@ export default function App() {
   }, [])
   const loading = !game || imagesLoading || isJustDisplayed
   return (
-    <DndProvider options={HTML5ToTouch}>
-      {!loading && <GameDisplay game={game}/>}
-      <LoadingScreen display={loading} author="Bruno Cathala et Corentin Lebrat" artist="Olivier Derouetteau & Corentin Lebrat" publisher="Lumberjacks Studio" developer="Théo Grégorio"/>
-      <Header><HeaderText loading={loading} game={game}/></Header>
-      <Menu/>
-      <FailuresDialog/>
-      <FullscreenDialog/>
-      <ImagesLoader images={Object.values(Images)} onImagesLoad={() => setImagesLoading(false)}/>
-    </DndProvider>
+    <>
+      <GameDisplay />
+      <LoadingScreen display={loading} author="Aske Christiansen" artist="Apolline Etienne" publisher="Ludonaute" developer="Laetitia Decoudu" />
+      <MaterialImageLoader onImagesLoad={() => setImagesLoading(false)} />
+      <MaterialHeader rulesStepsHeaders={headers} />
+      <Menu />
+      <FailuresDialog />
+      <FullscreenDialog />
+    </>
   )
 }
+
+const headers: Partial<Record<RuleId, FC>> = {}

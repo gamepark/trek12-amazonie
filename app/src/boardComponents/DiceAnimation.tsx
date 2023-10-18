@@ -1,14 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import {css, keyframes} from '@emotion/react'
-import {faDiceFive} from '@fortawesome/free-solid-svg-icons/faDiceFive'
-import {faDiceFour} from '@fortawesome/free-solid-svg-icons/faDiceFour'
-import {faDiceOne} from '@fortawesome/free-solid-svg-icons/faDiceOne'
-import {faDiceSix} from '@fortawesome/free-solid-svg-icons/faDiceSix'
-import {faDiceThree} from '@fortawesome/free-solid-svg-icons/faDiceThree'
-import {faDiceTwo} from '@fortawesome/free-solid-svg-icons/faDiceTwo'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {useAnimation} from '@gamepark/react-client'
-import {useEffect, useState} from 'react'
+import { css, keyframes } from '@emotion/react'
 
 type Props = {
     dice:number[]

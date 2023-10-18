@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import { Picture, PictureAttributes } from "@gamepark/react-components";
-import Images from "../images/Images";
+import { css } from '@emotion/react'
+import { Picture, PictureAttributes } from '@gamepark/react-game'
+import Images from '../images/Images'
 
 type Props = {
     discoveringValue:(number)

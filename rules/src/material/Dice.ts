@@ -1,4 +1,4 @@
-import shuffle from 'lodash.shuffle'
+import shuffle from 'lodash/shuffle'
 import { Operand } from '../PlayerState'
 
 export const bigDice:[number, number, number, number, number, number] = [1,2,3,4,5,6]

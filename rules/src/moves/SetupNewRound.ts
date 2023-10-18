@@ -1,9 +1,7 @@
-import GameState from "../GameState";
-import GameView from "../GameView";
-import rollDice from "../material/Dice";
-import { getPlayerName } from "../Trek12Options";
-import Move from "./Move";
-import MoveType from "./MoveType";
+import GameView from '../GameView'
+import rollDice from '../material/Dice'
+import MoveType from './MoveType'
+import { GameState } from '../GameState'
 
 type SetupNewRound = {
     type:MoveType.SetupNewRound
@@ -18,7 +16,7 @@ export type SetupNewRoundRandomized = SetupNewRound & {
 export const setupNewRoundMove:SetupNewRound = {type:MoveType.SetupNewRound}
 
 export function setupNewRound(state:GameState|GameView, move:SetupNewRoundRandomized){
-    state.players.forEach(p => {
+    state.players.forEach((p: any) => {
         p.isReady = false
         delete p.chooseBetweenPathways
         delete p.observationActualTurn

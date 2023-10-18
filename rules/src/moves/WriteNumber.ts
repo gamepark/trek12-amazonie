@@ -1,10 +1,9 @@
-import { ForestOperandFeats, getOperandFeat } from "../forests/Forest";
-import GameState from "../GameState";
-import GameView from "../GameView";
-import { getDiceResultWithOperand } from "../material/Dice";
-import Spot, { Field, getAdjacentSpots, PathwaySpot } from "../material/Spot";
-import PlayerState, { Operand } from "../PlayerState";
-import MoveType from "./MoveType";
+import { ForestOperandFeats, getOperandFeat } from '../forests/Forest'
+import GameView from '../GameView'
+import { getDiceResultWithOperand } from '../material/Dice'
+import Spot, { Field, getAdjacentSpots, PathwaySpot } from '../material/Spot'
+import PlayerState, { Operand } from '../PlayerState'
+import MoveType from './MoveType'
 
 type WriteNumber = {
     type:MoveType.WriteNumber
@@ -12,6 +11,8 @@ type WriteNumber = {
     playerId:number
     index:number
 }
+
+type GameState = any
 
 export default WriteNumber
 
@@ -67,7 +68,7 @@ export function writeNumber(state:GameState|GameView, move:WriteNumber){
 
     }
 
-    if(state.observation.some(obs => obs.discoveringValue === numberWrote)){
+    if(state.observation.some((obs : any) => obs.discoveringValue === numberWrote)){
         player.observationActualTurn = numberWrote
     }
 
