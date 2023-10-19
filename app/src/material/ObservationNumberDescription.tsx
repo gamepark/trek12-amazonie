@@ -1,14 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { WritingDescription } from '@gamepark/react-game/dist/components/material/FlatMaterial/WritingDescription'
-import { ItemContext, MaterialContext } from '@gamepark/react-game/dist/locators/ItemLocator'
+import { MaterialContext } from '@gamepark/react-game/dist/locators/ItemLocator'
 import { MaterialType } from '@gamepark/trek12/material/MaterialType'
 import { LocationType } from '@gamepark/trek12/material/LocationType'
 import React from 'react'
 import { css } from '@emotion/react'
 
-export class ObservationNumber extends WritingDescription {
-  height = 1
-  width = 1
+export class ObservationNumberDescription extends WritingDescription {
+  height = 0.6
+  width = 0.6
 
   getStaticItems(context: MaterialContext) {
     const { rules } = context
@@ -30,11 +30,21 @@ export class ObservationNumber extends WritingDescription {
   }
 
   getContent(itemId: any) {
-    return <span css={css`color: black; font-size: 0.5em`}>{itemId}</span>
+    return <span css={observationNumber}>{itemId}</span>
   }
 
   rules = () => null
 
 }
 
-export const observationNumber = new ObservationNumber()
+const observationNumber = css`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 0, 0, 0.3);
+  text-align: center;
+  color: black;
+  font-size: 0.5em;
+`
+
+export const observationNumberDescription = new ObservationNumberDescription()

@@ -7,7 +7,7 @@ import React from 'react'
 import { css } from '@emotion/react'
 import { ExplorationCardScores } from '@gamepark/trek12/material/ExplorationCard'
 
-export class ObservationScores extends WritingDescription {
+export class ObservationScoresDescription extends WritingDescription {
   height = 1
   width = 1
 
@@ -48,12 +48,13 @@ export class ObservationScores extends WritingDescription {
 
 }
 
-export const observationScores = new ObservationScores()
+export const observationScoresDescription = new ObservationScoresDescription()
 
 const itemIdContainer = css`
   //background-color: white;
   height: 0.53em;
   width: 0.53em;
+  background-color: rgba(255, 0, 0, 0.3);
   //border: 0.01em solid black;
   display: flex;
   align-items: center;

@@ -1,0 +1,31 @@
+import { ItemContext, LineLocator } from '@gamepark/react-game'
+import { MaterialType } from '@gamepark/trek12/material/MaterialType'
+import { Coordinates, Location, MaterialItem } from '@gamepark/rules-api'
+import { OperatorChoiceDescription } from './OperatorChoiceDescription'
+
+export class OperatorChoiceLocator extends LineLocator {
+  parentItemType = MaterialType.ExplorationBoard
+
+  locationDescription = new OperatorChoiceDescription()
+
+  getDelta(_item: MaterialItem<number, number>, _context: ItemContext<number, number, number>): Partial<Coordinates> {
+    return super.getDelta(_item, _context)
+  }
+
+  delta = { x: 4, y: -0.01  }
+
+  coordinates = { x: 0, y: 0, z: 1 }
+
+  getPositionOnParent(location: Location) {
+    return {
+      x: 78 + (location.x! * 4),
+      y: 59.5 + ((location.id - 1) * 3.85) - (location.x! * 0.1)
+    }
+  }
+
+  getParentItemId(location: Location) {
+    return location.player
+  }
+}
+
+export const operatorChoiceLocator = new OperatorChoiceLocator()

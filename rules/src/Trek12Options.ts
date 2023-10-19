@@ -1,13 +1,12 @@
 import { OptionsSpec } from '@gamepark/rules-api'
 import { TFunction } from 'i18next'
 import { ForestMap, forestMaps } from './forests/Forest'
-import { ObservationMix, observationsMixes } from './material/ExplorationCard'
 
 export type PlayerId = number
 export type Trek12Options = {
   players: PlayerId
   forestType:ForestMap
-  observationMix:ObservationMix
+  //observationMix:ObservationMix
 }
 export const Trek12OptionsSpec: OptionsSpec<Trek12Options> = {
   forestType:{
@@ -27,7 +26,7 @@ export const Trek12OptionsSpec: OptionsSpec<Trek12Options> = {
     subscriberRequired:true
   },
 
-  observationMix:{
+  /*observationMix:{
     label: (t: Function) => t('observation.mix.label'),
     help: (t: Function) => t('observation.mix.help'),
     values: observationsMixes,
@@ -46,7 +45,7 @@ export const Trek12OptionsSpec: OptionsSpec<Trek12Options> = {
       },
     }),
     subscriberRequired:true
-  }
+  }*/
 }
 
 export function getPlayerName(playerId: number, t: TFunction) {

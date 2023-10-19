@@ -26,6 +26,7 @@ export class ObservationCardDescription extends CardDescription {
     [ExplorationCard.PoisonDartFrog]: PoisonDartFrog,
     [ExplorationCard.Tamarind]: Tamarind,
     [ExplorationCard.PygmyMarmoset]: PygmyMarmoset,
+    //[ExplorationCard.CarnivorousPlant]
   }
 
   rules = () => null
