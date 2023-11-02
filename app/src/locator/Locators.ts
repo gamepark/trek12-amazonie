@@ -9,6 +9,8 @@ import { observationScoresLocator } from './ObservationScoresLocator'
 import { expeditionBoardLocator } from './ExplorationMapLocator'
 import { explorationSpaceLocator } from './ExplorationSpaceLocator'
 import { operatorChoiceLocator } from './OperatorChoiceLocator'
+import { diceAreaLocator } from './DiceAreaLocator'
+import { pathLocator } from './PathLocator'
 
 export const locators: Partial<Record<LocationType, ItemLocator<PlayerId, MaterialType, LocationType>>> = {
   [LocationType.Numbers]: numbersLocator,
@@ -17,5 +19,7 @@ export const locators: Partial<Record<LocationType, ItemLocator<PlayerId, Materi
   [LocationType.ObservationScores]: observationScoresLocator,
   [LocationType.ExplorationMap]: expeditionBoardLocator,
   [LocationType.ExpeditionSpace]: explorationSpaceLocator,
-  [LocationType.OperatorChoice]: operatorChoiceLocator
+  [LocationType.OperatorChoice]: operatorChoiceLocator,
+  [LocationType.DiceArea]: diceAreaLocator,
+  [LocationType.Path]: pathLocator,
 }

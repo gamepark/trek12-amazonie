@@ -3,7 +3,7 @@ import { MaterialType } from '@gamepark/trek12/material/MaterialType'
 import { Location } from '@gamepark/rules-api'
 
 export class ObservationNumberLocator extends LineLocator {
-  parentItemType = MaterialType.ExplorationBoard
+  parentItemType = MaterialType.ExplorationMap
 
   coordinates = { x: 0, y: 0, z: 1 }
 

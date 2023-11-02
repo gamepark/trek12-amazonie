@@ -1,5 +1,5 @@
 import GameView from '../GameView'
-import rollDice from '../material/Dice'
+import rollDice from '../material/Dices'
 import MoveType from './MoveType'
 import { GameState } from '../GameState'
 

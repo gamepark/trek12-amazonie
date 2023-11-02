@@ -1,4 +1,4 @@
-import { ItemContext, ItemLocator, LineLocator } from '@gamepark/react-game'
+import { ItemContext, ItemLocator } from '@gamepark/react-game'
 import { MaterialItem } from '@gamepark/rules-api/dist/material/items/MaterialItem'
 import { Coordinates } from '@gamepark/rules-api/dist/material/location/Location'
 import { explorationMapDescription } from '../material/ExplorationMapDescription'

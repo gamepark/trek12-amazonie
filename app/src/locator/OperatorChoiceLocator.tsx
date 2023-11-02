@@ -1,10 +1,10 @@
 import { ItemContext, LineLocator } from '@gamepark/react-game'
 import { MaterialType } from '@gamepark/trek12/material/MaterialType'
 import { Coordinates, Location, MaterialItem } from '@gamepark/rules-api'
-import { OperatorChoiceDescription } from './OperatorChoiceDescription'
+import { OperatorChoiceDescription } from './description/OperatorChoiceDescription'
 
 export class OperatorChoiceLocator extends LineLocator {
-  parentItemType = MaterialType.ExplorationBoard
+  parentItemType = MaterialType.ExplorationMap
 
   locationDescription = new OperatorChoiceDescription()
 

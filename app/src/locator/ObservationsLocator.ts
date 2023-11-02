@@ -1,4 +1,4 @@
-import { ItemContext, LineLocator } from '@gamepark/react-game'
+import { LineLocator } from '@gamepark/react-game'
 import { MaterialItem } from '@gamepark/rules-api/dist/material/items/MaterialItem'
 
 export class ObservationsLocator extends LineLocator {

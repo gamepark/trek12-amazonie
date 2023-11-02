@@ -1,10 +1,13 @@
 export enum MaterialType {
-  ExplorationBoard = 1,
+  ExplorationMap = 1,
   ObservationCard,
   NumberCard,
   Cross,
-  Dice,
-  CircleValue,
+  GreenDice,
+  YellowDice,
+  ExpeditionSpaceValue,
   ObservationNumber,
-  ObservationScores
+  ObservationScores,
+  ScoreRing,
+  Path
 }

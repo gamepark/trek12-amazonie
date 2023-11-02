@@ -29,7 +29,7 @@ export class ObservationNumberDescription extends WritingDescription {
     })))
   }
 
-  getContent(itemId: any) {
+  getFrontContent(itemId: any) {
     return <span css={observationNumber}>{itemId}</span>
   }
 

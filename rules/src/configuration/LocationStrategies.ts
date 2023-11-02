@@ -9,5 +9,5 @@ export const locationsStrategies:  Partial<Record<MaterialType, Partial<Record<L
   },
   [MaterialType.ObservationCard]: {
     [LocationType.Observations]: new PositiveSequenceStrategy(),
-  }
+  },
 }

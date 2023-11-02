@@ -3,7 +3,7 @@ import { MaterialType } from '@gamepark/trek12/material/MaterialType'
 import { Coordinates, Location, MaterialItem, XYCoordinates } from '@gamepark/rules-api'
 
 export class ObservationScoresLocator extends LineLocator {
-  parentItemType = MaterialType.ExplorationBoard
+  parentItemType = MaterialType.ExplorationMap
 
   delta = { x: 0.51 }
 
@@ -11,8 +11,8 @@ export class ObservationScoresLocator extends LineLocator {
 
   getPositionOnParent(location: Location) {
     return {
-      x: 18.3,
-      y: 71.6 + (location.id * 6.4)
+      x: 16.6,
+      y: 69.9 + (location.id * 6.4)
     }
   }
 

@@ -1,6 +1,6 @@
 import { ForestOperandFeats, getOperandFeat } from '../forests/Forest'
 import GameView from '../GameView'
-import { getDiceResultWithOperand } from '../material/Dice'
+import { getDiceResultWithOperand } from '../material/Dices'
 import Spot, { Field, getAdjacentSpots, PathwaySpot } from '../material/Spot'
 import PlayerState, { Operand } from '../PlayerState'
 import MoveType from './MoveType'
@@ -39,7 +39,6 @@ export function writeNumber(state:GameState|GameView, move:WriteNumber){
     // Managing pathways
 
         const adjacentNonNullSpots = getAdjacentSpots(spotFilled, player.forest).filter(as => as.digit !== null)
-        console.log("Avant",player.pathways)
 
         if(player.pathways.length === 0){
             player.pathways.push([{index:spotFilled.index, digit:spotFilled.digit!}])

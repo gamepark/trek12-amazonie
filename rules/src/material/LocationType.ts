@@ -3,6 +3,7 @@ import { ObservationNumberLocator } from '@gamepark/trek12-app/src/locator/Obser
 export enum LocationType {
   ExplorationMap = 1,
   Numbers,
+  DiceArea,
   ChoiceTable,
   ScoreTable,
   Circle,
@@ -10,5 +11,6 @@ export enum LocationType {
   Observations,
   ObservationScores,
   ExpeditionSpace,
-  OperatorChoice
+  OperatorChoice,
+  Path
 }

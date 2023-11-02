@@ -1,10 +1,11 @@
 import { BoardDescription, ItemContext, MaterialContext } from '@gamepark/react-game'
 import { LocationType } from '@gamepark/trek12/material/LocationType'
 import Images from '../images/Images'
-import { nodesCoordinates } from '../locator/ExplorationSpaceLocator'
+import { spaceCoordinates } from '../locator/ExplorationSpaceLocator'
 import { MaterialItem } from '@gamepark/rules-api/dist/material/items/MaterialItem'
 import { range } from 'lodash'
 import { Operator } from '@gamepark/trek12/material/Operator'
+import { paths } from '@gamepark/trek12/rules/helper/Path'
 
 export class ExplorationMapDescription extends BoardDescription {
   width = 13.5
@@ -16,11 +17,11 @@ export class ExplorationMapDescription extends BoardDescription {
     return players.map((player) => ({ id: player, location: { type: LocationType.ExplorationMap } }))
   }
 
-  getLocations(_item: MaterialItem, context: ItemContext) {
-    const { player } = context
-    if (!player) return []
+  getLocations(item: MaterialItem, context: ItemContext) {
+    const player = item.id!
     return [
-      ...nodesCoordinates.map((c, index) => ({ type: LocationType.ExpeditionSpace, id: index, player })),
+      ...spaceCoordinates.map((c, index) => ({ type: LocationType.ExpeditionSpace, id: index, player })),
+      ...paths.map((path) => ({ type: LocationType.Path, id: path, player })),
       ...range(4).map((x) => ({ id: Operator.MIN, type: LocationType.OperatorChoice, x  })),
       ...range(4).map((x) => ({ id: Operator.MAX, type: LocationType.OperatorChoice, x  })),
       ...range(4).map((x) => ({ id: Operator.MINUS, type: LocationType.OperatorChoice, x  })),

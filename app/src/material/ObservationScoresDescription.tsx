@@ -8,8 +8,8 @@ import { css } from '@emotion/react'
 import { ExplorationCardScores } from '@gamepark/trek12/material/ExplorationCard'
 
 export class ObservationScoresDescription extends WritingDescription {
-  height = 1
-  width = 1
+  height = 0.5
+  width = 0.5
 
   getStaticItems(context: MaterialContext) {
     const { rules } = context
@@ -21,12 +21,12 @@ export class ObservationScoresDescription extends WritingDescription {
 
     return players.flatMap((player) =>
       observations
-        .flatMap(({ id = undefined }, locationId) => {
+        .flatMap(({ id = undefined, location: { x } }) => {
             if (!id) return []
             return ExplorationCardScores[id].map((points: number, index: number) => ({
               id: points,
               location: {
-                id: locationId,
+                id: x,
                 type: LocationType.ObservationScores,
                 player,
                 x: index
@@ -37,7 +37,7 @@ export class ObservationScoresDescription extends WritingDescription {
     )
   }
 
-  getContent(itemId: any) {
+  getFrontContent(itemId: any) {
     return <div css={itemIdContainer}>
 
       <span css={itemIdStyle}>{itemId}</span>
@@ -51,9 +51,9 @@ export class ObservationScoresDescription extends WritingDescription {
 export const observationScoresDescription = new ObservationScoresDescription()
 
 const itemIdContainer = css`
+  height: 100%;
+  width: 100%;
   //background-color: white;
-  height: 0.53em;
-  width: 0.53em;
   background-color: rgba(255, 0, 0, 0.3);
   //border: 0.01em solid black;
   display: flex;
