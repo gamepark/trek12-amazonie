@@ -14,23 +14,6 @@ export class ExplorationSpaceDescription extends LocationDescription<PlayerId, M
   width = 1.4
   borderRadius= 4
 
-  getExtraCss(location: Location) {
-    return css`
-      &:after {
-        position: absolute;
-        font-size: 0.5em;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        //content: '${location.id}';
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
-      }
-    `
-  }
-
   isMoveToLocation(move: MaterialMove, location: Location, { rules }: MaterialContext): boolean {
     if (!isCreateItemType(MaterialType.ExpeditionSpaceValue)(move)) return false
     if (!equal(move.item.location, location)) return false

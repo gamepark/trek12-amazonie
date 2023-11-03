@@ -1,7 +1,8 @@
 import { CreateItem, CustomMove, isCreateItemType, isCustomMoveType, ItemMove, MaterialMove, SimultaneousRule } from '@gamepark/rules-api'
+import { PlayerId } from '../Trek12Options'
 import { CustomMoveType } from './CustomMoveType'
 import { Memory } from './Memory'
-import { applyOperator, operators } from '../material/Operator'
+import { applyOperator, Operator, operators } from '../material/Operator'
 import { MaterialType } from '../material/MaterialType'
 import { LocationType } from '../material/LocationType'
 import range from 'lodash/range'
@@ -12,7 +13,9 @@ export class ChooseResultRule extends SimultaneousRule {
     if (!this.isTurnToPlay(playerId)) return []
     const operand = this.remind(Memory.Operand, playerId)
     if (operand) {
-      const moves = range(27).map((_: any, index: number) => this
+      return range(27)
+        .filter((_: any, index: number) => this.isEmptySpace(index, playerId))
+        .map((_: any, index: number) => this
         .material(MaterialType.ExpeditionSpaceValue)
         .createItem({
           id: applyOperator(operand, this.dicesValues),
@@ -23,11 +26,33 @@ export class ChooseResultRule extends SimultaneousRule {
           },
         }),
       )
-
-      return moves
     }
 
-    return operators.map((operator) => this.rules().customMove(CustomMoveType.ChooseOperand, { operator, player: playerId }))
+    return this.getChooseOperatorMoves(playerId)
+  }
+
+  isEmptySpace(index: number, player: PlayerId) {
+    return !this.material(MaterialType.ExpeditionSpaceValue)
+      .location(LocationType.ExpeditionSpace)
+      .locationId(index)
+      .player(player)
+      .length
+  }
+
+  getChooseOperatorMoves(playerId: PlayerId) {
+
+    return operators
+      .filter((operator) => this.canChooseOperator(operator, playerId))
+      .map((operator) => this.rules().customMove(CustomMoveType.ChooseOperand, { operator, player: playerId }))
+  }
+
+  canChooseOperator(operator: Operator, player: PlayerId) {
+    return this
+      .material(MaterialType.Cross)
+      .id(operator)
+      .location(LocationType.OperatorChoice)
+      .player(player)
+      .length < 4
   }
 
   afterItemMove(move: ItemMove): MaterialMove[] {
@@ -96,14 +121,24 @@ export class ChooseResultRule extends SimultaneousRule {
   onCustomMove(move: CustomMove) {
     if (isCustomMoveType(CustomMoveType.ChooseOperand)(move)) {
       this.memorize(Memory.Operand, move.data.operator, move.data.player)
-      return this.addCross()
+      return this.addCross(move.data.operator, move.data.player)
     }
 
     return []
   }
 
-  addCross() {
+  addCross(operator: Operator, player: PlayerId) {
 
+    return [
+      this.material(MaterialType.Cross)
+        .createItem({
+          location: {
+            type: LocationType.OperatorChoice,
+            id: operator,
+            player
+          }
+        })
+    ]
     return []
   }
 

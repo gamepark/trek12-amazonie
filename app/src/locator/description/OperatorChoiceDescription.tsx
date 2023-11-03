@@ -12,7 +12,7 @@ export class OperatorChoiceDescription extends LocationDescription<PlayerId, Mat
 
   getExtraCss(_location: Location) {
     return css`
-      background-color: rgba(255, 0, 0, 0.51);
+      //background-color: rgba(255, 0, 0, 0.51);
       &:after {
         position: absolute;
         font-size: 0.4em;
@@ -20,7 +20,7 @@ export class OperatorChoiceDescription extends LocationDescription<PlayerId, Mat
         top: 0;
         width: 100%;
         height: 100%;
-        content: 'X';
+        //content: 'X';
         display: flex;
         align-items: flex-end;
         justify-content: center;
