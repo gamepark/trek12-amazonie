@@ -1,4 +1,4 @@
-import { CardDescription } from '@gamepark/react-game'
+import {CardDescription} from '@gamepark/react-game'
 import Jaguar from '../images/exploration/jaguar.jpg'
 import Ara from '../images/exploration/ara.jpg'
 import Toucan from '../images/exploration/toucan.jpg'
@@ -8,7 +8,7 @@ import PoisonDartFrog from '../images/exploration/poison-dard-frog.jpg'
 import Tamarind from '../images/exploration/tamarind.jpg'
 import PygmyMarmoset from '../images/exploration/pygmy-marmoset.jpg'
 import Back from '../images/exploration/back.jpg'
-import { ExplorationCard } from '@gamepark/trek12/material/ExplorationCard'
+import {ExplorationCard} from '@gamepark/trek12/material/ExplorationCard'
 
 export class ObservationCardDescription extends CardDescription {
   width = 6.3

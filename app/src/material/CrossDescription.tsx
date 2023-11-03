@@ -10,7 +10,7 @@ export class CrossDescription extends WritingDescription {
   height = 0.6
   width = 0.6
 
-  getContent() {
+  getFrontContent() {
     return <span css={observationNumber}>X</span>
   }
 

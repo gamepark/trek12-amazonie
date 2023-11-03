@@ -57,6 +57,11 @@ export class ChooseResultRule extends SimultaneousRule {
       .player(move.item.location.player)
 
     const moves: MaterialMove[] = []
+
+    if (observation.location.rotation) {
+      moves.push(observationCard.rotateItem(false))
+    }
+
     if (!ring.length) {
       moves.push(
         this
@@ -74,17 +79,12 @@ export class ChooseResultRule extends SimultaneousRule {
       const item = ring.getItem()!
       if (item.location.x! < 5) {
         moves.push(ring.moveItem({
-          location: {
             id: observation.location.x,
             type: LocationType.ObservationScores,
             x: item.location.x! + 1,
             player: move.item.location.player
-          }
         }))
       }
-    }
-    if (!observation.rotation?.y) {
-      moves.push(observationCard.moveItem({ rotation: { y: 1 } }))
     }
     return moves
   }
@@ -96,7 +96,13 @@ export class ChooseResultRule extends SimultaneousRule {
   onCustomMove(move: CustomMove) {
     if (isCustomMoveType(CustomMoveType.ChooseOperand)(move)) {
       this.memorize(Memory.Operand, move.data.operator, move.data.player)
+      return this.addCross()
     }
+
+    return []
+  }
+
+  addCross() {
 
     return []
   }

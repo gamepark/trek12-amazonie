@@ -40,6 +40,7 @@ export class Trek12Setup extends MaterialGameSetup<PlayerId, MaterialType, Locat
         id,
         location: {
           type: LocationType.Observations,
+          rotation: true
         },
       }))
 

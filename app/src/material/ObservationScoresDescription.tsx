@@ -21,7 +21,8 @@ export class ObservationScoresDescription extends WritingDescription {
 
     return players.flatMap((player) =>
       observations
-        .flatMap(({ id = undefined, location: { x } }) => {
+        .flatMap((item) => {
+          const { id = undefined, location: { x } } = item
             if (!id) return []
             return ExplorationCardScores[id].map((points: number, index: number) => ({
               id: points,

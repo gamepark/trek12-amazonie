@@ -7,7 +7,7 @@ import { PlayerId } from '../Trek12Options'
 export const hideCoinWhenNotRotated: HidingStrategy = (
   item: MaterialItem, player?: PlayerId
 ) => {
-  return item.rotation?.y ? [] : ['id']
+  return !item.location.rotation ? [] : ['id']
 }
 
 
