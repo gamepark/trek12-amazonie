@@ -30,21 +30,30 @@ export class ObservationNumberDescription extends WritingDescription {
   }
 
   getFrontContent(itemId: any) {
-    return <span css={observationNumber}>{itemId}</span>
+    return (
+      <div css={itemIdContainer}>
+        <span css={observationNumber}>{itemId}</span>
+      </div>
+    )
   }
 
   rules = () => null
 
 }
 
-const observationNumber = css`
-  position: absolute;
-  width: 100%;
+const itemIdContainer = css`
   height: 100%;
-  background-color: rgba(255, 0, 0, 0.3);
-  text-align: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+const observationNumber = css`
   color: black;
-  font-size: 0.5em;
+  font-size: 0.3em;
+  font-weight: bold;
+  font-family: 'Rock Salt', cursive;
 `
 
 export const observationNumberDescription = new ObservationNumberDescription()

@@ -6,8 +6,8 @@ import { spaceCoordinates } from '../ExplorationSpaceLocator'
 
 export class PathDescription extends LocationDescription {
 
-  height = 0.7
-  width = 0.2
+  height = 0.6
+  width = 0.1
 
   alwaysVisible = true
   rotationUnit = 'rad'

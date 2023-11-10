@@ -39,7 +39,7 @@ export class ObservationScoresDescription extends WritingDescription {
   }
 
   getFrontContent(itemId: any) {
-    return <div css={itemIdContainer}>
+    return <div css={container}>
 
       <span css={itemIdStyle}>{itemId}</span>
     </div>
@@ -51,18 +51,17 @@ export class ObservationScoresDescription extends WritingDescription {
 
 export const observationScoresDescription = new ObservationScoresDescription()
 
-const itemIdContainer = css`
+const container = css`
   height: 100%;
   width: 100%;
-  //background-color: white;
-  background-color: rgba(255, 0, 0, 0.3);
-  //border: 0.01em solid black;
   display: flex;
   align-items: center;
   justify-content: center;
 `
 
 const itemIdStyle = css`
-  font-size: 0.35em;
+  font-size: 0.25em;
+  font-weight: bold;
+  font-family: 'Rock Salt', cursive;  
   color: black;
 `

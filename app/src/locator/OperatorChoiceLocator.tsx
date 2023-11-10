@@ -12,14 +12,15 @@ export class OperatorChoiceLocator extends LineLocator {
     return super.getDelta(_item, _context)
   }
 
-  delta = { x: 4, y: -0.01  }
+  delta = { x: 0.55, y: -0.01  }
 
   coordinates = { x: 0, y: 0, z: 1 }
 
+
   getPositionOnParent(location: Location) {
     return {
-      x: 78 + (location.x! * 4),
-      y: 59.5 + ((location.id - 1) * 3.85) - (location.x! * 0.1)
+      x: 78.0,
+      y: 59.6 + ((location.id - 1) * 3.8)
     }
   }
 

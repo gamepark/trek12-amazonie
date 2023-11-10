@@ -9,12 +9,12 @@ export class PathLocator extends ItemLocator {
   parentItemType = MaterialType.ExplorationMap
   locationDescription = new PathDescription()
 
-  getRotation(item: MaterialItem): number {
+  getRotateZ(item: MaterialItem): number {
     return this.locationDescription.getRotation(item.location)
   }
 
   getPositionOnParent(location: Location, _context: MaterialContext): XYCoordinates {
-    const coordinates =this.locationDescription.getPathCoordinates(location)
+    const coordinates = this.locationDescription.getPathCoordinates(location)
     return { x: mean(coordinates.map(c => c.x)), y: mean(coordinates.map(c => c.y)) }
   }
 

@@ -2,10 +2,11 @@ import { CreateItem, CustomMove, isCreateItemType, isCustomMoveType, ItemMove, M
 import { PlayerId } from '../Trek12Options'
 import { CustomMoveType } from './CustomMoveType'
 import { Memory } from './Memory'
-import { applyOperator, Operator, operators } from '../material/Operator'
+import { applyOperator, Operator, operators, SpecialValue } from '../material/Operator'
 import { MaterialType } from '../material/MaterialType'
 import { LocationType } from '../material/LocationType'
 import range from 'lodash/range'
+import { RuleId } from './RuleId'
 
 export class ChooseResultRule extends SimultaneousRule {
 
@@ -13,12 +14,13 @@ export class ChooseResultRule extends SimultaneousRule {
     if (!this.isTurnToPlay(playerId)) return []
     const operand = this.remind(Memory.Operand, playerId)
     if (operand) {
+      const result = applyOperator(operand, this.dicesValues)
       return range(27)
-        .filter((_: any, index: number) => this.isEmptySpace(index, playerId))
-        .map((_: any, index: number) => this
+        .filter((index: number) => this.isEmptySpace(index, playerId))
+        .map((index: number) => this
         .material(MaterialType.ExpeditionSpaceValue)
         .createItem({
-          id: applyOperator(operand, this.dicesValues),
+          id: result > 12? SpecialValue.Spider: result,
           location: {
             id: index,
             type: LocationType.ExpeditionSpace,
@@ -59,7 +61,9 @@ export class ChooseResultRule extends SimultaneousRule {
     if (!isCreateItemType(MaterialType.ExpeditionSpaceValue)(move)) return []
 
     const moves: MaterialMove[] = this.revealObservationCard(move)
-    // TODO: sentier & zone & add indicator ring
+    // TODO: sentier & zone
+
+    this.forget(Memory.Operand, move.item.location.player!)
     moves.push(this.rules().endPlayerTurn(move.item.location.player!))
 
     return moves
@@ -114,10 +118,6 @@ export class ChooseResultRule extends SimultaneousRule {
     return moves
   }
 
-  getMovesAfterPlayersDone(): MaterialMove<number, number, number>[] {
-    return []
-  }
-
   onCustomMove(move: CustomMove) {
     if (isCustomMoveType(CustomMoveType.ChooseOperand)(move)) {
       this.memorize(Memory.Operand, move.data.operator, move.data.player)
@@ -139,14 +139,17 @@ export class ChooseResultRule extends SimultaneousRule {
           }
         })
     ]
-    return []
   }
 
   get dicesValues() {
     return [
-      this.material(MaterialType.YellowDice).getItem()!.id,
-      this.material(MaterialType.GreenDice).getItem()!.id,
+      this.material(MaterialType.YellowDice).getItem()!.location.rotation,
+      this.material(MaterialType.GreenDice).getItem()!.location.rotation,
     ]
+  }
+
+  getMovesAfterPlayersDone(): MaterialMove<number, number, number>[] {
+    return [this.rules().startRule(RuleId.RollDice)]
   }
 
 }

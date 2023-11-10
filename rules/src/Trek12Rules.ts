@@ -1,4 +1,4 @@
-import { isCustomMoveType, MaterialMove, SecretMaterialRules } from '@gamepark/rules-api'
+import { isCustomMoveType, MaterialMove, RollItem, SecretMaterialRules } from '@gamepark/rules-api'
 import { MaterialType } from './material/MaterialType'
 import { LocationType } from './material/LocationType'
 import { rules } from './configuration/RuleDefinitions'
@@ -13,4 +13,11 @@ export class Trek12Rules extends SecretMaterialRules<PlayerId, MaterialType, Loc
   rules = rules
   hidingStrategies = hidingStrategies
   locationsStrategies = locationsStrategies
+
+  roll(move: RollItem): number {
+    if (move.itemType === MaterialType.GreenDice) {
+      return super.roll(move) + 1
+    }
+    return super.roll(move)
+  }
 }

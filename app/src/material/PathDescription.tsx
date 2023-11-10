@@ -4,7 +4,7 @@ import React from 'react'
 import { css } from '@emotion/react'
 
 export class PathDescription extends WritingDescription {
-  height = 0.2
+  height = 0.1
   width = 0.6
 
   getFrontContent() {

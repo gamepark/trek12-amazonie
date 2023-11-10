@@ -7,26 +7,33 @@ import React from 'react'
 import { css } from '@emotion/react'
 
 export class CrossDescription extends WritingDescription {
-  height = 0.6
-  width = 0.6
+  height = 0.5
+  width = 0.55
 
   getFrontContent() {
-    return <span css={observationNumber}>X</span>
+    return (
+      <div css={container}>
+        <span css={observationNumber}>X</span>
+      </div>
+    )
   }
 
   rules = () => null
 
 }
+const container = css`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
 
 const observationNumber = css`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  //background-color: rgba(255, 0, 0, 0.3);
+  font-size: 0.25em;
   font-weight: bold;
-  text-align: center;
+  font-family: 'Rock Salt', cursive;
   color: black;
-  font-size: 0.5em;
 `
 
 export const crossDescription = new CrossDescription()

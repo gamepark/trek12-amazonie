@@ -1,5 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import { WritingDescription } from '@gamepark/react-game'
+import { ItemContext, MaterialContext, WritingDescription } from '@gamepark/react-game'
+import { MaterialItem } from '@gamepark/rules-api/dist/material/items/MaterialItem'
+import { MaterialType } from '@gamepark/trek12/material/MaterialType'
 import React from 'react'
 import { css } from '@emotion/react'
 
@@ -8,8 +10,14 @@ export class GreenDiceDescription extends WritingDescription {
   width = 2
   rules = () => null
 
-  getFrontContent(itemId: any) {
-    return <span css={diceValue}>{itemId}</span>
+  getFrontContent(itemId: any, context: MaterialContext) {
+    const { rules } = context
+    const dice = rules.material(MaterialType.GreenDice).id(itemId).getItem()!
+    return <span css={diceValue}>{dice.location.rotation}</span>
+  }
+
+  getRotation(item: MaterialItem<number, number>, _context: ItemContext<number, number, number>): string {
+    return ''
   }
 }
 

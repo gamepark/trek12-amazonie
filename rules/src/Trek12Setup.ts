@@ -49,12 +49,12 @@ export class Trek12Setup extends MaterialGameSetup<PlayerId, MaterialType, Locat
   }
 
   setupDice() {
-    this.material(MaterialType.GreenDice).createItem(({ id: sample(d6), location: { type: LocationType.DiceArea }}))
-    this.material(MaterialType.YellowDice).createItem(({ id: sample(d6Minus1), location: { type: LocationType.DiceArea }}))
+    this.material(MaterialType.GreenDice).createItem(({ id: 1, location: { type: LocationType.DiceArea }}))
+    this.material(MaterialType.YellowDice).createItem(({ id: 2, location: { type: LocationType.DiceArea }}))
   }
 
   start(_options: Trek12Options): void {
-    this.startSimultaneousRule(RuleId.ChooseResult)
+    this.startRule(RuleId.RollDice)
   }
 
 }

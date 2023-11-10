@@ -9,6 +9,10 @@ export enum Operator {
   MULTIPLY
 }
 
+export enum SpecialValue {
+  Spider = 'spider'
+}
+
 export const applyOperator = (operator: Operator, values: number[]): number => {
   switch (operator) {
     case Operator.MAX:

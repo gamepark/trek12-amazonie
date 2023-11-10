@@ -1,11 +1,15 @@
 /** @jsxImportSource @emotion/react */
+import { MaterialContext } from '@gamepark/react-game/dist/locators/ItemLocator'
+import { MaterialType } from '@gamepark/trek12/material/MaterialType'
 import React from 'react'
 import { css } from '@emotion/react'
 import { GreenDiceDescription } from './GreenDiceDescription'
 
 export class YellowDiceDescription extends GreenDiceDescription {
-  getFrontContent(itemId: any) {
-    return <span css={diceValue}>{itemId}</span>
+  getFrontContent(itemId: any, context: MaterialContext) {
+    const { rules } = context
+    const dice = rules.material(MaterialType.YellowDice).id(itemId).getItem()!
+    return <span css={diceValue}>{dice.location.rotation}</span>
   }
 
 }
