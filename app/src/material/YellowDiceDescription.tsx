@@ -1,30 +1,25 @@
 /** @jsxImportSource @emotion/react */
-import { MaterialContext } from '@gamepark/react-game/dist/locators/ItemLocator'
-import { MaterialType } from '@gamepark/trek12/material/MaterialType'
-import React from 'react'
-import { css } from '@emotion/react'
-import { GreenDiceDescription } from './GreenDiceDescription'
+import { CubicDiceDescription } from '@gamepark/react-game/dist/components/material/Dices/CubicDiceDescription'
+import Face0 from '../images/dice/yellow/0.jpg'
+import Face1 from '../images/dice/yellow/1.jpg'
+import Face2 from '../images/dice/yellow/2.jpg'
+import Face3 from '../images/dice/yellow/3.jpg'
+import Face4 from '../images/dice/yellow/4.jpg'
+import Face5 from '../images/dice/yellow/5.jpg'
 
-export class YellowDiceDescription extends GreenDiceDescription {
-  getFrontContent(itemId: any, context: MaterialContext) {
-    const { rules } = context
-    const dice = rules.material(MaterialType.YellowDice).id(itemId).getItem()!
-    return <span css={diceValue}>{dice.location.rotation}</span>
-  }
+export class YellowDiceDescription extends CubicDiceDescription {
+  width = 2
+  borderRadius = 0
+  color= '#f0c800'
+  images = [
+    Face0,
+    Face1,
+    Face2,
+    Face3,
+    Face4,
+    Face5,
+  ]
 
 }
-
-const diceValue = css`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: yellow;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: black;
-  //font-size: 0.5em;
-`
 
 export const yellowDiceDescription = new YellowDiceDescription()

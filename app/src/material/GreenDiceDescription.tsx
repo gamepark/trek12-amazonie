@@ -1,24 +1,29 @@
 /** @jsxImportSource @emotion/react */
-import { ItemContext, MaterialContext, WritingDescription } from '@gamepark/react-game'
+import { CubicDiceDescription, ItemContext, MaterialContext, WritingDescription } from '@gamepark/react-game'
 import { MaterialItem } from '@gamepark/rules-api/dist/material/items/MaterialItem'
 import { MaterialType } from '@gamepark/trek12/material/MaterialType'
 import React from 'react'
 import { css } from '@emotion/react'
+import Face1 from '../images/dice/green/1.jpg'
+import Face2 from '../images/dice/green/2.jpg'
+import Face3 from '../images/dice/green/3.jpg'
+import Face4 from '../images/dice/green/4.jpg'
+import Face5 from '../images/dice/green/5.jpg'
+import Face6 from '../images/dice/green/6.jpg'
 
-export class GreenDiceDescription extends WritingDescription {
-  height = 2
+export class GreenDiceDescription extends CubicDiceDescription {
   width = 2
-  rules = () => null
+  borderRadius = 0
+  color= '#6db236'
+  images = [
+    Face1,
+    Face2,
+    Face3,
+    Face4,
+    Face5,
+    Face6
+  ]
 
-  getFrontContent(itemId: any, context: MaterialContext) {
-    const { rules } = context
-    const dice = rules.material(MaterialType.GreenDice).id(itemId).getItem()!
-    return <span css={diceValue}>{dice.location.rotation}</span>
-  }
-
-  getRotation(item: MaterialItem<number, number>, _context: ItemContext<number, number, number>): string {
-    return ''
-  }
 }
 
 const diceValue = css`
