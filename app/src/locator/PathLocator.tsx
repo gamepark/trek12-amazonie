@@ -1,21 +1,31 @@
-import { ItemLocator, MaterialContext } from '@gamepark/react-game'
-import { Location, XYCoordinates } from '@gamepark/rules-api'
+import { ItemContext, ItemLocator, MaterialContext } from '@gamepark/react-game'
+import { Location, MaterialItem, XYCoordinates } from '@gamepark/rules-api'
 import { MaterialType } from '@gamepark/trek12/material/MaterialType'
 import mean from 'lodash/mean'
 import { pathDescription } from '../material/PathDescription'
-import { PathDescription } from './description/PathDescription'
+import { nodeCoordinates } from './ExplorationNodeLocator'
 
 export class PathLocator extends ItemLocator {
   parentItemType = MaterialType.ExplorationMap
-  locationDescription = new PathDescription()
 
   getPositionOnParent(location: Location, _context: MaterialContext): XYCoordinates {
-    const coordinates = pathDescription.getPathCoordinates(location)
+    const coordinates = this.getPathCoordinates(location)
     return { x: mean(coordinates.map(c => c.x)), y: mean(coordinates.map(c => c.y)) }
   }
 
   getParentItemId(location: Location) {
     return location.player
+  }
+
+  getRotations(item: MaterialItem): string[] {
+    const { location } = item
+    const coordinates = this.getPathCoordinates(location)
+    const rotateZ = -Math.atan2(coordinates[0].x - coordinates[1].x, coordinates[0].y - coordinates[1].y)
+    return [`rotateZ(${rotateZ}rad)`]
+  }
+
+  getPathCoordinates(location: Location) {
+    return [nodeCoordinates[location.id[0]], nodeCoordinates[location.id[1]]]
   }
 }
 

@@ -48,7 +48,7 @@ export class ChooseOperandRule extends MaterialRulesPart {
   canChooseOperator(operator: Operator) {
     return this
       .material(MaterialType.Cross)
-      .id(operator)
+      .locationId(operator)
       .location(LocationType.OperatorChoice)
       .player(this.player)
       .length < 4

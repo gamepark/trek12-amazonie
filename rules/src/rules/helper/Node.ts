@@ -1,30 +1,61 @@
 import { Material, MaterialGame, MaterialItem, MaterialRulesPart } from '@gamepark/rules-api'
 import { MaterialType } from '../../material/MaterialType'
+import { SpecialValue } from '../../material/Operator'
 import { PlayerId } from '../../Trek12Options'
 import { LocationType } from '../../material/LocationType'
+import equal from 'fast-deep-equal'
 
 export class Node extends MaterialRulesPart {
-
-  private nodeLocationIds: number[] = []
-  private nodes: MaterialItem[] = []
 
   constructor(game: MaterialGame,
               readonly player: PlayerId,
               readonly nodeId: number) {
     super(game)
-    //this.initializeNodes(this.getNodesWithPath(this.nodeId))
   }
 
-  initializeNodes(nodeValues: MaterialItem[]) {
-    /**if (!nodeValues.length) return
-    this.nodeLocationIds.push(...nodeValues.map((item) => item.location.id))
-    this.nodes.push(...nodeValues)
-    nodeValues.forEach((nodeValue) => this.initializeNodes(this.getNodesWithPath(nodeValue)))*/
+  get isEmpty() {
+    return !this
+      .material(MaterialType.ExpeditionNodeValue)
+      .location(LocationType.ExpeditionNode)
+      .locationId(this.nodeId)
+      .player(this.player)
+      .length
+  }
+
+  hasPathTo(nodeId: number) {
+    return !!this
+      .material(MaterialType.Path)
+      .location(LocationType.Path)
+      .player(this.player)
+      .locationId((id: number[]) =>  equal(id, createPath(this.nodeId, nodeId)))
+      .length
+  }
+
+  isAdjacentTo(nodeId: number) {
+    const p = createPath(this.nodeId, nodeId)
+    return mapGraph
+      .some((path) => equal(path, p))
+  }
+
+  isValueNextTo(value: number | SpecialValue) {
+    const node = this
+      .material(MaterialType.ExpeditionNodeValue)
+      .location(LocationType.ExpeditionNode)
+      .locationId(this.nodeId)
+      .player(this.player)
+      .getItem()
+
+    if (!node || SpecialValue.Spider === value) {
+      return false
+    }
+
+    return value === (node.id + 1) || (value === (node.id - 1))
   }
 
   get isWritable() {
+    if (!this.isEmpty) return false
     if (this.isMapEmpty) return true
-    return paths
+    return mapGraph
       .filter((path) => path.includes(this.nodeId))
       .some((path) => this.isWrittenNode(path.find((id) => id !== this.nodeId)!))
 
@@ -46,33 +77,11 @@ export class Node extends MaterialRulesPart {
       .getItem()
       ?.id !== undefined
   }
-
-  getNodesWithPath(node: MaterialItem): MaterialItem[] {
-    const paths: number[] = this
-      .material(MaterialType.Path)
-      .player(this.player)
-      .id((id: number[]) => id.includes(node.location.id))
-      .getItems()
-      .map((item) => {
-        return item.id.filter((s: number) => s !== node.location.id && !this.nodeLocationIds.includes(s))
-      })
-
-    if (!paths.length) return []
-    return this
-      .material(MaterialType.ExpeditionNodeValue)
-      .location(LocationType.ExpeditionNode)
-      .player(this.player)
-      .locationId((locationId: number) => paths.includes(locationId))
-      .getItems()
-  }
-
-
-
-
-
 }
 
-export const paths = [
+export const createPath = (node1: number, node2: number) => [node1, node2].sort((a, b) => a - b)
+
+export const mapGraph = [
   [0, 5],
   [0, 6],
   [0, 1],
@@ -91,10 +100,9 @@ export const paths = [
   [5, 6],
   [5, 12],
   [5, 13],
-  [6, 5],
   [6, 13],
   [6, 14],
-  [6, 7],
+  [7, 6],
   [7, 14],
   [7, 15],
   [7, 8],
