@@ -2,7 +2,7 @@ import { BoardDescription, ItemContext, MaterialContext } from '@gamepark/react-
 import { LocationType } from '@gamepark/trek12/material/LocationType'
 import Images from '../images/Images'
 import { spaceCoordinates } from '../locator/ExplorationSpaceLocator'
-import { MaterialItem } from '@gamepark/rules-api/dist/material/items/MaterialItem'
+import { MaterialItem } from '@gamepark/rules-api'
 import { range } from 'lodash'
 import { Operator } from '@gamepark/trek12/material/Operator'
 import { paths } from '@gamepark/trek12/rules/helper/Path'

@@ -13,10 +13,6 @@ export class DiceAreaLocator extends LineLocator {
 
     return { x: 2, y: -2, z: 0}
   }
-
-  getRotations(item: MaterialItem, context: ItemContext) {
-    return ['rotate3d(1, -1, 0, 15deg)', 'translateZ(1em)', ...super.getRotations(item, context)]
-  }
 }
 
 export const diceAreaLocator = new DiceAreaLocator()

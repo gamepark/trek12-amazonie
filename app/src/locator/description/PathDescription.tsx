@@ -1,8 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import { LocationDescription } from '@gamepark/react-game'
-import { Location } from '@gamepark/rules-api'
 import { css } from '@emotion/react'
-import { spaceCoordinates } from '../ExplorationSpaceLocator'
+import { LocationDescription } from '@gamepark/react-game'
+import { MaterialItem } from '@gamepark/rules-api/dist/material/items/MaterialItem'
+import { Location } from '@gamepark/rules-api/dist/material/location/Location'
+import { pathDescription } from '../../material/PathDescription'
 
 export class PathDescription extends LocationDescription {
 
@@ -14,14 +15,11 @@ export class PathDescription extends LocationDescription {
 
   rules = () => null
 
-  extraCss = css`background-color: black`
-
-  getRotation(location: Location) {
-    const coordinates = this.getPathCoordinates(location)
+  getRotateZ(location: Location) {
+    const coordinates = pathDescription.getPathCoordinates(location)
+    console.log("Rotate Z ?")
     return -Math.atan2(coordinates[0].x - coordinates[1].x, coordinates[0].y - coordinates[1].y)
   }
 
-  getPathCoordinates(location: Location) {
-    return [spaceCoordinates[location.id[0]], spaceCoordinates[location.id[1]]]
-  }
+  extraCss = css`background-color: black`
 }

@@ -1,5 +1,4 @@
 import { CardDescription, MaterialContext } from '@gamepark/react-game'
-import { LocationType } from '@gamepark/trek12/material/LocationType'
 import { NumberCard } from '@gamepark/trek12/material/NumberCard'
 import Zero from '../images/number/0.jpg'
 import One from '../images/number/1.jpg'

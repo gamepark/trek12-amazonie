@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { WritingDescription } from '@gamepark/react-game/dist/components/material/FlatMaterial/WritingDescription'
-import { ItemContext, MaterialContext } from '@gamepark/react-game/dist/locators/ItemLocator'
+import { WritingDescription, MaterialContext } from '@gamepark/react-game'
 import { MaterialType } from '@gamepark/trek12/material/MaterialType'
 import { LocationType } from '@gamepark/trek12/material/LocationType'
 import React from 'react'
@@ -39,10 +38,7 @@ export class ObservationScoresDescription extends WritingDescription {
   }
 
   getFrontContent(itemId: any) {
-    return <div css={container}>
-
-      <span css={itemIdStyle}>{itemId}</span>
-    </div>
+    return <span css={itemIdStyle}>{itemId}</span>
   }
 
   rules = () => null
@@ -50,14 +46,6 @@ export class ObservationScoresDescription extends WritingDescription {
 }
 
 export const observationScoresDescription = new ObservationScoresDescription()
-
-const container = css`
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
 
 const itemIdStyle = css`
   font-size: 0.25em;

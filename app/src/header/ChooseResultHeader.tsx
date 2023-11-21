@@ -1,3 +1,4 @@
+import { SimultaneousRule } from '@gamepark/rules-api/dist/material/rules/SimultaneousRule'
 import { FC } from 'react'
 import { useRules } from '@gamepark/react-game/dist/hooks/useRules'
 import { Trek12Rules } from '@gamepark/trek12/Trek12Rules'
@@ -11,10 +12,10 @@ import { CustomMoveType } from '@gamepark/trek12/rules/CustomMoveType'
 import { PlayMoveButton } from '@gamepark/react-game/dist/components/buttons/PlayMoveButton/PlayMoveButton'
 
 export const ChooseResultHeader: FC = () => {
-  const rules = useRules<Trek12Rules>()!
+  const rules = useRules<SimultaneousRule>()!
   const player = usePlayerId()
   const moves = useLegalMoves()
-  if (!player) {
+  if (!player || !rules.isTurnToPlay(player)) {
     return <>Players must choose their results</>
   }
 
