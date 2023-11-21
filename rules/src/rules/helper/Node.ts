@@ -2,41 +2,65 @@ import { Material, MaterialGame, MaterialItem, MaterialRulesPart } from '@gamepa
 import { MaterialType } from '../../material/MaterialType'
 import { PlayerId } from '../../Trek12Options'
 import { LocationType } from '../../material/LocationType'
-import { spaceCoordinates } from '@gamepark/trek12-app/src/locator/ExplorationSpaceLocator'
 
-export class Path extends MaterialRulesPart {
+export class Node extends MaterialRulesPart {
 
   private nodeLocationIds: number[] = []
   private nodes: MaterialItem[] = []
 
   constructor(game: MaterialGame,
               readonly player: PlayerId,
-              readonly spaceValue: MaterialItem) {
+              readonly nodeId: number) {
     super(game)
-    this.initializeNodes(this.getLinkedSpaces(this.spaceValue))
+    //this.initializeNodes(this.getNodesWithPath(this.nodeId))
   }
 
-  initializeNodes(spaceValues: MaterialItem[]) {
-    if (!spaceValues.length) return
-    this.nodeLocationIds.push(...spaceValues.map((item) => item.location.id))
-    this.nodes.push(...spaceValues)
-    spaceValues.forEach((spaceValue) => this.initializeNodes(this.getLinkedSpaces(spaceValue)))
+  initializeNodes(nodeValues: MaterialItem[]) {
+    /**if (!nodeValues.length) return
+    this.nodeLocationIds.push(...nodeValues.map((item) => item.location.id))
+    this.nodes.push(...nodeValues)
+    nodeValues.forEach((nodeValue) => this.initializeNodes(this.getNodesWithPath(nodeValue)))*/
   }
 
-  getLinkedSpaces(space: MaterialItem): MaterialItem[] {
+  get isWritable() {
+    if (this.isMapEmpty) return true
+    return paths
+      .filter((path) => path.includes(this.nodeId))
+      .some((path) => this.isWrittenNode(path.find((id) => id !== this.nodeId)!))
+
+  }
+
+  get isMapEmpty() {
+    return !this
+      .material(MaterialType.ExpeditionNodeValue)
+      .player(this.player)
+      .length
+  }
+
+  isWrittenNode(id: number) {
+    return this
+      .material(MaterialType.ExpeditionNodeValue)
+      .location(LocationType.ExpeditionNode)
+      .player(this.player)
+      .locationId(id)
+      .getItem()
+      ?.id !== undefined
+  }
+
+  getNodesWithPath(node: MaterialItem): MaterialItem[] {
     const paths: number[] = this
       .material(MaterialType.Path)
       .player(this.player)
-      .id((id: number[]) => id.includes(space.location.id))
+      .id((id: number[]) => id.includes(node.location.id))
       .getItems()
       .map((item) => {
-        return item.id.filter((s: number) => s !== space.location.id && !this.nodeLocationIds.includes(s))
+        return item.id.filter((s: number) => s !== node.location.id && !this.nodeLocationIds.includes(s))
       })
 
     if (!paths.length) return []
     return this
-      .material(MaterialType.ExpeditionSpaceValue)
-      .location(LocationType.ExpeditionSpace)
+      .material(MaterialType.ExpeditionNodeValue)
+      .location(LocationType.ExpeditionNode)
       .player(this.player)
       .locationId((locationId: number) => paths.includes(locationId))
       .getItems()

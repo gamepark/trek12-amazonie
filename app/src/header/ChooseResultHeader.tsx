@@ -21,7 +21,7 @@ export const ChooseResultHeader: FC = () => {
 
   const dice = [
     rules.material(MaterialType.YellowDice).getItem()!.location.rotation,
-    rules.material(MaterialType.GreenDice).getItem()!.location.rotation,
+    rules.material(MaterialType.GreenDice).getItem()!.location.rotation + 1,
   ]
 
   const operand = rules.remind(Memory.Operand, player)

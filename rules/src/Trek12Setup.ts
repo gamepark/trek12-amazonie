@@ -6,8 +6,6 @@ import { LocationType } from './material/LocationType'
 import { numberCards } from './material/NumberCard'
 import shuffle from 'lodash/shuffle'
 import { explorationCards } from './material/ExplorationCard'
-import { d6, d6Minus1 } from './material/Dice'
-import sample from 'lodash/sample'
 import { RuleId } from './rules/RuleId'
 
 export class Trek12Setup extends MaterialGameSetup<PlayerId, MaterialType, LocationType, Trek12Options> {

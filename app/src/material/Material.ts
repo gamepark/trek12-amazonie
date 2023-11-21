@@ -8,7 +8,7 @@ import { observationScoresDescription } from './ObservationScoresDescription'
 import { crossDescription } from './CrossDescription'
 import { greenDiceDescription } from './GreenDiceDescription'
 import { yellowDiceDescription } from './YellowDiceDescription'
-import { expeditionSpaceNumberDescription } from './ExpeditionSpaceNumberDescription'
+import { expeditionSpaceNumberDescription } from './ExpeditionNodeNumberDescription'
 import { scoreRingDescription } from './ScoreRingDescription'
 import { pathDescription } from './PathDescription'
 
@@ -21,7 +21,7 @@ export const material: Partial<Record<MaterialType, MaterialDescription>> = {
   [MaterialType.Cross]: crossDescription,
   [MaterialType.GreenDice]: greenDiceDescription,
   [MaterialType.YellowDice]: yellowDiceDescription,
-  [MaterialType.ExpeditionSpaceValue]: expeditionSpaceNumberDescription,
+  [MaterialType.ExpeditionNodeValue]: expeditionSpaceNumberDescription,
   [MaterialType.ScoreRing]: scoreRingDescription,
   [MaterialType.Path]: pathDescription
 }

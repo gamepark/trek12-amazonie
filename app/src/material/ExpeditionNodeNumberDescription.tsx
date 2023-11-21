@@ -6,7 +6,7 @@ import { css } from '@emotion/react'
 import { faSpider } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export class ExpeditionSpaceNumberDescription extends WritingDescription {
+export class ExpeditionNodeNumberDescription extends WritingDescription {
   height = 1.4
   width = 1.4
   borderRadius= 4
@@ -35,4 +35,4 @@ const expeditionValue = css`
   font-family: 'Rock Salt', cursive;
 `
 
-export const expeditionSpaceNumberDescription = new ExpeditionSpaceNumberDescription()
+export const expeditionSpaceNumberDescription = new ExpeditionNodeNumberDescription()

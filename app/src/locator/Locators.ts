@@ -7,7 +7,7 @@ import { observationNumberLocator } from './ObservationNumberLocator'
 import { observationsLocator } from './ObservationsLocator'
 import { observationScoresLocator } from './ObservationScoresLocator'
 import { expeditionBoardLocator } from './ExplorationMapLocator'
-import { explorationSpaceLocator } from './ExplorationSpaceLocator'
+import { explorationSpaceLocator } from './ExplorationNodeLocator'
 import { operatorChoiceLocator } from './OperatorChoiceLocator'
 import { diceAreaLocator } from './DiceAreaLocator'
 import { pathLocator } from './PathLocator'
@@ -18,7 +18,7 @@ export const locators: Partial<Record<LocationType, ItemLocator<PlayerId, Materi
   [LocationType.ObservationNumber]: observationNumberLocator,
   [LocationType.ObservationScores]: observationScoresLocator,
   [LocationType.ExplorationMap]: expeditionBoardLocator,
-  [LocationType.ExpeditionSpace]: explorationSpaceLocator,
+  [LocationType.ExpeditionNode]: explorationSpaceLocator,
   [LocationType.OperatorChoice]: operatorChoiceLocator,
   [LocationType.DiceArea]: diceAreaLocator,
   [LocationType.Path]: pathLocator,

@@ -3,25 +3,25 @@ import { ItemLocator } from '@gamepark/react-game'
 import { PlayerId } from '@gamepark/trek12/Trek12Options'
 import { MaterialType } from '@gamepark/trek12/material/MaterialType'
 import { LocationType } from '@gamepark/trek12/material/LocationType'
-import { ExplorationSpaceDescription } from './description/ExplorationSpaceDescription'
+import { ExplorationNodeDescription } from './description/ExplorationNodeDescription'
 import { Location, XYCoordinates } from '@gamepark/rules-api'
 
-export class ExplorationSpaceLocator extends ItemLocator<PlayerId, MaterialType, LocationType> {
+export class ExplorationNodeLocator extends ItemLocator<PlayerId, MaterialType, LocationType> {
   parentItemType = MaterialType.ExplorationMap
 
-  locationDescription = new ExplorationSpaceDescription()
+  locationDescription = new ExplorationNodeDescription()
 
   position = { x: 0, y: 0, z: 1 }
 
   getPositionOnParent(location: Location<PlayerId, LocationType, number>): XYCoordinates {
-    return spaceCoordinates[location.id!]
+    return nodeCoordinates[location.id!]
   }
 
   getParentItemId(location: Location) {
     return location.player
   }
 }
-export const spaceCoordinates: XYCoordinates[] = [
+export const nodeCoordinates: XYCoordinates[] = [
   { x: 33.7, y: 11.6 }, // 0
   { x: 42.9, y: 16.9 }, // 1
   { x: 52.5, y: 22.2 }, // 2
@@ -51,4 +51,4 @@ export const spaceCoordinates: XYCoordinates[] = [
   { x: 80.8, y: 38.4 }, // 26
 ]
 
-export const explorationSpaceLocator = new ExplorationSpaceLocator()
+export const explorationSpaceLocator = new ExplorationNodeLocator()

@@ -5,7 +5,7 @@ export enum MaterialType {
   Cross,
   GreenDice,
   YellowDice,
-  ExpeditionSpaceValue,
+  ExpeditionNodeValue,
   ObservationNumber,
   ObservationScores,
   ScoreRing,

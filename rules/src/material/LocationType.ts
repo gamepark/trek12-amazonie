@@ -10,7 +10,7 @@ export enum LocationType {
   ObservationNumber,
   Observations,
   ObservationScores,
-  ExpeditionSpace,
+  ExpeditionNode,
   OperatorChoice,
   Path
 }
