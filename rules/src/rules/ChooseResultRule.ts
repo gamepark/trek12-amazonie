@@ -30,7 +30,14 @@ export class ChooseResultRule extends SimultaneousRule {
   }
 
   getMovesAfterPlayersDone(): MaterialMove<number, number, number>[] {
+    if (this.allCrossPlaced) {
+      return [this.rules().endGame()]
+    }
     return [this.rules().startRule(RuleId.RollDice)]
+  }
+
+  get allCrossPlaced() {
+    return this.game.players.every((p) => this.material(MaterialType.Cross).player(p).length === 20)
   }
 
 }
