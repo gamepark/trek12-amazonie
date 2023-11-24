@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { MaterialContext, WritingDescription } from '@gamepark/react-game'
+import { LocationType } from '@gamepark/trek12/material/LocationType'
 import { Score } from '@gamepark/trek12/rules/helper/Score'
 import React from 'react'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
@@ -13,7 +14,17 @@ export class PathwayScoreDescription extends WritingDescription {
   getStaticItems(context: MaterialContext) {
     const { rules } = context
     const { players } = rules
-    return players.flatMap((player) => new Score(rules.game, player).pathwayScoreList)
+    return players.flatMap((player) => new Score(rules.game, player)
+      .pathwayScoreList
+      .map((score, index) => ({
+        id: score,
+        location: {
+          type: LocationType.PathwayScore,
+          player,
+          x: index,
+        }
+      }))
+    )
   }
 
   getFrontContent(itemId: any) {

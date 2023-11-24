@@ -12,7 +12,7 @@ export class Score extends MaterialRulesPart {
     super(game)
   }
 
-  get pathwayScoreList() {
+  get pathwayScoreList(): number[] {
     const nodesIds: number[] = []
     const values = this
       .material(MaterialType.ExpeditionNodeValue)
@@ -20,28 +20,22 @@ export class Score extends MaterialRulesPart {
       .player(this.player)
       .getItems()
 
-    const items: MaterialItem[] = []
+    const scores: number[] = []
     let x = 0;
     for (const valueNode of values) {
       if (nodesIds.includes(valueNode.location.id)) continue
       const pathway = new Pathway(this.game, this.player, valueNode)
       nodesIds.push(...pathway.nodeIds)
-      if (!pathway.score) continue
-      items.push({
-        id: pathway.score,
-        location: {
-          type: LocationType.PathwayScore,
-          player: this.player,
-          x: x++,
-        }
-      })
+      const score = pathway.score
+      if (!score) continue
+      scores.push(score)
     }
 
-    return items
+    return scores
 
   }
 
-  get areaScoreList() {
+  get areaScoreList(): number[] {
     const nodesIds: number[] = []
     const values = this
       .material(MaterialType.ExpeditionNodeValue)
@@ -49,23 +43,17 @@ export class Score extends MaterialRulesPart {
       .player(this.player)
       .getItems()
 
-    const items: MaterialItem[] = []
+    const scores: number[] = []
     let x = 0;
     for (const valueNode of values) {
       if (nodesIds.includes(valueNode.location.id)) continue
       const area = new Area(this.game, this.player, valueNode)
       nodesIds.push(...area.nodeIds)
-      if (!area.score) continue
-      items.push({
-        id: area.score,
-        location: {
-          type: LocationType.AreaScore,
-          player: this.player,
-          x: x++,
-        }
-      })
+      const score = area.score
+      if (!score) continue
+      scores.push(area.score)
     }
 
-    return items
+    return scores
   }
 }
