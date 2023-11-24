@@ -10,7 +10,7 @@ export class ObservationNumberLocator extends LineLocator {
   getPositionOnParent(location: Location) {
     return {
       x: 9.4,
-      y: 69.5 + (location.id * 6.4)
+      y: 69.3 + (location.id * 6.35)
     }
   }
 

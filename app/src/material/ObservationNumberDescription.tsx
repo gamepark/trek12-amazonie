@@ -4,6 +4,8 @@ import { MaterialType } from '@gamepark/trek12/material/MaterialType'
 import { LocationType } from '@gamepark/trek12/material/LocationType'
 import React from 'react'
 import { css } from '@emotion/react'
+import { explorationMapDescription } from './ExplorationMapDescription'
+import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 
 export class ObservationNumberDescription extends WritingDescription {
   height = 0.6
@@ -38,7 +40,7 @@ export class ObservationNumberDescription extends WritingDescription {
 
 const observationNumber = css`
   color: black;
-  font-size: 0.3em;
+  font-size: ${0.022 * EXPEDITION_MAP_SIZE}em;
   font-weight: bold;
   font-family: 'Rock Salt', cursive;
 `

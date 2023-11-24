@@ -2,6 +2,8 @@
 import { css } from '@emotion/react'
 import { WritingDescription } from '@gamepark/react-game'
 import React from 'react'
+import { explorationMapDescription } from './ExplorationMapDescription'
+import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 
 export class CrossDescription extends WritingDescription {
   height = 0.5
@@ -16,7 +18,7 @@ export class CrossDescription extends WritingDescription {
 }
 
 const observationNumber = css`
-  font-size: 0.25em;
+  font-size: ${0.0185 * EXPEDITION_MAP_SIZE}em;
   font-weight: bold;
   font-family: 'Rock Salt', cursive;
   color: black;

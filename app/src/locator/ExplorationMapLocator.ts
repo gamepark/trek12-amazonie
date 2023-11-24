@@ -7,11 +7,11 @@ export class ExplorationMapLocator extends ItemLocator {
   position = { x: 0, y: 8, z: 0}
 
   getPosition(item: MaterialItem<number, number>, context: ItemContext<number, number, number>): Coordinates {
-    const base = { x: -23, y: 8, z: 0}
+    const base = { x: -20, y: 5, z: 0}
 
     return {
       ...base,
-      x: base.x + ((explorationMapDescription.width + 1) * (item.id - 1))
+      x: base.x + ((explorationMapDescription.width + 0.9) * (item.id - 1))
     }
   }
 }

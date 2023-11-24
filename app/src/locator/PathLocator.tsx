@@ -1,8 +1,7 @@
-import { ItemContext, ItemLocator, MaterialContext } from '@gamepark/react-game'
+import { ItemLocator, MaterialContext } from '@gamepark/react-game'
 import { Location, MaterialItem, XYCoordinates } from '@gamepark/rules-api'
 import { MaterialType } from '@gamepark/trek12/material/MaterialType'
 import mean from 'lodash/mean'
-import { pathDescription } from '../material/PathDescription'
 import { nodeCoordinates } from './ExplorationNodeLocator'
 
 export class PathLocator extends ItemLocator {

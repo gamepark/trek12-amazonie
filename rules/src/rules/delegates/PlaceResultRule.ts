@@ -1,13 +1,16 @@
+import { CreateItem, isCreateItemType, ItemMove, MaterialGame, MaterialItem, MaterialMove, MaterialRulesPart, Rules } from '@gamepark/rules-api'
+import equal from 'fast-deep-equal'
 import range from 'lodash/range'
+import uniqBy from 'lodash/uniqBy'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
 import { applyOperator, SpecialValue } from '../../material/Operator'
 import { PlayerId } from '../../Trek12Options'
-import { CreateItem, isCreateItemType, ItemMove, MaterialGame, MaterialMove, MaterialRulesPart } from '@gamepark/rules-api'
-import { createPath, Node, mapGraph } from '../helper/Node'
+import { Area } from '../helper/Area'
+import { createPath, mapGraph, Node } from '../helper/Node'
 import { Pathway } from '../helper/Pathway'
 import { Memory } from '../Memory'
-import equal from 'fast-deep-equal'
+import { ChoosePathNodeRule } from './ChoosePathNodeRule'
 
 
 export class PlaceResultRule extends MaterialRulesPart {
@@ -17,6 +20,9 @@ export class PlaceResultRule extends MaterialRulesPart {
   }
 
   getLegalMoves(): MaterialMove<number, number, number>[] {
+    if (this.remind(Memory.PlacedNode, this.player) !== undefined) {
+      return new ChoosePathNodeRule(this.game, this.player).getLegalMoves()
+    }
     const operand = this.remind(Memory.Operand, this.player)
     const result = applyOperator(operand, this.dicesValues)
     return range(27)
@@ -24,78 +30,34 @@ export class PlaceResultRule extends MaterialRulesPart {
       .map((index: number) => this
         .material(MaterialType.ExpeditionNodeValue)
         .createItem({
-          id: result > 12? SpecialValue.Spider: result,
+          id: result > 12 ? SpecialValue.Spider : result,
           location: {
             id: index,
             type: LocationType.ExpeditionNode,
-            player: this.player,
-          },
-        }),
+            player: this.player
+          }
+        })
       )
   }
 
   afterItemMove(move: ItemMove): MaterialMove<number, number, number>[] {
+    if (this.remind(Memory.PlacedNode, this.player) !== undefined) {
+      return new ChoosePathNodeRule(this.game, this.player).afterItemMove(move)
+    }
+
     if (!isCreateItemType(MaterialType.ExpeditionNodeValue)(move)) return []
 
     const moves: MaterialMove[] = []
-    moves.push(...this.createPathway(move))
+    moves.push(...new Area(this.game, this.player, move.item).addAreaNodeMoves)
+    moves.push(...new Pathway(this.game, this.player, move.item).createPathwayMoves)
     moves.push(...this.revealObservationCard(move))
 
     this.forget(Memory.Operand, move.item.location.player!)
+
+    if (this.remind(Memory.PlacedNode, this.player)) return moves;
+
     moves.push(this.rules().endPlayerTurn(move.item.location.player!))
-
     return moves
-  }
-
-  createPathway(move: CreateItem) {
-    const adjacentNodes = this
-      .material(MaterialType.ExpeditionNodeValue)
-      .location(LocationType.ExpeditionNode)
-      .player(this.player)
-      .filter((item) => {
-        const node= new Node(this.game, this.player, item.location.id)
-        return node.isAdjacentTo(move.item.location.id)
-          && node.isValueNextTo(move.item.id)
-          && !new Pathway(this.game, this.player, item).hasAlreadyValue(move.item.id)
-      })
-      .getItems()
-
-    if (!adjacentNodes.length) return []
-
-
-    const superiorNodes = adjacentNodes.filter((item) => item.id > move.item.id)
-    const inferiorNodes = adjacentNodes.filter((item) => item.id < move.item.id)
-
-    const moves: MaterialMove[] = []
-    if (superiorNodes.length > 1) {
-      console.warn("there is more than one superior node adjacent, player must choose")
-    } else {
-      moves.push(
-        ...superiorNodes.map((item) => this.material(MaterialType.Path).createItem({
-          location: {
-            id: mapGraph.find((path) => equal(path, createPath(item.location.id, move.item.location.id)))!,
-            type: LocationType.Path,
-            player: this.player
-          }
-        }))
-      )
-    }
-
-    if (inferiorNodes.length > 1) {
-      console.warn("there is more than one inferior node adjacent, player must choose")
-    } else {
-      moves.push(
-        ...inferiorNodes.map((item) => this.material(MaterialType.Path).createItem({
-          location: {
-            id: mapGraph.find((path) => equal(path, createPath(item.location.id, move.item.location.id)))!,
-            type: LocationType.Path,
-            player: this.player
-          }
-        }))
-      )
-    }
-
-    return moves;
   }
 
   revealObservationCard(move: CreateItem) {
@@ -130,8 +92,8 @@ export class PlaceResultRule extends MaterialRulesPart {
               type: LocationType.ObservationScores,
               x: 0,
               player: move.item.location.player
-            },
-          }),
+            }
+          })
       )
     } else {
       const item = ring.getItem()!
@@ -150,7 +112,7 @@ export class PlaceResultRule extends MaterialRulesPart {
   get dicesValues() {
     return [
       this.material(MaterialType.YellowDice).getItem()!.location.rotation,
-      this.material(MaterialType.GreenDice).getItem()!.location.rotation + 1,
+      this.material(MaterialType.GreenDice).getItem()!.location.rotation + 1
     ]
   }
 }

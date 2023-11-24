@@ -1,6 +1,8 @@
 import { ItemContext, LineLocator } from '@gamepark/react-game'
 import { MaterialType } from '@gamepark/trek12/material/MaterialType'
 import { Coordinates, Location, MaterialItem } from '@gamepark/rules-api'
+import { explorationMapDescription } from '../material/ExplorationMapDescription'
+import { EXPEDITION_MAP_SIZE } from '../material/utils/MapUtils'
 import { OperatorChoiceDescription } from './description/OperatorChoiceDescription'
 
 export class OperatorChoiceLocator extends LineLocator {
@@ -12,7 +14,7 @@ export class OperatorChoiceLocator extends LineLocator {
     return super.getDelta(_item, _context)
   }
 
-  delta = { x: 0.55, y: -0.01  }
+  delta = { x: 0.041 * EXPEDITION_MAP_SIZE, y: -0.01  }
 
   coordinates = { x: 0, y: 0, z: 1 }
 

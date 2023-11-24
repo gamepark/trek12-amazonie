@@ -1,17 +1,23 @@
 /** @jsxImportSource @emotion/react */
-import { ItemLocator } from '@gamepark/react-game'
+import { ItemContext, ItemLocator } from '@gamepark/react-game'
 import { PlayerId } from '@gamepark/trek12/Trek12Options'
 import { MaterialType } from '@gamepark/trek12/material/MaterialType'
 import { LocationType } from '@gamepark/trek12/material/LocationType'
 import { ExplorationNodeDescription } from './description/ExplorationNodeDescription'
-import { Location, XYCoordinates } from '@gamepark/rules-api'
+import { Coordinates, Location, MaterialItem, XYCoordinates } from '@gamepark/rules-api'
 
 export class ExplorationNodeLocator extends ItemLocator<PlayerId, MaterialType, LocationType> {
   parentItemType = MaterialType.ExplorationMap
 
   locationDescription = new ExplorationNodeDescription()
 
-  position = { x: 0, y: 0, z: 1 }
+  getPosition(_item: MaterialItem, { type }: ItemContext) {
+    if (type === MaterialType.ExpeditionNodeValue) {
+      return { x: 0, y: 0, z: 2 }
+    }
+
+    return { x: 0, y: 0, z: 1 }
+  }
 
   getPositionOnParent(location: Location<PlayerId, LocationType, number>): XYCoordinates {
     return nodeCoordinates[location.id!]

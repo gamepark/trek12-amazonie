@@ -5,10 +5,11 @@ import { Operator } from '@gamepark/trek12/material/Operator'
 import { range } from 'lodash'
 import Images from '../images/Images'
 import { nodeCoordinates } from '../locator/ExplorationNodeLocator'
+import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 
 export class ExplorationMapDescription extends BoardDescription {
-  width = 13.5
-  height = 13.5
+  width = EXPEDITION_MAP_SIZE
+  height = EXPEDITION_MAP_SIZE
 
   image = Images.forest1
 

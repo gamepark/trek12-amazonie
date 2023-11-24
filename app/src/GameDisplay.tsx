@@ -14,7 +14,7 @@ export const GameDisplay = () => {
       yMin={-15}
       yMax={15}
       collisionAlgorithm={pointerWithin}
-      margin={{ top: 7, left: 0, right: 30, bottom: 0 }}
+      margin={{ top: 7.5, left: 0, right: 30, bottom: 0 }}
       css={css`background-color: rgba(255, 255, 255, 0.47)`}
     />
       <PlayerPanels />

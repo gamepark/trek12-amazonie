@@ -8,10 +8,10 @@ export class DiceAreaLocator extends LineLocator {
 
   getCoordinates(_item: MaterialItem, { type }: ItemContext) {
     if (type === MaterialType.YellowDice) {
-      return { x: -2, y: -2, z: 0}
+      return { x: 10,  y: -10, z: 0}
     }
 
-    return { x: 2, y: -2, z: 0}
+    return { x: 14, y: -10, z: 0}
   }
 }
 

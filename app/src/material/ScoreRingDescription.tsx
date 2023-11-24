@@ -2,10 +2,12 @@
 import { MaterialContext, WritingDescription } from '@gamepark/react-game'
 import React from 'react'
 import { css } from '@emotion/react'
+import { explorationMapDescription } from './ExplorationMapDescription'
+import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 
 export class ScoreRingDescription extends WritingDescription {
-  width = 0.7
-  height = 0.7
+  width = 0.052 * EXPEDITION_MAP_SIZE
+  height = 0.052 * EXPEDITION_MAP_SIZE
   borderRadius = 4
 
   getFrontContent(_itemId: any, _context: MaterialContext<number, number, number>): React.ReactNode | undefined {

@@ -9,5 +9,6 @@ export enum MaterialType {
   ObservationNumber,
   ObservationScores,
   ScoreRing,
-  Path
+  Path,
+  AreaNode
 }

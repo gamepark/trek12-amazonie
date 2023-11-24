@@ -6,6 +6,7 @@ import React from 'react'
 export class PathDescription extends WritingDescription {
   height = 0.6
   width = 0.1
+  thickness = 3
 
   getFrontContent() {
     return <span css={path} />

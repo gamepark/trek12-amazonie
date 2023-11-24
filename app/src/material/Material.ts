@@ -1,5 +1,6 @@
 import { MaterialType } from '@gamepark/trek12/material/MaterialType'
 import { MaterialDescription } from '@gamepark/react-game/dist/components/material/MaterialDescription'
+import { areaNodeDescription } from './AreaNodeDescription'
 import { explorationMapDescription } from './ExplorationMapDescription'
 import { numberCardDescription } from './NumberCardDescription'
 import { observationCardDescription } from './ObservationCardDescription'
@@ -23,5 +24,6 @@ export const material: Partial<Record<MaterialType, MaterialDescription>> = {
   [MaterialType.YellowDice]: yellowDiceDescription,
   [MaterialType.ExpeditionNodeValue]: expeditionSpaceNumberDescription,
   [MaterialType.ScoreRing]: scoreRingDescription,
-  [MaterialType.Path]: pathDescription
+  [MaterialType.Path]: pathDescription,
+  [MaterialType.AreaNode]: areaNodeDescription
 }

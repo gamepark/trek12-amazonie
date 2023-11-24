@@ -1,6 +1,7 @@
 import { GameProvider, MaterialGameAnimations, setupTranslation } from '@gamepark/react-game'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom'
+import { Trek12Animations } from './animations/Trek12Animations'
 import App from './App'
 import translations from './translations.json'
 import { Trek12Setup } from '@gamepark/trek12/Trek12Setup'
@@ -19,7 +20,7 @@ ReactDOM.render(
                   optionsSpec={Trek12OptionsSpec}
                   material={material}
                   locators={locators}
-                  animations={new MaterialGameAnimations()}
+                  animations={new Trek12Animations()}
                   theme={{
                     root: {
                       background: {

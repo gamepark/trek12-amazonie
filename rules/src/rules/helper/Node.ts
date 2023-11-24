@@ -52,6 +52,30 @@ export class Node extends MaterialRulesPart {
     return value === (node.id + 1) || (value === (node.id - 1))
   }
 
+  isValueEqualsTo(value: number | SpecialValue) {
+    const node = this
+      .material(MaterialType.ExpeditionNodeValue)
+      .location(LocationType.ExpeditionNode)
+      .locationId(this.nodeId)
+      .player(this.player)
+      .getItem()
+
+    if (!node || SpecialValue.Spider === value) {
+      return false
+    }
+
+    return value === (node.id)
+  }
+
+  get areaNode() {
+    return this
+      .material(MaterialType.AreaNode)
+      .location(LocationType.ExpeditionNode)
+      .locationId(this.nodeId)
+      .player(this.player)
+      .getItem()
+  }
+
   get isWritable() {
     if (!this.isEmpty) return false
     if (this.isMapEmpty) return true
