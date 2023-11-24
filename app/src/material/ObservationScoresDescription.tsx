@@ -9,8 +9,8 @@ import { explorationMapDescription } from './ExplorationMapDescription'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 
 export class ObservationScoresDescription extends WritingDescription {
-  height = 0.5
-  width = 0.5
+  height = 0.037 * EXPEDITION_MAP_SIZE
+  width = 0.037 * EXPEDITION_MAP_SIZE
 
   getStaticItems(context: MaterialContext) {
     const { rules } = context

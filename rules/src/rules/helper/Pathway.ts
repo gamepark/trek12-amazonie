@@ -2,13 +2,15 @@ import { MaterialGame, MaterialItem, MaterialMove, MaterialRulesPart } from '@ga
 import equal from 'fast-deep-equal'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
+import { SpecialValue } from '../../material/Operator'
 import { PlayerId } from '../../Trek12Options'
 import { Memory } from '../Memory'
 import { createPath, mapGraph, Node } from './Node'
+import sum from 'lodash/sum'
+import maxBy from 'lodash/maxBy'
 
 export class Pathway extends MaterialRulesPart {
   private pathNodes: MaterialItem[] = []
-  private pathNodesLocationIds: number[] = []
 
   constructor(game: MaterialGame,
               readonly player: PlayerId,
@@ -19,6 +21,18 @@ export class Pathway extends MaterialRulesPart {
 
   hasAlreadyValue(value: number) {
     return this.pathNodes.some((p) => p.id === value)
+  }
+
+  get nodeIds() {
+    return this.pathNodes.map((node) => node.location.id)
+  }
+
+  get score() {
+    const valueNodes = this.pathNodes.filter((item) => item.id !== SpecialValue.Spider)
+    const maxNode = maxBy(valueNodes, (item) => item.id)
+    if (!maxNode) return 0
+
+    return maxNode.id + (valueNodes.length - 1)
   }
 
   getAdjacentNodes(item: MaterialItem): MaterialItem[] {
@@ -40,6 +54,7 @@ export class Pathway extends MaterialRulesPart {
     return adjacent
       .flatMap((a) => this.getAdjacentNodes(a))
   }
+
   get createPathwayMoves() {
     const adjacentNodes = this
       .material(MaterialType.ExpeditionNodeValue)

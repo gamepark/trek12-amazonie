@@ -1,13 +1,16 @@
 import { MaterialGame, MaterialItem, MaterialRulesPart } from '@gamepark/rules-api'
+import sum from 'lodash/sum'
 import uniqBy from 'lodash/uniqBy'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
+import { SpecialValue } from '../../material/Operator'
 import { PlayerId } from '../../Trek12Options'
 import { Node } from './Node'
+import maxBy from 'lodash/maxBy'
 
 export class Area extends MaterialRulesPart {
   private nodeId: number
-  private nodes: number[]
+  private nodes: MaterialItem[]
 
   constructor(game: MaterialGame,
               readonly player: PlayerId,
@@ -15,11 +18,22 @@ export class Area extends MaterialRulesPart {
     super(game)
 
     this.nodeId = nodeValue.location.id
-    this.nodes = [this.nodeId]
+    this.nodes = [nodeValue]
+    this.getAdjacentNodes(nodeValue)
+  }
+
+  get nodeIds() {
+    return this.nodes.map((node) => node.location.id)
+  }
+
+  get score() {
+    if (this.nodes.length === 1 || this.nodeValue.id === SpecialValue.Spider) return 0
+
+    return this.nodeValue.id + (this.nodes.length - 1)
   }
 
   get addAreaNodeMoves() {
-    const adjacentNodes = this.getAdjacentNodes(this.nodeValue)
+    const adjacentNodes = this.nodes
 
     if (!adjacentNodes.length) return []
     if (adjacentNodes.length > 1) {
@@ -47,7 +61,7 @@ export class Area extends MaterialRulesPart {
       .location(LocationType.ExpeditionNode)
       .player(this.player)
       .filter((nodeValue) => {
-        if (this.nodes.includes(nodeValue.location.id)) return false
+        if (this.nodes.some((item) => item.location.id === nodeValue.location.id)) return false
         const node = new Node(this.game, this.player, nodeValue.location.id)
         return node.isAdjacentTo(item.location.id)
           && node.isValueEqualsTo(this.nodeValue.id)
@@ -56,7 +70,7 @@ export class Area extends MaterialRulesPart {
 
     if (!adjacentNodes.length && item.location.id === this.nodeId) return []
     if (!adjacentNodes.length) return [item]
-    this.nodes.push(...adjacentNodes.map((node) => node.location.id))
+    this.nodes.push(...adjacentNodes)
     return adjacentNodes.flatMap((node) => this.getAdjacentNodes(node))
   }
 

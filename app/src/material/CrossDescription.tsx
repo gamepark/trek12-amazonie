@@ -6,8 +6,8 @@ import { explorationMapDescription } from './ExplorationMapDescription'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 
 export class CrossDescription extends WritingDescription {
-  height = 0.5
-  width = 0.55
+  height = 0.037 * EXPEDITION_MAP_SIZE
+  width = 0.041 * EXPEDITION_MAP_SIZE
 
   getFrontContent() {
     return <span css={observationNumber}>X</span>
