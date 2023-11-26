@@ -1,14 +1,14 @@
-import { GameProvider, MaterialGameAnimations, setupTranslation } from '@gamepark/react-game'
+import { GameProvider, setupTranslation } from '@gamepark/react-game'
+import { Trek12OptionsSpec } from '@gamepark/trek12/Trek12Options'
+import { Trek12Rules } from '@gamepark/trek12/Trek12Rules'
+import { Trek12Setup } from '@gamepark/trek12/Trek12Setup'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom'
 import { Trek12Animations } from './animations/Trek12Animations'
 import App from './App'
-import translations from './translations.json'
-import { Trek12Setup } from '@gamepark/trek12/Trek12Setup'
-import { Trek12Rules } from '@gamepark/trek12/Trek12Rules'
-import { Trek12OptionsSpec } from '@gamepark/trek12/Trek12Options'
 import { locators } from './locator/Locators'
 import { material } from './material/Material'
+import translations from './translations.json'
 
 setupTranslation(translations, { debug: false })
 

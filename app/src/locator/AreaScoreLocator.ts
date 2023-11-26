@@ -13,13 +13,7 @@ export class AreaScoreLocator extends GridLocator {
 
 
   coordinates = { x: 0, y: 0, z: 1 }
-
-  getPositionOnParent(location: Location) {
-    return {
-      x: 57.3,
-      y: 67.9// + (location.id * 6.4)
-    }
-  }
+  positionOnParent =  { x: 57.3, y: 67.9 }
 
   getParentItemId(location: Location) {
     return location.player

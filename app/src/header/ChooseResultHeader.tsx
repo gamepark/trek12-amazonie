@@ -1,15 +1,10 @@
-import { SimultaneousRule } from '@gamepark/rules-api/dist/material/rules/SimultaneousRule'
-import { FC } from 'react'
-import { useRules } from '@gamepark/react-game/dist/hooks/useRules'
-import { Trek12Rules } from '@gamepark/trek12/Trek12Rules'
-import { usePlayerId } from '@gamepark/react-game/dist/hooks/usePlayerId'
-import { Memory } from '@gamepark/trek12/rules/Memory'
-import { applyOperator, Operator } from '@gamepark/trek12/material/Operator'
+import { PlayMoveButton, useLegalMoves, usePlayerId, useRules } from '@gamepark/react-game'
+import { isCustomMoveType, SimultaneousRule } from '@gamepark/rules-api'
 import { MaterialType } from '@gamepark/trek12/material/MaterialType'
-import { useLegalMoves } from '@gamepark/react-game/dist/hooks/useLegalMoves'
-import { isCustomMoveType } from '@gamepark/rules-api/dist/material/moves/CustomMove'
+import { applyOperator, Operator } from '@gamepark/trek12/material/Operator'
 import { CustomMoveType } from '@gamepark/trek12/rules/CustomMoveType'
-import { PlayMoveButton } from '@gamepark/react-game/dist/components/buttons/PlayMoveButton/PlayMoveButton'
+import { Memory } from '@gamepark/trek12/rules/Memory'
+import { FC } from 'react'
 
 export const ChooseResultHeader: FC = () => {
   const rules = useRules<SimultaneousRule>()!

@@ -1,6 +1,5 @@
-import { LineLocator } from '@gamepark/react-game/dist/locators/LineLocator'
-import { MaterialItem } from '@gamepark/rules-api/dist/material/items/MaterialItem'
-import { ItemContext } from '@gamepark/react-game/dist/locators/ItemLocator'
+import { ItemContext, LineLocator } from '@gamepark/react-game'
+import { MaterialItem } from '@gamepark/rules-api'
 import { MaterialType } from '@gamepark/trek12/material/MaterialType'
 
 export class DiceAreaLocator extends LineLocator {

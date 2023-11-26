@@ -1,5 +1,4 @@
-import {ItemContext, LineLocator} from '@gamepark/react-game'
-import {MaterialItem} from '@gamepark/rules-api/dist/material/items/MaterialItem'
+import { LineLocator } from '@gamepark/react-game'
 
 export class ObservationsLocator extends LineLocator {
     delta = {x: 11, y: 0, z: 0}

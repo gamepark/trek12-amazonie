@@ -1,14 +1,14 @@
-import {CardDescription} from '@gamepark/react-game'
-import Jaguar from '../images/exploration/jaguar.jpg'
+import { CardDescription } from '@gamepark/react-game'
+import { ExplorationCard } from '@gamepark/trek12/material/ExplorationCard'
 import Ara from '../images/exploration/ara.jpg'
-import Toucan from '../images/exploration/toucan.jpg'
-import RainbowBoa from '../images/exploration/rainbow-boa.jpg'
-import Butterfly from '../images/exploration/butterfly.jpg'
-import PoisonDartFrog from '../images/exploration/poison-dard-frog.jpg'
-import Tamarind from '../images/exploration/tamarind.jpg'
-import PygmyMarmoset from '../images/exploration/pygmy-marmoset.jpg'
 import Back from '../images/exploration/back.jpg'
-import {ExplorationCard} from '@gamepark/trek12/material/ExplorationCard'
+import Butterfly from '../images/exploration/butterfly.jpg'
+import Jaguar from '../images/exploration/jaguar.jpg'
+import PoisonDartFrog from '../images/exploration/poison-dard-frog.jpg'
+import PygmyMarmoset from '../images/exploration/pygmy-marmoset.jpg'
+import RainbowBoa from '../images/exploration/rainbow-boa.jpg'
+import Tamarind from '../images/exploration/tamarind.jpg'
+import Toucan from '../images/exploration/toucan.jpg'
 
 export class ObservationCardDescription extends CardDescription {
   width = 6.3

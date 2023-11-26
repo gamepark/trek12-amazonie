@@ -1,11 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import { WritingDescription, MaterialContext } from '@gamepark/react-game'
-import { MaterialType } from '@gamepark/trek12/material/MaterialType'
-import { LocationType } from '@gamepark/trek12/material/LocationType'
-import React from 'react'
 import { css } from '@emotion/react'
+import { MaterialContext, WritingDescription } from '@gamepark/react-game'
 import { ExplorationCardScores } from '@gamepark/trek12/material/ExplorationCard'
-import { explorationMapDescription } from './ExplorationMapDescription'
+import { LocationType } from '@gamepark/trek12/material/LocationType'
+import { MaterialType } from '@gamepark/trek12/material/MaterialType'
+import React from 'react'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 
 export class ObservationScoresDescription extends WritingDescription {

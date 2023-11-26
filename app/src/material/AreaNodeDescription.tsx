@@ -1,13 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import { MaterialContext, WritingDescription } from '@gamepark/react-game'
-import { MaterialItem } from '@gamepark/rules-api/dist/material/items/MaterialItem'
-import { LocationType } from '@gamepark/trek12/material/LocationType'
-import { SpecialValue } from '@gamepark/trek12/material/Operator'
-import { range } from 'lodash'
-import React from 'react'
 import { css } from '@emotion/react'
-import { faSpider } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { WritingDescription } from '@gamepark/react-game'
+import React from 'react'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 
 export class AreaNodeDescription extends WritingDescription {

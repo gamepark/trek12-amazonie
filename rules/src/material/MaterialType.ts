@@ -12,5 +12,7 @@ export enum MaterialType {
   Path,
   AreaNode,
   PathwayScore,
-  AreaScore
+  AreaScore,
+  SubTotal,
+  Total
 }

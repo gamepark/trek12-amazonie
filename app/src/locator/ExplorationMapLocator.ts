@@ -1,6 +1,5 @@
 import { ItemContext, ItemLocator } from '@gamepark/react-game'
-import { MaterialItem } from '@gamepark/rules-api/dist/material/items/MaterialItem'
-import { Coordinates } from '@gamepark/rules-api/dist/material/location/Location'
+import { Coordinates, MaterialItem } from '@gamepark/rules-api'
 import { explorationMapDescription } from '../material/ExplorationMapDescription'
 
 export class ExplorationMapLocator extends ItemLocator {

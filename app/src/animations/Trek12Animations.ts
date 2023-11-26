@@ -1,4 +1,3 @@
-import { AnimationStep } from '@gamepark/react-client'
 import { MaterialAnimationContext, MaterialGameAnimations } from '@gamepark/react-game'
 import { isCreateItemType, isDeleteItemType, MaterialMove } from '@gamepark/rules-api'
 import { MaterialType } from '@gamepark/trek12/material/MaterialType'

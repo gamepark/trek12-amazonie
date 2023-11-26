@@ -1,15 +1,45 @@
 import { MaterialContext } from '@gamepark/react-game'
 import { MaterialGame, MaterialItem, MaterialRulesPart } from '@gamepark/rules-api'
+import { ExplorationCardScores } from '../../material/ExplorationCard'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
+import { operators } from '../../material/Operator'
 import { PlayerId } from '../../Trek12Options'
 import { Area } from './Area'
 import { Pathway } from './Pathway'
+import sum from 'lodash/sum'
 
 export class Score extends MaterialRulesPart {
 
   constructor (game: MaterialGame, readonly player: PlayerId) {
     super(game)
+  }
+
+  get total() {
+    return this.observationScore + this.pathwayScore + this.areaScore
+  }
+
+  get observationScore() {
+    const observations = this
+      .material(MaterialType.ObservationCard)
+      .location(LocationType.Observations)
+      .getItems()
+
+    const rings = this
+      .material(MaterialType.ScoreRing)
+      .location(LocationType.ObservationScores)
+      .player(this.player)
+      .getItems()
+
+    console.log(observations)
+    let score = 0
+    for (const ring of rings) {
+      const observation = observations.find((o) => o.location.x === ring.location.id)!
+      score += ExplorationCardScores[observation.id][ring.location.x]
+    }
+
+    return score
+
   }
 
   get pathwayScoreList(): number[] {
@@ -33,6 +63,14 @@ export class Score extends MaterialRulesPart {
 
     return scores
 
+  }
+
+  get areaScore(): number {
+    return sum(this.areaScoreList)
+  }
+
+  get pathwayScore(): number {
+    return sum(this.pathwayScoreList)
   }
 
   get areaScoreList(): number[] {

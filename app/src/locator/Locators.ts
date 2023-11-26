@@ -13,6 +13,8 @@ import { operatorChoiceLocator } from './OperatorChoiceLocator'
 import { diceAreaLocator } from './DiceAreaLocator'
 import { pathLocator } from './PathLocator'
 import { pathwayScoreLocator } from './PathwayScoreLocator'
+import { subTotalScoreLocator } from './SubTotalScoreLocator'
+import { totalScoreLocator } from './TotalScoreLocator'
 
 export const locators: Partial<Record<LocationType, ItemLocator<PlayerId, MaterialType, LocationType>>> = {
   [LocationType.Numbers]: numbersLocator,
@@ -26,4 +28,6 @@ export const locators: Partial<Record<LocationType, ItemLocator<PlayerId, Materi
   [LocationType.Path]: pathLocator,
   [LocationType.PathwayScore]: pathwayScoreLocator,
   [LocationType.AreaScore]: areaScoreLocator,
+  [LocationType.SubTotalScore]: subTotalScoreLocator,
+  [LocationType.TotalScore]: totalScoreLocator
 }

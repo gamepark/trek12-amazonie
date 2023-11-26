@@ -1,7 +1,6 @@
-import { ItemContext, LineLocator, MaterialContext } from '@gamepark/react-game'
+import { LineLocator } from '@gamepark/react-game'
+import { Location } from '@gamepark/rules-api'
 import { MaterialType } from '@gamepark/trek12/material/MaterialType'
-import { Coordinates, Location, MaterialItem, XYCoordinates } from '@gamepark/rules-api'
-import { explorationMapDescription } from '../material/ExplorationMapDescription'
 import { EXPEDITION_MAP_SIZE } from '../material/utils/MapUtils'
 
 export class ObservationScoresLocator extends LineLocator {
@@ -14,7 +13,7 @@ export class ObservationScoresLocator extends LineLocator {
   getPositionOnParent(location: Location) {
     return {
       x: 16.6,
-      y: 69.9 + (location.id * 6.4)
+      y: 69.8 + (location.id * 6.4)
     }
   }
 

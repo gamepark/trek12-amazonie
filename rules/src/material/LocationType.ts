@@ -14,5 +14,7 @@ export enum LocationType {
   OperatorChoice,
   Path,
   PathwayScore,
-  AreaScore
+  AreaScore,
+  SubTotalScore,
+  TotalScore
 }

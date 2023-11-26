@@ -1,8 +1,7 @@
 /** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react'
 import { MaterialContext, WritingDescription } from '@gamepark/react-game'
 import React from 'react'
-import { css } from '@emotion/react'
-import { explorationMapDescription } from './ExplorationMapDescription'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 
 export class ScoreRingDescription extends WritingDescription {

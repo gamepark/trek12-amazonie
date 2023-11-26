@@ -1,15 +1,13 @@
 /** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react'
+import { faSpider } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ItemContext, WritingDescription } from '@gamepark/react-game'
-import { isCreateItemType } from '@gamepark/rules-api/dist/material/moves/items/CreateItem'
-import { MaterialMove } from '@gamepark/rules-api/dist/material/moves/MaterialMove'
+import { isCreateItemType, MaterialMove } from '@gamepark/rules-api'
 import { MaterialType } from '@gamepark/trek12/material/MaterialType'
 import { SpecialValue } from '@gamepark/trek12/material/Operator'
 import { Memory } from '@gamepark/trek12/rules/Memory'
 import React from 'react'
-import { css } from '@emotion/react'
-import { faSpider } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { explorationMapDescription } from './ExplorationMapDescription'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 
 export class ExpeditionNodeNumberDescription extends WritingDescription {

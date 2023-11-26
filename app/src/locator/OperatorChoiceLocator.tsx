@@ -1,7 +1,6 @@
 import { ItemContext, LineLocator } from '@gamepark/react-game'
-import { MaterialType } from '@gamepark/trek12/material/MaterialType'
 import { Coordinates, Location, MaterialItem } from '@gamepark/rules-api'
-import { explorationMapDescription } from '../material/ExplorationMapDescription'
+import { MaterialType } from '@gamepark/trek12/material/MaterialType'
 import { EXPEDITION_MAP_SIZE } from '../material/utils/MapUtils'
 import { OperatorChoiceDescription } from './description/OperatorChoiceDescription'
 

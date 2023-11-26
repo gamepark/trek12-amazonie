@@ -2,7 +2,6 @@
 import { css } from '@emotion/react'
 import { WritingDescription } from '@gamepark/react-game'
 import React from 'react'
-import { explorationMapDescription } from './ExplorationMapDescription'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 
 export class CrossDescription extends WritingDescription {

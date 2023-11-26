@@ -5,10 +5,7 @@ import { LocationType } from '@gamepark/trek12/material/LocationType'
 import { MaterialType } from '@gamepark/trek12/material/MaterialType'
 import { PlayerId } from '@gamepark/trek12/Trek12Options'
 import equal from 'fast-deep-equal'
-import { explorationMapDescription } from '../../material/ExplorationMapDescription'
 import { EXPEDITION_MAP_SIZE } from '../../material/utils/MapUtils'
-
-//import { css } from '@emotion/react'
 
 
 export class ExplorationNodeDescription extends LocationDescription<PlayerId, MaterialType, LocationType> {
