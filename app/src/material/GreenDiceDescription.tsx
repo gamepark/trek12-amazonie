@@ -7,6 +7,7 @@ import Face3 from '../images/dice/green/3.jpg'
 import Face4 from '../images/dice/green/4.jpg'
 import Face5 from '../images/dice/green/5.jpg'
 import Face6 from '../images/dice/green/6.jpg'
+import { GreenDiceHelp } from './GreenDiceHelp'
 
 export class GreenDiceDescription extends CubicDiceDescription {
   width = 2
@@ -24,6 +25,9 @@ export class GreenDiceDescription extends CubicDiceDescription {
   getRotations(item: MaterialItem, context: ItemContext) {
     return ['rotate3d(1, -1, 0, 15deg)', 'translateZ(1em)', ...super.getRotations(item, context)]
   }
+
+  
+  help = GreenDiceHelp
 
 }
 

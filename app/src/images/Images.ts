@@ -16,12 +16,26 @@ import animalNumber4 from './number/4.jpg'
 import animalNumber5 from './number/5.jpg'
 import animalNumber6 from './number/6.jpg'
 import forest1 from './forest1.jpg'
+import yellowDice0 from './dice/yellow/0.jpg'
+import yellowDice1 from './dice/yellow/1.jpg'
+import yellowDice2 from './dice/yellow/2.jpg'
+import yellowDice3 from './dice/yellow/3.jpg'
+import yellowDice4 from './dice/yellow/4.jpg'
+import yellowDice5 from './dice/yellow/5.jpg'
+import greenDice1 from './dice/green/1.jpg'
+import greenDice2 from './dice/green/2.jpg'
+import greenDice3 from './dice/green/3.jpg'
+import greenDice4 from './dice/green/4.jpg'
+import greenDice5 from './dice/green/5.jpg'
+import greenDice6 from './dice/green/6.jpg'
 
 const Images = {
   animalBack, animalNumberBack,
   aecSnake, ara, butterfly, jaguar, oustiti, poisonDartFrog, tamarin, toucan,
   animalNumber0, animalNumber1, animalNumber2, animalNumber3, animalNumber4, animalNumber5, animalNumber6,
-  forest1
+  forest1,
+  yellowDice0,yellowDice1,yellowDice2,yellowDice3,yellowDice4,yellowDice5,
+  greenDice1,greenDice2,greenDice3,greenDice4,greenDice5,greenDice6
 }
 
 export default Images
