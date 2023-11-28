@@ -12,6 +12,7 @@ import { observationNumberDescription } from './ObservationNumberDescription'
 import { observationScoresDescription } from './ObservationScoresDescription'
 import { pathDescription } from './PathDescription'
 import { pathwayScoreDescription } from './PathwayScoreDescription'
+import { piranhaDescription } from './PiranhaDescription'
 import { scoreRingDescription } from './ScoreRingDescription'
 import { subTotalDescription } from './SubTotalDescription'
 import { totalDescription } from './TotalDescription'
@@ -34,4 +35,5 @@ export const material: Partial<Record<MaterialType, MaterialDescription>> = {
   [MaterialType.AreaScore]: areaScoreDescription,
   [MaterialType.SubTotal]: subTotalDescription,
   [MaterialType.Total]: totalDescription,
+  [MaterialType.Piranha]: piranhaDescription,
 }

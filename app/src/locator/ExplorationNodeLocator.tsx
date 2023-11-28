@@ -4,6 +4,7 @@ import { Location, MaterialItem, XYCoordinates } from '@gamepark/rules-api'
 import { LocationType } from '@gamepark/trek12/material/LocationType'
 import { MaterialType } from '@gamepark/trek12/material/MaterialType'
 import { PlayerId } from '@gamepark/trek12/Trek12Options'
+import { EXPEDITION_MAP_SIZE } from '../material/utils/MapUtils'
 import { ExplorationNodeDescription } from './description/ExplorationNodeDescription'
 
 export class ExplorationNodeLocator extends ItemLocator<PlayerId, MaterialType, LocationType> {
@@ -16,10 +17,14 @@ export class ExplorationNodeLocator extends ItemLocator<PlayerId, MaterialType, 
       return { x: 0, y: 0, z: 2 }
     }
 
+    if (type === MaterialType.Piranha) {
+      return { x: -0.015 * EXPEDITION_MAP_SIZE, y: -0.03 * EXPEDITION_MAP_SIZE, z: 2 }
+    }
+
     return { x: 0, y: 0, z: 1 }
   }
 
-  getPositionOnParent(location: Location<PlayerId, LocationType, number>): XYCoordinates {
+  getPositionOnParent(location: Location): XYCoordinates {
     return nodeCoordinates[location.id!]
   }
 
