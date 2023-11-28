@@ -67,7 +67,7 @@ export class PlaceResultRule extends MaterialRulesPart {
   addPiranha(move: CreateItem) {
     const operand = this.remind(Memory.Operand, this.player)
     const fieldType = ForestBasicFieldTypes[move.item.location.id]
-    if (operand === Operator.MAX && fieldType === Field.Water) {
+    if (operand !== Operator.MAX && fieldType === Field.Water) {
       return this.material(MaterialType.Piranha)
         .createItems([
           { location: { ...move.item.location } }
