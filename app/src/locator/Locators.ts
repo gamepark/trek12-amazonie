@@ -3,6 +3,7 @@ import { ItemLocator } from '@gamepark/react-game'
 import { PlayerId } from '@gamepark/trek12/Trek12Options'
 import { MaterialType } from '@gamepark/trek12/material/MaterialType'
 import { areaScoreLocator } from './AreaScoreLocator'
+import { dangerTickLocator } from './DangerTickLocator'
 import { numbersLocator } from './NumbersLocator'
 import { observationNumberLocator } from './ObservationNumberLocator'
 import { observationsLocator } from './ObservationsLocator'
@@ -29,5 +30,6 @@ export const locators: Partial<Record<LocationType, ItemLocator<PlayerId, Materi
   [LocationType.PathwayScore]: pathwayScoreLocator,
   [LocationType.AreaScore]: areaScoreLocator,
   [LocationType.SubTotalScore]: subTotalScoreLocator,
-  [LocationType.TotalScore]: totalScoreLocator
+  [LocationType.TotalScore]: totalScoreLocator,
+  [LocationType.DangerTick]: dangerTickLocator
 }

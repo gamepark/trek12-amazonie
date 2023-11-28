@@ -3,6 +3,7 @@ import { MaterialType } from '@gamepark/trek12/material/MaterialType'
 import { areaNodeDescription } from './AreaNodeDescription'
 import { areaScoreDescription } from './AreaScoreDescription'
 import { crossDescription } from './CrossDescription'
+import { dangerTickDescription } from './DangerTickDescription'
 import { expeditionSpaceNumberDescription } from './ExpeditionNodeNumberDescription'
 import { explorationMapDescription } from './ExplorationMapDescription'
 import { greenDiceDescription } from './GreenDiceDescription'
@@ -36,4 +37,5 @@ export const material: Partial<Record<MaterialType, MaterialDescription>> = {
   [MaterialType.SubTotal]: subTotalDescription,
   [MaterialType.Total]: totalDescription,
   [MaterialType.Piranha]: piranhaDescription,
+  [MaterialType.DangerTick]: dangerTickDescription
 }

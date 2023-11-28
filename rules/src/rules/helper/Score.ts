@@ -1,13 +1,12 @@
-import { MaterialContext } from '@gamepark/react-game'
-import { MaterialGame, MaterialItem, MaterialRulesPart } from '@gamepark/rules-api'
+import { MaterialGame, MaterialRulesPart } from '@gamepark/rules-api'
+import sum from 'lodash/sum'
 import { ExplorationCardScores } from '../../material/ExplorationCard'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
-import { operators } from '../../material/Operator'
+import { SpecialValue } from '../../material/Operator'
 import { PlayerId } from '../../Trek12Options'
 import { Area } from './Area'
 import { Pathway } from './Pathway'
-import sum from 'lodash/sum'
 
 export class Score extends MaterialRulesPart {
 
@@ -16,7 +15,29 @@ export class Score extends MaterialRulesPart {
   }
 
   get total() {
-    return this.observationScore + this.pathwayScore + this.areaScore
+    return this.observationScore + this.pathwayScore + this.areaScore - this.dangerScore
+  }
+
+  get dangerScore() {
+    return this.dangerCount * 5
+  }
+
+  get dangerCount() {
+    const spiderNodes = this
+      .material(MaterialType.ExpeditionNodeValue)
+      .location(LocationType.ExpeditionNode)
+      .player(this.player)
+      .id((id: number | SpecialValue) => id === SpecialValue.Spider)
+      .length
+
+    const piranhas = this
+      .material(MaterialType.Piranha)
+      .location(LocationType.ExpeditionNode)
+      .player(this.player)
+      .length
+
+    // TODO: add spider icon on node
+    return spiderNodes + piranhas
   }
 
   get observationScore() {

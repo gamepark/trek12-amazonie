@@ -16,5 +16,6 @@ export enum LocationType {
   PathwayScore,
   AreaScore,
   SubTotalScore,
-  TotalScore
+  TotalScore,
+  DangerTick
 }

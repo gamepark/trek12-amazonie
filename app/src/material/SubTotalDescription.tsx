@@ -28,7 +28,7 @@ export class SubTotalDescription extends WritingDescription {
           { id: score.observationScore, location: { type: LocationType.SubTotalScore, player, id: SubTotalId.Observations } },
           { id: score.pathwayScore, location: { type: LocationType.SubTotalScore, player, id: SubTotalId.Pathways } },
           { id: score.areaScore, location: { type: LocationType.SubTotalScore, player, id: SubTotalId.Areas } },
-          { id: score.areaScore, location: { type: LocationType.SubTotalScore, player, id: SubTotalId.Danger } },
+          { id: score.dangerScore, location: { type: LocationType.SubTotalScore, player, id: SubTotalId.Danger } },
         ]
       })
 

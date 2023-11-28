@@ -15,5 +15,6 @@ export enum MaterialType {
   AreaScore,
   SubTotal,
   Total,
-  Piranha
+  Piranha,
+  DangerTick
 }
