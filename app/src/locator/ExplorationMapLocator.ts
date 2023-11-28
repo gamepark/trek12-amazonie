@@ -1,4 +1,4 @@
-import { ItemContext, ItemLocator } from '@gamepark/react-game'
+import { ItemContext, ItemLocator, getRelativePlayerIndex } from '@gamepark/react-game'
 import { Coordinates, MaterialItem } from '@gamepark/rules-api'
 import { explorationMapDescription } from '../material/ExplorationMapDescription'
 
@@ -7,7 +7,7 @@ export class ExplorationMapLocator extends ItemLocator {
 
   getPosition(item: MaterialItem<number, number>, context: ItemContext<number, number, number>): Coordinates {
     const base = { x: -20, y: 5, z: 0}
-
+    getRelativePlayerIndex(context, context.player)
     return {
       ...base,
       x: base.x + ((explorationMapDescription.width + 0.9) * (item.id - 1))

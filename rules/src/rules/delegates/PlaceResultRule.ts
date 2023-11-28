@@ -54,7 +54,6 @@ export class PlaceResultRule extends MaterialRulesPart {
     moves.push(...this.addPiranha(move))
     moves.push(...new Area(this.game, this.player, move.item).addAreaNodeMoves)
     moves.push(...new Pathway(this.game, this.player, move.item).createPathwayMoves)
-    moves.push(...this.revealObservationCard(move))
 
     this.forget(Memory.Operand, move.item.location.player!)
 

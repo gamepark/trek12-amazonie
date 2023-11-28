@@ -6,6 +6,7 @@ import { MaterialType } from '@gamepark/trek12/material/MaterialType'
 import { PlayerId } from '@gamepark/trek12/Trek12Options'
 import equal from 'fast-deep-equal'
 import { EXPEDITION_MAP_SIZE } from '../../material/utils/MapUtils'
+import { css } from '@emotion/react'
 
 
 export class ExplorationNodeDescription extends LocationDescription<PlayerId, MaterialType, LocationType> {
@@ -14,7 +15,7 @@ export class ExplorationNodeDescription extends LocationDescription<PlayerId, Ma
   width = 0.104 * EXPEDITION_MAP_SIZE
   borderRadius= 4
 
-  /**getExtraCss(location: Location) {
+  getExtraCss(location: Location) {
     return css`
       &:after {
         position: absolute;
@@ -30,7 +31,7 @@ export class ExplorationNodeDescription extends LocationDescription<PlayerId, Ma
         justify-content: center;
       }
     `
-  }**/
+  }
 
   isMoveToLocation(move: MaterialMove, location: Location, { rules }: MaterialContext): boolean {
     if (!isCreateItemType(MaterialType.ExpeditionNodeValue)(move)) return false
@@ -42,5 +43,5 @@ export class ExplorationNodeDescription extends LocationDescription<PlayerId, Ma
   }
 
 
-  rules = () => null
+  help = () => null
 }

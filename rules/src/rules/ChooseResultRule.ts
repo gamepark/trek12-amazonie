@@ -33,7 +33,7 @@ export class ChooseResultRule extends SimultaneousRule {
     if (this.allCrossPlaced) {
       return [this.rules().startRule(RuleId.EndOfGameRule)]
     }
-    return [this.rules().startRule(RuleId.RollDice)]
+    return [this.rules().startRule(RuleId.Discover)]
   }
 
   get allCrossPlaced() {
