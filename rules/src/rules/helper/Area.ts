@@ -33,9 +33,9 @@ export class Area extends MaterialRulesPart {
   }
 
   get addAreaNodeMoves() {
-    const adjacentNodes = this.nodes
+    const adjacentNodes = this.nodes.filter((node) => node.location.id !== this.nodeId)
 
-    if (!adjacentNodes.length) return []
+    if (!adjacentNodes.length ) return []
     if (adjacentNodes.length > 1) {
       // TODO: let player choose
       const uniqAreaNodes = uniqBy(

@@ -1,10 +1,13 @@
-import { CreateItem, isCreateItemType, ItemMove, MaterialGame, MaterialItem, MaterialMove, MaterialRulesPart, Rules } from '@gamepark/rules-api'
+import { CreateItem, isCreateItemType, ItemMove, MaterialGame, MaterialItem, MaterialMove, MaterialRulesPart, MoveItem, Rules } from '@gamepark/rules-api'
 import equal from 'fast-deep-equal'
 import range from 'lodash/range'
 import uniqBy from 'lodash/uniqBy'
+import { ForestBasicFieldTypes } from '../../forests/Forest'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
-import { applyOperator, SpecialValue } from '../../material/Operator'
+import { applyOperator, Operator, SpecialValue } from '../../material/Operator'
+import { Field } from '../../material/Spot'
+import { Operand } from '../../PlayerState'
 import { PlayerId } from '../../Trek12Options'
 import { Area } from '../helper/Area'
 import { createPath, mapGraph, Node } from '../helper/Node'
@@ -48,6 +51,7 @@ export class PlaceResultRule extends MaterialRulesPart {
     if (!isCreateItemType(MaterialType.ExpeditionNodeValue)(move)) return []
 
     const moves: MaterialMove[] = []
+    moves.push(...this.addPiranha(move))
     moves.push(...new Area(this.game, this.player, move.item).addAreaNodeMoves)
     moves.push(...new Pathway(this.game, this.player, move.item).createPathwayMoves)
     moves.push(...this.revealObservationCard(move))
@@ -58,6 +62,19 @@ export class PlaceResultRule extends MaterialRulesPart {
 
     moves.push(this.rules().endPlayerTurn(move.item.location.player!))
     return moves
+  }
+
+  addPiranha(move: CreateItem) {
+    const operand = this.remind(Memory.Operand, this.player)
+    const fieldType = ForestBasicFieldTypes[move.item.location.id]
+    if (operand === Operator.MAX && fieldType === Field.Water) {
+      return this.material(MaterialType.Piranha)
+        .createItems([
+          { location: { ...move.item.location } }
+        ])
+    }
+
+    return []
   }
 
   revealObservationCard(move: CreateItem) {
