@@ -15,6 +15,7 @@ import { pathDescription } from './PathDescription'
 import { pathwayScoreDescription } from './PathwayScoreDescription'
 import { piranhaDescription } from './PiranhaDescription'
 import { scoreRingDescription } from './ScoreRingDescription'
+import { spiderDescription } from './SpiderDescription'
 import { subTotalDescription } from './SubTotalDescription'
 import { totalDescription } from './TotalDescription'
 import { yellowDiceDescription } from './YellowDiceDescription'
@@ -37,5 +38,6 @@ export const material: Partial<Record<MaterialType, MaterialDescription>> = {
   [MaterialType.SubTotal]: subTotalDescription,
   [MaterialType.Total]: totalDescription,
   [MaterialType.Piranha]: piranhaDescription,
-  [MaterialType.DangerTick]: dangerTickDescription
+  [MaterialType.DangerTick]: dangerTickDescription,
+  [MaterialType.Spider]: spiderDescription
 }

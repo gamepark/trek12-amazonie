@@ -16,5 +16,6 @@ export enum MaterialType {
   SubTotal,
   Total,
   Piranha,
-  DangerTick
+  DangerTick,
+  Spider
 }

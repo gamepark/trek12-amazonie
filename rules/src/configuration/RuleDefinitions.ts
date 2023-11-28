@@ -1,11 +1,11 @@
 import { MaterialRulesPartCreator } from '@gamepark/rules-api'
-import { RuleId } from '../rules/RuleId'
 import { ChooseResultRule } from '../rules/ChooseResultRule'
+import { EndOfGameRule } from '../rules/EndOfGameRule'
 import { RollDiceRule } from '../rules/RollDiceRule'
-import { DiscoverRule } from '../rules/DiscoverRule'
+import { RuleId } from '../rules/RuleId'
 
 export const rules: Record<RuleId, MaterialRulesPartCreator> = {
   [RuleId.RollDice]: RollDiceRule,
   [RuleId.ChooseResult]: ChooseResultRule,
-  [RuleId.Discover]: DiscoverRule
+  [RuleId.EndOfGameRule]: EndOfGameRule
 }

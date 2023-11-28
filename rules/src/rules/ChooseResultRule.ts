@@ -31,7 +31,7 @@ export class ChooseResultRule extends SimultaneousRule {
 
   getMovesAfterPlayersDone(): MaterialMove<number, number, number>[] {
     if (this.allCrossPlaced) {
-      return [this.rules().endGame()]
+      return [this.rules().startRule(RuleId.EndOfGameRule)]
     }
     return [this.rules().startRule(RuleId.RollDice)]
   }

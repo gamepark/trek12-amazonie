@@ -21,6 +21,10 @@ export class ExplorationNodeLocator extends ItemLocator<PlayerId, MaterialType, 
       return { x: -0.015 * EXPEDITION_MAP_SIZE, y: -0.03 * EXPEDITION_MAP_SIZE, z: 2 }
     }
 
+    if (type === MaterialType.Spider) {
+      return { x: -0.035 * EXPEDITION_MAP_SIZE, y: 0, z: 2 }
+    }
+
     return { x: 0, y: 0, z: 1 }
   }
 
