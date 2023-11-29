@@ -1,13 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import GameView from '@gamepark/trek12/GameView'
+import { FailuresDialog, FullscreenDialog, LoadingScreen, MaterialHeader, MaterialImageLoader, Menu, useGame } from '@gamepark/react-game'
+import { RuleId } from '@gamepark/trek12/rules/RuleId'
 import { FC, useEffect, useState } from 'react'
 import { GameDisplay } from './GameDisplay'
-import { MaterialImageLoader, FailuresDialog, FullscreenDialog, Menu, useGame, MaterialHeader, LoadingScreen } from '@gamepark/react-game'
-import { RuleId } from '@gamepark/trek12/rules/RuleId'
 import { ChooseResultHeader } from './header/ChooseResultHeader'
 
 export default function App() {
-  const game = useGame<GameView>()
+  const game = useGame()
   const [imagesLoading, setImagesLoading] = useState(true)
   const [isJustDisplayed, setJustDisplayed] = useState(true)
   useEffect(() => {

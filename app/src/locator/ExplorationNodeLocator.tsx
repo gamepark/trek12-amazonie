@@ -35,6 +35,7 @@ export class ExplorationNodeLocator extends ItemLocator<PlayerId, MaterialType, 
   getParentItemId(location: Location) {
     return location.player
   }
+
 }
 
 export const nodeCoordinates: XYCoordinates[] = [
