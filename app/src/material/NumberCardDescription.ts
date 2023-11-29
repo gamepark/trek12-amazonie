@@ -8,6 +8,7 @@ import Three from '../images/number/3.jpg'
 import Four from '../images/number/4.jpg'
 import Five from '../images/number/5.jpg'
 import Six from '../images/number/6.jpg'
+import { NumberCardHelp } from './NumberCardHelp'
 
 export class NumberCardDescription extends CardDescription {
   width = 4.2
@@ -26,7 +27,7 @@ export class NumberCardDescription extends CardDescription {
     [NumberCard.Six]: Six,
   }
 
-  rules = () => null
+  help = NumberCardHelp
 }
 
 export const numberCardDescription = new NumberCardDescription()

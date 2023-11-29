@@ -9,6 +9,7 @@ import PygmyMarmoset from '../images/exploration/pygmy-marmoset.jpg'
 import RainbowBoa from '../images/exploration/rainbow-boa.jpg'
 import Tamarind from '../images/exploration/tamarind.jpg'
 import Toucan from '../images/exploration/toucan.jpg'
+import { ObservationCardHelp } from './ObservationCardHelp'
 
 export class ObservationCardDescription extends CardDescription {
   width = 6.3
@@ -29,7 +30,7 @@ export class ObservationCardDescription extends CardDescription {
     //[ExplorationCard.CarnivorousPlant]
   }
 
-  rules = () => null
+  help = ObservationCardHelp
 }
 
 export const observationCardDescription = new ObservationCardDescription()
