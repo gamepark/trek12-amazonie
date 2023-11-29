@@ -2,10 +2,8 @@
 import { css } from '@emotion/react'
 import { faSpider } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { TokenDescription, WritingDescription } from '@gamepark/react-game'
-import { SpecialValue } from '@gamepark/trek12/material/Operator'
+import { WritingDescription } from '@gamepark/react-game'
 import React from 'react'
-import Piranha from '../images/piranha.png'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 
 export class SpiderDescription extends WritingDescription {

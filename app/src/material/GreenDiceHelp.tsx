@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import { MaterialHelpProps, Picture, usePlayerId, usePlayerName } from "@gamepark/react-game";
-import { useTranslation } from "react-i18next";
-import Images from "../images/Images";
-import { css } from "@emotion/react";
+import { css } from '@emotion/react'
+import { Picture } from '@gamepark/react-game'
+import { useTranslation } from 'react-i18next'
+import Images from '../images/Images'
 
-export const GreenDiceHelp = ({ item, itemIndex, closeDialog }: MaterialHelpProps) => {
+export const GreenDiceHelp = () => {
     const { t } = useTranslation()
     return <>
         <h2>{t(`green.dice.help.title`)}</h2>
