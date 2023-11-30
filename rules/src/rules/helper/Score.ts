@@ -36,7 +36,6 @@ export class Score extends MaterialRulesPart {
       .player(this.player)
       .length
 
-    // TODO: add spider icon on node
     const spider = this
       .material(MaterialType.Spider)
       .location(LocationType.ExpeditionNode)

@@ -11,7 +11,6 @@ export class Trek12Animations extends MaterialGameAnimations {
       || isCreateItemType(MaterialType.ExpeditionNodeValue)(move)
       || isDeleteItemType(MaterialType.AreaNode)(move)
     ) {
-      console.log(JSON.parse(JSON.stringify(move)))
       return 0
     }
 

@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { MaterialContext, WritingDescription } from '@gamepark/react-game'
-import { MaterialItem } from '@gamepark/rules-api/dist/material/items/MaterialItem'
+import { MaterialItem } from '@gamepark/rules-api'
 import { LocationType } from '@gamepark/trek12/material/LocationType'
 import { Score } from '@gamepark/trek12/rules/helper/Score'
 import React from 'react'
