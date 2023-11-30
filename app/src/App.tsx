@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { FailuresDialog, FullscreenDialog, LoadingScreen, MaterialHeader, MaterialImageLoader, Menu, useGame } from '@gamepark/react-game'
-import { RuleId } from '@gamepark/trek12/rules/RuleId'
+import { RuleId } from '@gamepark/trek12-amazonie/rules/RuleId'
 import { FC, useEffect, useState } from 'react'
 import { GameDisplay } from './GameDisplay'
 import { ChooseResultHeader } from './header/ChooseResultHeader'

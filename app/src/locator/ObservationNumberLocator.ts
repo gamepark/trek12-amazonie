@@ -1,6 +1,6 @@
 import { LineLocator } from '@gamepark/react-game'
 import { Location } from '@gamepark/rules-api'
-import { MaterialType } from '@gamepark/trek12/material/MaterialType'
+import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 
 export class ObservationNumberLocator extends LineLocator {
   parentItemType = MaterialType.ExplorationMap

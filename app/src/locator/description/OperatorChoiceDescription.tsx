@@ -1,9 +1,9 @@
 import { css } from '@emotion/react'
 import { LocationDescription } from '@gamepark/react-game'
 import { Location } from '@gamepark/rules-api'
-import { LocationType } from '@gamepark/trek12/material/LocationType'
-import { MaterialType } from '@gamepark/trek12/material/MaterialType'
-import { PlayerId } from '@gamepark/trek12/Trek12Options'
+import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
+import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
+import { PlayerId } from '@gamepark/trek12-amazonie/Trek12AmazonieOptions'
 
 export class OperatorChoiceDescription extends LocationDescription<PlayerId, MaterialType, LocationType> {
   alwaysVisible = true

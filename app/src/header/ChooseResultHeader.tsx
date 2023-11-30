@@ -1,9 +1,9 @@
 import { PlayMoveButton, useLegalMoves, usePlayerId, useRules } from '@gamepark/react-game'
 import { isCustomMoveType, SimultaneousRule } from '@gamepark/rules-api'
-import { MaterialType } from '@gamepark/trek12/material/MaterialType'
-import { applyOperator, Operator } from '@gamepark/trek12/material/Operator'
-import { CustomMoveType } from '@gamepark/trek12/rules/CustomMoveType'
-import { Memory } from '@gamepark/trek12/rules/Memory'
+import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
+import { applyOperator, Operator } from '@gamepark/trek12-amazonie/material/Operator'
+import { CustomMoveType } from '@gamepark/trek12-amazonie/rules/CustomMoveType'
+import { Memory } from '@gamepark/trek12-amazonie/rules/Memory'
 import { FC } from 'react'
 
 export const ChooseResultHeader: FC = () => {

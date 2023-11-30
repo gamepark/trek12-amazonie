@@ -1,8 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { MaterialHelpProps, Picture } from '@gamepark/react-game'
+import { MaterialHelpProps } from '@gamepark/react-game'
 import { Trans, useTranslation } from 'react-i18next'
-import Images from '../images/Images'
 
 export const ObservationCardHelp = ({item}:MaterialHelpProps)=> {
     const { t } = useTranslation()

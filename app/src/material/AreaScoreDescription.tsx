@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { MaterialContext, WritingDescription } from '@gamepark/react-game'
-import { LocationType } from '@gamepark/trek12/material/LocationType'
-import { Score } from '@gamepark/trek12/rules/helper/Score'
+import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
+import { Score } from '@gamepark/trek12-amazonie/rules/helper/Score'
 import React from 'react'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 

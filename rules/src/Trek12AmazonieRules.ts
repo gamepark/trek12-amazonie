@@ -16,7 +16,7 @@ import { EndOfGameRule } from './rules/EndOfGameRule'
 import { Score } from './rules/helper/Score'
 import { RollDiceRule } from './rules/RollDiceRule'
 import { RuleId } from './rules/RuleId'
-import { PlayerId } from './Trek12Options'
+import { PlayerId } from './Trek12AmazonieOptions'
 
 export const hideIdWhenNotRotated: HidingStrategy = (
   item: MaterialItem, player?: PlayerId
@@ -24,7 +24,7 @@ export const hideIdWhenNotRotated: HidingStrategy = (
   return !item.location.rotation ? [] : ['id']
 }
 
-export class Trek12Rules extends SecretMaterialRules<PlayerId, MaterialType, LocationType>
+export class Trek12AmazonieRules extends SecretMaterialRules<PlayerId, MaterialType, LocationType>
   implements CompetitiveScore<MaterialGame<PlayerId, MaterialType, LocationType>, MaterialMove<PlayerId, MaterialType, LocationType>, PlayerId>,
     TimeLimit<MaterialGame<PlayerId, MaterialType, LocationType>, MaterialMove<PlayerId, MaterialType, LocationType>, PlayerId> {
 

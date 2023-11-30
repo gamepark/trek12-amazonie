@@ -1,7 +1,7 @@
 import { Material, MaterialGame, MaterialItem, MaterialRulesPart } from '@gamepark/rules-api'
 import { MaterialType } from '../../material/MaterialType'
 import { SpecialValue } from '../../material/Operator'
-import { PlayerId } from '../../Trek12Options'
+import { PlayerId } from '../../Trek12AmazonieOptions'
 import { LocationType } from '../../material/LocationType'
 import equal from 'fast-deep-equal'
 

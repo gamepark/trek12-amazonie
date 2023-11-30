@@ -1,6 +1,6 @@
 import { LineLocator } from '@gamepark/react-game'
 import { Location, XYCoordinates } from '@gamepark/rules-api'
-import { MaterialType } from '@gamepark/trek12/material/MaterialType'
+import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 import { SubTotalId } from '../material/SubTotalDescription'
 
 export class SubTotalScoreLocator extends LineLocator {

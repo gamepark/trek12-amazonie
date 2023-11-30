@@ -1,6 +1,6 @@
 import { ItemContext, LineLocator } from '@gamepark/react-game'
 import { MaterialItem } from '@gamepark/rules-api'
-import { MaterialType } from '@gamepark/trek12/material/MaterialType'
+import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 
 export class DiceAreaLocator extends LineLocator {
   coordinates = { x: 0, y: 0, z: 0}

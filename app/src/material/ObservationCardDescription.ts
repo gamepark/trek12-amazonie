@@ -1,5 +1,5 @@
 import { CardDescription } from '@gamepark/react-game'
-import { ExplorationCard } from '@gamepark/trek12/material/ExplorationCard'
+import { ExplorationCard } from '@gamepark/trek12-amazonie/material/ExplorationCard'
 import Ara from '../images/exploration/ara.jpg'
 import Back from '../images/exploration/back.jpg'
 import Butterfly from '../images/exploration/butterfly.jpg'

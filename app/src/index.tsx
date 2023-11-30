@@ -1,10 +1,10 @@
 import { GameProvider, setupTranslation } from '@gamepark/react-game'
-import { Trek12OptionsSpec } from '@gamepark/trek12/Trek12Options'
-import { Trek12Rules } from '@gamepark/trek12/Trek12Rules'
-import { Trek12Setup } from '@gamepark/trek12/Trek12Setup'
+import { Trek12AmazonieOptionsSpec } from '@gamepark/trek12-amazonie/Trek12AmazonieOptions'
+import { Trek12AmazonieRules } from '@gamepark/trek12-amazonie/Trek12AmazonieRules'
+import { Trek12AmazonieSetup } from '@gamepark/trek12-amazonie/Trek12AmazonieSetup'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom'
-import { Trek12Animations } from './animations/Trek12Animations'
+import { Trek12AmazonieAnimations } from './animations/Trek12AmazonieAnimations'
 import App from './App'
 import { locators } from './locator/Locators'
 import { material } from './material/Material'
@@ -14,13 +14,13 @@ setupTranslation(translations, { debug: false })
 
 ReactDOM.render(
   <StrictMode>
-    <GameProvider game="trek12"
-                  GameSetup={Trek12Setup}
-                  Rules={Trek12Rules}
-                  optionsSpec={Trek12OptionsSpec}
+    <GameProvider game="trek12-amazonie"
+                  GameSetup={Trek12AmazonieSetup}
+                  Rules={Trek12AmazonieRules}
+                  optionsSpec={Trek12AmazonieOptionsSpec}
                   material={material}
                   locators={locators}
-                  animations={new Trek12Animations()}
+                  animations={new Trek12AmazonieAnimations()}
                   theme={{
                     root: {
                       background: {

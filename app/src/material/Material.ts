@@ -1,5 +1,5 @@
 import { MaterialDescription } from '@gamepark/react-game'
-import { MaterialType } from '@gamepark/trek12/material/MaterialType'
+import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 import { areaNodeDescription } from './AreaNodeDescription'
 import { areaScoreDescription } from './AreaScoreDescription'
 import { crossDescription } from './CrossDescription'

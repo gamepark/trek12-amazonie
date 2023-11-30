@@ -1,6 +1,6 @@
 import { MaterialGameSetup } from '@gamepark/rules-api'
-import { Trek12Rules } from './Trek12Rules'
-import { PlayerId, Trek12Options } from './Trek12Options'
+import { Trek12AmazonieRules } from './Trek12AmazonieRules'
+import { PlayerId, Trek12AmazonieOptions } from './Trek12AmazonieOptions'
 import { MaterialType } from './material/MaterialType'
 import { LocationType } from './material/LocationType'
 import { numberCards } from './material/NumberCard'
@@ -8,10 +8,10 @@ import shuffle from 'lodash/shuffle'
 import { explorationCards } from './material/ExplorationCard'
 import { RuleId } from './rules/RuleId'
 
-export class Trek12Setup extends MaterialGameSetup<PlayerId, MaterialType, LocationType, Trek12Options> {
-  Rules = Trek12Rules
+export class Trek12AmazonieSetup extends MaterialGameSetup<PlayerId, MaterialType, LocationType, Trek12AmazonieOptions> {
+  Rules = Trek12AmazonieRules
 
-  setupMaterial(_options: Trek12Options): void {
+  setupMaterial(_options: Trek12AmazonieOptions): void {
     this.setupNumberCards()
     this.setupObservationCards()
     this.setupDice()
@@ -51,7 +51,7 @@ export class Trek12Setup extends MaterialGameSetup<PlayerId, MaterialType, Locat
     this.material(MaterialType.YellowDice).createItem(({ id: 2, location: { type: LocationType.DiceArea }}))
   }
 
-  start(_options: Trek12Options): void {
+  start(_options: Trek12AmazonieOptions): void {
     this.startRule(RuleId.RollDice)
   }
 

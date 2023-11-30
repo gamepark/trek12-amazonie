@@ -1,7 +1,7 @@
 {
-  "name": "@gamepark/trek12",
+  "name": "@gamepark/trek12-amazonie",
   "version": "0.0.0",
-  "description": "Trek 12 rules for Game Park",
+  "description": "Trek 12 amazonie rules for Game Park",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [

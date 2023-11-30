@@ -1,7 +1,7 @@
 
 import { GridLocator } from '@gamepark/react-game'
 import { Location } from '@gamepark/rules-api'
-import { MaterialType } from '@gamepark/trek12/material/MaterialType'
+import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 import { EXPEDITION_MAP_SIZE } from '../material/utils/MapUtils'
 
 export class AreaScoreLocator extends GridLocator {

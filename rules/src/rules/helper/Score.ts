@@ -4,7 +4,7 @@ import { ExplorationCardScores } from '../../material/ExplorationCard'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
 import { SpecialValue } from '../../material/Operator'
-import { PlayerId } from '../../Trek12Options'
+import { PlayerId } from '../../Trek12AmazonieOptions'
 import { Area } from './Area'
 import { Pathway } from './Pathway'
 

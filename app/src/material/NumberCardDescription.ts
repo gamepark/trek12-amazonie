@@ -1,5 +1,5 @@
 import { CardDescription } from '@gamepark/react-game'
-import { NumberCard } from '@gamepark/trek12/material/NumberCard'
+import { NumberCard } from '@gamepark/trek12-amazonie/material/NumberCard'
 import Back from '../images/exploration/back.jpg'
 import Zero from '../images/number/0.jpg'
 import One from '../images/number/1.jpg'

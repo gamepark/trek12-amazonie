@@ -1,8 +1,8 @@
 import { MaterialAnimationContext, MaterialGameAnimations } from '@gamepark/react-game'
 import { isCreateItemType, isDeleteItemType, MaterialMove } from '@gamepark/rules-api'
-import { MaterialType } from '@gamepark/trek12/material/MaterialType'
+import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 
-export class Trek12Animations extends MaterialGameAnimations {
+export class Trek12AmazonieAnimations extends MaterialGameAnimations {
 
   override getDuration(move: MaterialMove, context: MaterialAnimationContext): number {
     if (

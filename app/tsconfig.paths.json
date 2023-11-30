@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@gamepark/trek12/*": ["../rules/src/*"]
+      "@gamepark/trek12-amazonie/*": ["../rules/src/*"]
     }
   }
 }

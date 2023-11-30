@@ -1,7 +1,7 @@
 import equal from 'fast-deep-equal'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
-import { PlayerId } from '../../Trek12Options'
+import { PlayerId } from '../../Trek12AmazonieOptions'
 import { isCreateItemType, isMoveItemType, ItemMove, MaterialGame, MaterialMove, MaterialRulesPart } from '@gamepark/rules-api'
 import { createPath, mapGraph } from '../helper/Node'
 import { Nodes, Memory, PlacedNode } from '../Memory'

@@ -1,6 +1,6 @@
 import { ItemLocator, MaterialContext } from '@gamepark/react-game'
 import { Location, MaterialItem, XYCoordinates } from '@gamepark/rules-api'
-import { MaterialType } from '@gamepark/trek12/material/MaterialType'
+import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 import mean from 'lodash/mean'
 import { nodeCoordinates } from './ExplorationNodeLocator'
 

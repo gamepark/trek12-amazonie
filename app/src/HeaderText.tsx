@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { usePlayerId } from '@gamepark/react-game'
-import { getPlayerName } from '@gamepark/trek12/Trek12Options'
+import { getPlayerName } from '@gamepark/trek12-amazonie/Trek12AmazonieOptions'
 import { useTranslation } from 'react-i18next'
 
 type Props = {

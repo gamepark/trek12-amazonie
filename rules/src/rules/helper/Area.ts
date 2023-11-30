@@ -4,7 +4,7 @@ import uniqBy from 'lodash/uniqBy'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
 import { SpecialValue } from '../../material/Operator'
-import { PlayerId } from '../../Trek12Options'
+import { PlayerId } from '../../Trek12AmazonieOptions'
 import { Node } from './Node'
 import maxBy from 'lodash/maxBy'
 

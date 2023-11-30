@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { ItemContext, ItemLocator } from '@gamepark/react-game'
 import { Location, MaterialItem, XYCoordinates } from '@gamepark/rules-api'
-import { LocationType } from '@gamepark/trek12/material/LocationType'
-import { MaterialType } from '@gamepark/trek12/material/MaterialType'
-import { PlayerId } from '@gamepark/trek12/Trek12Options'
+import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
+import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
+import { PlayerId } from '@gamepark/trek12-amazonie/Trek12AmazonieOptions'
 import { EXPEDITION_MAP_SIZE } from '../material/utils/MapUtils'
 import { ExplorationNodeDescription } from './description/ExplorationNodeDescription'
 
