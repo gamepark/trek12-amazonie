@@ -1,8 +1,9 @@
-import {  MaterialItem, MaterialMove, MaterialRulesPart } from '@gamepark/rules-api'
+import { MaterialItem, MaterialMove, MaterialRulesPart } from '@gamepark/rules-api'
 import { RuleId } from './RuleId'
 import { MaterialType } from '../material/MaterialType'
 import { LocationType } from '../material/LocationType'
 import { SpecialValue } from '../material/Operator'
+
 export class DiscoverRule extends MaterialRulesPart {
   onRuleStart() {
     const moves = this.revealObservationCard
@@ -24,7 +25,7 @@ export class DiscoverRule extends MaterialRulesPart {
         const observationCard = this
           .material(MaterialType.ObservationCard)
           .location((location) => location.x === numberedCard.location.x)
-      
+
         const observation = observationCard.getItem()!
         if (observation.location.rotation) {
           moves.push(observationCard.rotateItem(false))
@@ -33,12 +34,11 @@ export class DiscoverRule extends MaterialRulesPart {
         moves.push(...this.addOrMoveScoreRing(observation, numberedCard))
       }
     }
-    
+
     return moves
-}
+  }
 
   addOrMoveScoreRing(observation: MaterialItem, numberedCard: MaterialItem): MaterialMove[] {
-    const moves: MaterialMove[] = []
     for (const player of this.game.players) {
       const nodeValue = this
         .material(MaterialType.ExpeditionNodeValue)
@@ -49,41 +49,29 @@ export class DiscoverRule extends MaterialRulesPart {
 
       if (nodeValue.length) {
         const ring = this
+          .material(MaterialType.ScoreRing)
+          .location(LocationType.ObservationScores)
+          .locationId(observation.location.x)
+          .player(player)
+
+        if (ring.length) return []
+
+        return [
+          this
             .material(MaterialType.ScoreRing)
-            .location(LocationType.ObservationScores)
-            .locationId(observation.location.x)
-            .player(player)
-      
-          if (!ring.length) {
-            moves.push(
-              this
-                .material(MaterialType.ScoreRing)
-                .createItem({
-                  location: {
-                    id: observation.location.x,
-                    type: LocationType.ObservationScores,
-                    x: 0,
-                    player: player
-                  }
-                })
-            )
-          } else {
-            const item = ring.getItem()!
-            if (item.location.x! < 5) {
-              moves.push(ring.moveItem({
+            .createItem({
+              location: {
                 id: observation.location.x,
                 type: LocationType.ObservationScores,
-                x: item.location.x! + 1,
+                x: 0,
                 player: player
-              }))
-            }
-          }
+              }
+            })
+        ]
       }
-
-      
     }
 
-    return moves
+    return []
   }
-  
+
 }

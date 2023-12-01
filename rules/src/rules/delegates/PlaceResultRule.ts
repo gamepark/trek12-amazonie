@@ -1,10 +1,10 @@
 import { CreateItem, isCreateItemType, ItemMove, MaterialGame, MaterialMove, MaterialRulesPart } from '@gamepark/rules-api'
 import range from 'lodash/range'
 import { ForestBasicFieldTypes } from '../../forests/Forest'
+import { Field } from '../../material/Field'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
 import { applyOperator, Operator, SpecialValue } from '../../material/Operator'
-import { Field } from '../../material/Field'
 import { PlayerId } from '../../Trek12AmazonieOptions'
 import { Area } from '../helper/Area'
 import { Node } from '../helper/Node'
@@ -51,10 +51,11 @@ export class PlaceResultRule extends MaterialRulesPart {
     moves.push(...this.addPiranha(move))
     moves.push(...new Area(this.game, this.player, move.item).addAreaNodeMoves)
     moves.push(...new Pathway(this.game, this.player, move.item).createPathwayMoves)
+    moves.push(...this.moveRing(move))
 
     this.forget(Memory.Operand, move.item.location.player!)
 
-    if (this.remind(Memory.PlacedNode, this.player)) return moves;
+    if (this.remind(Memory.PlacedNode, this.player)) return moves
 
     moves.push(this.rules().endPlayerTurn(move.item.location.player!))
     return moves
@@ -73,7 +74,7 @@ export class PlaceResultRule extends MaterialRulesPart {
     return []
   }
 
-  revealObservationCard(move: CreateItem) {
+  moveRing(move: CreateItem) {
     const numberedCard = this.material(MaterialType.NumberCard).id(move.item.id + 1)
     if (!numberedCard.length) return []
 
@@ -89,37 +90,18 @@ export class PlaceResultRule extends MaterialRulesPart {
       .locationId(observation.location.x)
       .player(move.item.location.player)
 
-    const moves: MaterialMove[] = []
-
-    if (observation.location.rotation) {
-      moves.push(observationCard.rotateItem(false))
+    if (!ring.length) return []
+    const item = ring.getItem()!
+    if (item.location.x! < 5) {
+      return ring.moveItems({
+        id: observation.location.x,
+        type: LocationType.ObservationScores,
+        x: item.location.x! + 1,
+        player: move.item.location.player
+      })
     }
 
-    if (!ring.length) {
-      moves.push(
-        this
-          .material(MaterialType.ScoreRing)
-          .createItem({
-            location: {
-              id: observation.location.x,
-              type: LocationType.ObservationScores,
-              x: 0,
-              player: move.item.location.player
-            }
-          })
-      )
-    } else {
-      const item = ring.getItem()!
-      if (item.location.x! < 5) {
-        moves.push(ring.moveItem({
-          id: observation.location.x,
-          type: LocationType.ObservationScores,
-          x: item.location.x! + 1,
-          player: move.item.location.player
-        }))
-      }
-    }
-    return moves
+    return []
   }
 
   get dicesValues() {
