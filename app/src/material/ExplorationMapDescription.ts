@@ -6,6 +6,7 @@ import { range } from 'lodash'
 import Images from '../images/Images'
 import { nodeCoordinates } from '../locator/ExplorationNodeLocator'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
+import { ExplorationMapHelp } from './ExplorationMapHelp'
 
 export class ExplorationMapDescription extends BoardDescription {
   width = EXPEDITION_MAP_SIZE
@@ -29,7 +30,7 @@ export class ExplorationMapDescription extends BoardDescription {
     ]
   }
 
-  rules = () => null
+  help = ExplorationMapHelp
 }
 
 export const explorationMapDescription = new ExplorationMapDescription()
