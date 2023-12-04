@@ -6,6 +6,7 @@ import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 import { PlayerId } from '@gamepark/trek12-amazonie/Trek12AmazonieOptions'
 import equal from 'fast-deep-equal'
 import { EXPEDITION_MAP_SIZE } from '../../material/utils/MapUtils'
+import { AreaNodeHelp } from './AreaNodeHelp'
 
 
 export class ExplorationNodeDescription extends LocationDescription<PlayerId, MaterialType, LocationType> {
@@ -41,6 +42,8 @@ export class ExplorationNodeDescription extends LocationDescription<PlayerId, Ma
       .length
   }
 
+  
 
-  help = () => null
+
+  help = AreaNodeHelp
 }

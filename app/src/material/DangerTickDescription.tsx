@@ -6,6 +6,7 @@ import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { Score } from '@gamepark/trek12-amazonie/rules/helper/Score'
 import React from 'react'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
+import { DangerTickHelp } from './DangerTickHelp'
 
 export class DangerTickDescription extends WritingDescription {
   width = 0.018 * EXPEDITION_MAP_SIZE
@@ -31,7 +32,7 @@ export class DangerTickDescription extends WritingDescription {
     return <div css={circle}>X</div>
   }
 
-  rules = () => null
+  help = DangerTickHelp
 }
 
 const circle = css`
