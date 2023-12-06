@@ -14,10 +14,11 @@ export class SpiderDescription extends WritingDescription {
   getFrontContent() {
     return <FontAwesomeIcon icon={faSpider} css={expeditionValue}/>
   }
+
 }
 
 const expeditionValue = css`
-  color: black;
+  color: green;
   font-size: ${0.030 * EXPEDITION_MAP_SIZE}em;
 `
 
