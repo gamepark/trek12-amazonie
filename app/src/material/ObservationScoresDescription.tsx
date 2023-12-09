@@ -6,6 +6,7 @@ import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 import React from 'react'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
+import { ObservationScoresHelp } from './ObservationScoresHelp'
 
 export class ObservationScoresDescription extends WritingDescription {
   height = 0.037 * EXPEDITION_MAP_SIZE
@@ -42,7 +43,7 @@ export class ObservationScoresDescription extends WritingDescription {
     return <span css={itemIdStyle}>{itemId}</span>
   }
 
-  rules = () => null
+  help = ObservationScoresHelp
 
 }
 

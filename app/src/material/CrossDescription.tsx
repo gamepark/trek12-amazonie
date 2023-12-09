@@ -3,6 +3,7 @@ import { css } from '@emotion/react'
 import { WritingDescription } from '@gamepark/react-game'
 import React from 'react'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
+import { CrossHelp } from './CrossHelp'
 
 export class CrossDescription extends WritingDescription {
   height = 0.037 * EXPEDITION_MAP_SIZE
@@ -12,7 +13,7 @@ export class CrossDescription extends WritingDescription {
     return <span css={observationNumber}>X</span>
   }
 
-  rules = () => null
+  help = CrossHelp
 
 }
 

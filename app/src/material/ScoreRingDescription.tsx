@@ -3,6 +3,7 @@ import { css } from '@emotion/react'
 import { MaterialContext, WritingDescription } from '@gamepark/react-game'
 import React from 'react'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
+import { ScoreRingHelp } from './ScoreRingHelp'
 
 export class ScoreRingDescription extends WritingDescription {
   width = 0.052 * EXPEDITION_MAP_SIZE
@@ -13,7 +14,7 @@ export class ScoreRingDescription extends WritingDescription {
     return <div css={circle}></div>
   }
 
-  rules = () => null
+  help = ScoreRingHelp
 }
 
 const circle = css`
