@@ -1,4 +1,4 @@
-import { BoardDescription, ItemContext, MaterialContext } from '@gamepark/react-game'
+import { BoardDescription, ComponentSize, ItemContext, MaterialContext, useRules } from '@gamepark/react-game'
 import { MaterialItem } from '@gamepark/rules-api'
 import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { Operator } from '@gamepark/trek12-amazonie/material/Operator'

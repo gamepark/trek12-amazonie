@@ -3,14 +3,14 @@ import { MaterialItem } from '@gamepark/rules-api'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 
 export class DiceAreaLocator extends LineLocator {
-  coordinates = { x: 0, y: 0, z: 0}
 
-  getCoordinates(_item: MaterialItem, { type }: ItemContext) {
-    if (type === MaterialType.YellowDice) {
-      return { x: 10,  y: -10, z: 0}
+  getCoordinates(_item: MaterialItem, context: ItemContext<number, number, number>) {
+    const hasMoreThanThreePlayers = context.rules.game.players.length > 3
+    if (context.type === MaterialType.YellowDice) {
+      return hasMoreThanThreePlayers ? { x: 33,  y: 17, z: 0} : { x: 10,  y: -10, z: 0} 
     }
 
-    return { x: 14, y: -10, z: 0}
+    return hasMoreThanThreePlayers ? { x: 37,  y: 17, z: 0} : { x: 14, y: -10, z: 0}
   }
 }
 
