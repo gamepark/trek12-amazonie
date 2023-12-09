@@ -56,7 +56,6 @@ export class Score extends MaterialRulesPart {
       .player(this.player)
       .getItems()
 
-    console.log(observations)
     let score = 0
     for (const ring of rings) {
       const observation = observations.find((o) => o.location.x === ring.location.id)!
