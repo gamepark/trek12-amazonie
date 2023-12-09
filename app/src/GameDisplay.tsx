@@ -2,16 +2,18 @@
 import { pointerWithin } from '@dnd-kit/core'
 import { GameTable, useGame, usePlayers, useRules } from '@gamepark/react-game'
 import { MaterialGame } from '@gamepark/rules-api'
+import { FC } from 'react'
 import { PlayerPanels } from './players/PlayerPanels'
 import { css } from '@emotion/react'
 import { Trek12AmazonieRules } from '@gamepark/trek12-amazonie/Trek12AmazonieRules'
 
+type GameDisplayProps = {
+  players: number
+}
 
-export const GameDisplay = () => {
-  const rules = useRules<Trek12AmazonieRules>()
-  const game = useGame<MaterialGame>()
-  if (!game) return null;
-  const hasGameMoreThanThreePlayers = game.players.length > 3
+export const GameDisplay: FC<GameDisplayProps> = ({ players }) => {
+  const game = useGame<MaterialGame>()!
+  const hasGameMoreThanThreePlayers = players > 3
   return (
     <>
     <GameTable

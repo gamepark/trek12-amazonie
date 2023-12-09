@@ -1,12 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { FailuresDialog, FullscreenDialog, LoadingScreen, MaterialHeader, MaterialImageLoader, Menu, useGame } from '@gamepark/react-game'
+import { MaterialGame } from '@gamepark/rules-api'
 import { RuleId } from '@gamepark/trek12-amazonie/rules/RuleId'
 import { FC, useEffect, useState } from 'react'
 import { GameDisplay } from './GameDisplay'
 import { ChooseResultHeader } from './header/ChooseResultHeader'
 
 export default function App() {
-  const game = useGame()
+  const game = useGame<MaterialGame>()
   const [imagesLoading, setImagesLoading] = useState(true)
   const [isJustDisplayed, setJustDisplayed] = useState(true)
   useEffect(() => {
@@ -15,7 +16,7 @@ export default function App() {
   const loading = !game || imagesLoading || isJustDisplayed
   return (
     <>
-      <GameDisplay />
+      { !!game && <GameDisplay players={game.players.length} /> }
       <LoadingScreen display={loading} author="Aske Christiansen" artist="Apolline Etienne" publisher="Ludonaute" developer="Laetitia Decoudu" />
       <MaterialImageLoader onImagesLoad={() => setImagesLoading(false)} />
       <MaterialHeader rulesStepsHeaders={headers} />
