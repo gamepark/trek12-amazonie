@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { pointerWithin } from '@dnd-kit/core'
-import { GameTable, useRules } from '@gamepark/react-game'
+import { GameTable, useGame, usePlayers, useRules } from '@gamepark/react-game'
+import { MaterialGame } from '@gamepark/rules-api'
 import { PlayerPanels } from './players/PlayerPanels'
 import { css } from '@emotion/react'
 import { Trek12AmazonieRules } from '@gamepark/trek12-amazonie/Trek12AmazonieRules'
@@ -8,7 +9,9 @@ import { Trek12AmazonieRules } from '@gamepark/trek12-amazonie/Trek12AmazonieRul
 
 export const GameDisplay = () => {
   const rules = useRules<Trek12AmazonieRules>()
-  const hasGameMoreThanThreePlayers = rules ? rules?.game.players.length > 3 : false
+  const game = useGame<MaterialGame>()
+  if (!game) return null;
+  const hasGameMoreThanThreePlayers = game.players.length > 3
   return (
     <>
     <GameTable
