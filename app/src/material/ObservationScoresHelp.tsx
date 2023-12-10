@@ -10,10 +10,6 @@ import { Trans, useTranslation } from 'react-i18next'
 
 export const ObservationScoresHelp = ({item}:MaterialHelpProps)=> {
     const { t } = useTranslation()
-    const isHidden = item.location?.rotation
-    const scoreArray = ExplorationCardScores[item.id]
-    const rules = useRules<Trek12AmazonieRules>()
-    const player = usePlayerId()
 
     return <>
         <h2>{t(`observation.scores.help.title`)}</h2>

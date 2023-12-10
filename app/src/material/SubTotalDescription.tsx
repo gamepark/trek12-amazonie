@@ -5,6 +5,7 @@ import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { Score } from '@gamepark/trek12-amazonie/rules/helper/Score'
 import React from 'react'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
+import { SubTotalHelp } from './SubTotalHelp'
 
 export enum SubTotalId {
   Observations,
@@ -37,6 +38,8 @@ export class SubTotalDescription extends WritingDescription {
   getFrontContent(itemId: any) {
     return <span css={itemIdStyle}>{itemId}</span>
   }
+
+  help = SubTotalHelp
 }
 
 const itemIdStyle = css`

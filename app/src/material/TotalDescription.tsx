@@ -5,6 +5,7 @@ import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { Score } from '@gamepark/trek12-amazonie/rules/helper/Score'
 import React from 'react'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
+import { TotalHelp } from './TotalHelp'
 
 export class TotalDescription extends WritingDescription {
 
@@ -26,6 +27,8 @@ export class TotalDescription extends WritingDescription {
   getFrontContent(itemId: any) {
     return <span css={itemIdStyle}>{itemId}</span>
   }
+
+  help = TotalHelp
 }
 
 const itemIdStyle = css`

@@ -3,6 +3,7 @@ import { css } from '@emotion/react'
 import { WritingDescription } from '@gamepark/react-game'
 import React from 'react'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
+import { PathHelp } from './PathHelp'
 
 export class PathDescription extends WritingDescription {
   height = 0.045 * EXPEDITION_MAP_SIZE
@@ -13,7 +14,7 @@ export class PathDescription extends WritingDescription {
     return <span css={path} />
   }
 
-  rules = () => null
+  help = PathHelp
 }
 
 const path = css`
