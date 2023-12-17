@@ -12,7 +12,7 @@ export const CrossHelp = ({item}:MaterialHelpProps)=> {
     return <>
         <h2>{t(`cross.help.title`)}</h2>
         <p css={textCss} >
-            {t(`ccross.help.text`)}
+            {t(`cross.help.text`)}
         </p>
         <p><Trans defaults="cross.help.remaining" values={{crossesRemaning}}></Trans></p>
     </>

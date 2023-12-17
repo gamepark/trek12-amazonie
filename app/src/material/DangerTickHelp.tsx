@@ -13,8 +13,8 @@ export const DangerTickHelp = ({item}:MaterialHelpProps)=> {
         <h2>{t(`danger.tick.help.title`)}</h2>
         <p css={textCss} >
             {isThePlayer 
-            ? <Trans defaults="danger.tick.help.yours.text" values={{cardNumber:item.quantity}}></Trans> 
-            : <Trans defaults="danger.tick.help.theirs.text" values={{cardNumber:item.quantity}}></Trans>}
+            ? <Trans defaults="danger.tick.help.yours.text" values={{tickNumber:item.quantity}}></Trans> 
+            : <Trans defaults="danger.tick.help.theirs.text" values={{tickNumber:item.quantity}}></Trans>}
         </p>
     </>
 }
