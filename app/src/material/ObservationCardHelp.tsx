@@ -29,7 +29,7 @@ export const ObservationCardHelp = ({item}:MaterialHelpProps)=> {
         </p>
         :
         <p css={textCss} >
-            <Trans defaults="observation.card.revelead.help.text" values={{pointsEarned:scoreArray[ring]}}></Trans>
+            <Trans defaults="observation.card.revelead.help.text" values={{pointsEarned:scoreArray[ring] ?? 0}}></Trans>
             <span>{}</span>
         </p>
         }
