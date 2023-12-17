@@ -5,6 +5,7 @@ import { RuleId } from '@gamepark/trek12-amazonie/rules/RuleId'
 import { FC, useEffect, useState } from 'react'
 import { GameDisplay } from './GameDisplay'
 import { ChooseResultHeader } from './header/ChooseResultHeader'
+import { RollDiceHeader } from './header/RollDiceHeader'
 
 export default function App() {
   const game = useGame<MaterialGame>()
@@ -28,5 +29,6 @@ export default function App() {
 }
 
 const headers: Partial<Record<RuleId, FC>> = {
-  [RuleId.ChooseResult]: ChooseResultHeader
+  [RuleId.ChooseResult]: ChooseResultHeader,
+  [RuleId.RollDice]: RollDiceHeader
 }
