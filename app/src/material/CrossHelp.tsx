@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { ItemContext, MaterialHelpProps, useGame, usePlayer, usePlayerId, useRules } from '@gamepark/react-game'
+import { MaterialHelpProps, usePlayerId, useRules } from '@gamepark/react-game'
 import { Trek12AmazonieRules } from '@gamepark/trek12-amazonie/Trek12AmazonieRules'
 import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
