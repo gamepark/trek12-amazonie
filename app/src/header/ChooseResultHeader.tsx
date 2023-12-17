@@ -5,13 +5,16 @@ import { applyOperator, Operator } from '@gamepark/trek12-amazonie/material/Oper
 import { CustomMoveType } from '@gamepark/trek12-amazonie/rules/CustomMoveType'
 import { Memory } from '@gamepark/trek12-amazonie/rules/Memory'
 import { FC } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 
 export const ChooseResultHeader: FC = () => {
   const rules = useRules<SimultaneousRule>()!
   const player = usePlayerId()
   const moves = useLegalMoves()
+  const { t } = useTranslation()
+
   if (!player || !rules.isTurnToPlay(player)) {
-    return <>Players must choose their results</>
+    return <><Trans defaults="header.opponent.choose"></Trans></>
   }
 
   const dice = [
@@ -21,7 +24,7 @@ export const ChooseResultHeader: FC = () => {
 
   const operand = rules.remind(Memory.Operand, player)
   if (operand) {
-    return <>You must choose where to place your {applyOperator(operand, dice)}</>
+    return <><Trans defaults="header.you.choose.node" values={{result:applyOperator(operand, dice)}}></Trans></>
   }
 
   const max = moves.find((move) => isCustomMoveType(CustomMoveType.ChooseOperand)(move) && move.data.operator === Operator.MAX)
@@ -30,11 +33,11 @@ export const ChooseResultHeader: FC = () => {
   const plus = moves.find((move) => isCustomMoveType(CustomMoveType.ChooseOperand)(move) && move.data.operator === Operator.PLUS)
   const multiply = moves.find((move) => isCustomMoveType(CustomMoveType.ChooseOperand)(move) && move.data.operator === Operator.MULTIPLY)
 
-  return <>Choose your result
-    <PlayMoveButton move={max}>Max ({applyOperator(Operator.MAX, dice)})</PlayMoveButton>
-    <PlayMoveButton move={min}>Min ({applyOperator(Operator.MIN, dice)})</PlayMoveButton>
-    <PlayMoveButton move={minus}>Minus ({applyOperator(Operator.MINUS, dice)})</PlayMoveButton>
-    <PlayMoveButton move={plus}>Plus ({applyOperator(Operator.PLUS, dice)})</PlayMoveButton>
-    <PlayMoveButton move={multiply}>Multiply ({applyOperator(Operator.MULTIPLY, dice)})</PlayMoveButton>
+  return <>{t(`header.you.choose.operand`)}
+    <PlayMoveButton move={max}>{t(`header.operand.max`)} ({applyOperator(Operator.MAX, dice)})</PlayMoveButton>
+    <PlayMoveButton move={min}>{t(`header.operand.min`)} ({applyOperator(Operator.MIN, dice)})</PlayMoveButton>
+    <PlayMoveButton move={minus}>{t(`header.operand.minus`)} ({applyOperator(Operator.MINUS, dice)})</PlayMoveButton>
+    <PlayMoveButton move={plus}>{t(`header.operand.plus`)} ({applyOperator(Operator.PLUS, dice)})</PlayMoveButton>
+    <PlayMoveButton move={multiply}>{t(`header.operand.multiply`)} ({applyOperator(Operator.MULTIPLY, dice)})</PlayMoveButton>
   </>
 }
