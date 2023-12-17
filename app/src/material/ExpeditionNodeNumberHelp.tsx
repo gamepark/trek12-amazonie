@@ -8,15 +8,18 @@ export const ExpeditionNodeNumberHelp = ({item}:MaterialHelpProps)=> {
     const { t } = useTranslation()
     const player = usePlayerId()
     const isThePlayer = item.location?.player === player
-    console.log("coucou")
+    const isSpider = item.id == "spider"
     return <>
-        <h2>{t(`spider.help.title`)}</h2>
+        <h2>{t(`exploration.node.number.help.title`)}</h2>
         <p css={textCss} >
             {isThePlayer 
-            ? <Trans defaults="spider.help.yours.text"></Trans> 
-            : <Trans defaults="spider.help.theirs.text"></Trans>}
+            ? isSpider 
+                ? <Trans defaults="exploration.node.spider.yours.text"></Trans>
+                : <Trans defaults="exploration.node.number.yours.text" values={{value:item.id}}></Trans>
+            : isSpider 
+                ? <Trans defaults="exploration.node.spider.theirs.text"></Trans>
+                :<Trans defaults="exploration.node.number.theirs.text" values={{value:item.id}}></Trans>}
         </p>
-        <p>{t(`spider.how.help.title`)}</p>
     </>
 }
 
