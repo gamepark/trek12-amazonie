@@ -7,6 +7,8 @@ import Images from '../images/Images'
 import { nodeCoordinates } from '../locator/ExplorationNodeLocator'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 import { ExplorationMapHelp } from './ExplorationMapHelp'
+import { Interpolation, Theme, css } from '@emotion/react'
+import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 
 export class ExplorationMapDescription extends BoardDescription {
   width = EXPEDITION_MAP_SIZE
@@ -28,6 +30,16 @@ export class ExplorationMapDescription extends BoardDescription {
       ...range(4).map((x) => ({ id: Operator.PLUS, type: LocationType.OperatorChoice, x  })),
       ...range(4).map((x) => ({ id: Operator.MULTIPLY, type: LocationType.OperatorChoice, x  }))
     ]
+  }
+
+  getFrontExtraCss(itemId: any, context: MaterialContext): Interpolation<Theme> {
+    if (itemId === 1) {
+      return css`
+      filter:drop-shadow(0em 0em 0.5em yellow);
+    `
+    } else return css``
+
+
   }
 
   help = ExplorationMapHelp
