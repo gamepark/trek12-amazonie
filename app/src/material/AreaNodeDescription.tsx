@@ -26,8 +26,6 @@ export class AreaNodeDescription extends WritingDescription {
     )
   }
 
-  rules = () => null
-
 }
 
 const areaNode = (id: string) => css`

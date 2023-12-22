@@ -1,9 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { usePlayerId} from '@gamepark/react-game'
+import { LocationHelpProps, usePlayerId} from '@gamepark/react-game'
 import { useTranslation } from 'react-i18next'
 
-export const AreaNodeHelp = () => {
+export const AreaNodeHelp = (props: LocationHelpProps) => {
+    console.log("THE PLAYER >>> IL EST ICIIIIIIIII", props.location.player, "<=============")
     const { t } = useTranslation()
     const player = usePlayerId()
     const isPlayer = player
