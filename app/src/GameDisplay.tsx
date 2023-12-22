@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { pointerWithin } from '@dnd-kit/core'
-import { css } from '@emotion/react'
 import { GameTable } from '@gamepark/react-game'
 import { FC } from 'react'
 import { PlayerPanels } from './players/PlayerPanels'
@@ -20,7 +19,6 @@ export const GameDisplay: FC<GameDisplayProps> = ({ players }) => {
       yMax={hasGameMoreThanThreePlayers ? 25 : 15}
       collisionAlgorithm={pointerWithin}
       margin={{ top: 7.5, left: 0, right: hasGameMoreThanThreePlayers ? 35 : 30, bottom: 0 }}
-      css={css`background-color: rgba(255, 255, 255, 0.47)`}
     />
       <PlayerPanels />
     </>

@@ -6,6 +6,8 @@ import { FC, useEffect, useState } from 'react'
 import { GameDisplay } from './GameDisplay'
 import { ChooseResultHeader } from './header/ChooseResultHeader'
 import { RollDiceHeader } from './header/RollDiceHeader'
+import { DiscoverHeader } from './header/DiscoverObservation'
+import { EndGameHeader } from './header/EndGameHeader'
 
 export default function App() {
   const game = useGame<MaterialGame>()
@@ -30,5 +32,7 @@ export default function App() {
 
 const headers: Partial<Record<RuleId, FC>> = {
   [RuleId.ChooseResult]: ChooseResultHeader,
-  [RuleId.RollDice]: RollDiceHeader
+  [RuleId.RollDice]: RollDiceHeader,
+  [RuleId.Discover]: DiscoverHeader,
+  [RuleId.EndOfGameRule]: EndGameHeader
 }
