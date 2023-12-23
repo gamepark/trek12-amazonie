@@ -20,7 +20,7 @@ export default function App() {
   return (
     <>
       { !!game && <GameDisplay players={game.players.length} /> }
-      <LoadingScreen display={loading} author="Aske Christiansen" artist="Apolline Etienne" publisher="Ludonaute" developer="Laetitia Decoudu" />
+      <LoadingScreen display={loading} author="Bruno CCathala & Corentin Lebrat" artist="Olivier Derouetteau & Maxime Morin" publisher="Lumberjacks" developer="Game Park & Théo Grégorio"/>
       <MaterialImageLoader onImagesLoad={() => setImagesLoading(false)} />
       <MaterialHeader rulesStepsHeaders={headers} />
       <Menu />
