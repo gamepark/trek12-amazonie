@@ -17,6 +17,10 @@ export const ChooseResultHeader: FC = () => {
     return <><Trans defaults="header.opponent.choose"></Trans></>
   }
 
+  if (moves.find(move => move.itemType === 11)){
+    return <><Trans defaults="header.player.choose.path"></Trans></>
+  }
+
   const dice = [
     rules.material(MaterialType.YellowDice).getItem()!.location.rotation,
     rules.material(MaterialType.GreenDice).getItem()!.location.rotation + 1,

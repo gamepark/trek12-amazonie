@@ -10,8 +10,6 @@ export const AreaNodeHelp = (props: LocationHelpProps) => {
     const moves = useLegalMoves()
     const linkedMove = isPlayer && moves.find(move => move.itemType === 7 && props.location.id === move.item.location.id)
 
-    console.log(moves, props.location)
-
     return <>
         <h2>{t(`area.node.help.title`)}</h2>
         <p css={textCss}>{isPlayer ? t(`area.node.yours.help.text`) : t(`area.node.theirs.help.text`)}</p>
