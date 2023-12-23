@@ -14,7 +14,7 @@ export const PlayerReminder: FC<PlayerReminder> = (props) => {
 
   return (
       <div css={reminderStyle}>
-        <Avatar css={avatarStyle} playerId={player} />
+        <Avatar css={avatarStyle} playerId={player} speechBubbleProps={{css:css`display:none;`}} />
         <span css={playerNameStyle}>{playerName}</span>
       </div>
   )
