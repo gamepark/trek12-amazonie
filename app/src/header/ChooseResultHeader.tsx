@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { PlayMoveButton, useLegalMoves, usePlayerId, useRules } from '@gamepark/react-game'
 import { isCustomMoveType, SimultaneousRule } from '@gamepark/rules-api'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
@@ -6,6 +8,8 @@ import { CustomMoveType } from '@gamepark/trek12-amazonie/rules/CustomMoveType'
 import { Memory } from '@gamepark/trek12-amazonie/rules/Memory'
 import { FC } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { faArrowDown, faArrowUp, faMinus, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { css } from '@emotion/react'
 
 export const ChooseResultHeader: FC = () => {
   const rules = useRules<SimultaneousRule>()!
@@ -38,10 +42,14 @@ export const ChooseResultHeader: FC = () => {
   const multiply = moves.find((move) => isCustomMoveType(CustomMoveType.ChooseOperand)(move) && move.data.operator === Operator.MULTIPLY)
 
   return <>{t(`header.you.choose.operand`)}
-    <PlayMoveButton move={max}>{t(`header.operand.max`)} ({applyOperator(Operator.MAX, dice)})</PlayMoveButton>
-    <PlayMoveButton move={min}>{t(`header.operand.min`)} ({applyOperator(Operator.MIN, dice)})</PlayMoveButton>
-    <PlayMoveButton move={minus}>{t(`header.operand.minus`)} ({applyOperator(Operator.MINUS, dice)})</PlayMoveButton>
-    <PlayMoveButton move={plus}>{t(`header.operand.plus`)} ({applyOperator(Operator.PLUS, dice)})</PlayMoveButton>
-    <PlayMoveButton move={multiply}>{t(`header.operand.multiply`)} ({applyOperator(Operator.MULTIPLY, dice)})</PlayMoveButton>
+    <PlayMoveButton move={min}><FontAwesomeIcon icon={faArrowDown}/> <span css={alignCss}> ({applyOperator(Operator.MIN, dice)}) </span></PlayMoveButton>
+    <PlayMoveButton move={max}><FontAwesomeIcon icon={faArrowUp}/> <span css={alignCss}>({applyOperator(Operator.MAX, dice)}) </span> </PlayMoveButton>
+    <PlayMoveButton move={minus}> <FontAwesomeIcon icon={faMinus}/> <span css={alignCss}> ({applyOperator(Operator.MINUS, dice)})  </span></PlayMoveButton>
+    <PlayMoveButton move={plus}> <FontAwesomeIcon icon={faPlus}/> <span css={alignCss}> ({applyOperator(Operator.PLUS, dice)}) </span> </PlayMoveButton>
+    <PlayMoveButton move={multiply}> <FontAwesomeIcon icon={faTimes}/> <span css={alignCss}> ({applyOperator(Operator.MULTIPLY, dice)})</span> </PlayMoveButton>
   </>
-}
+} 
+
+const alignCss = css`
+  vertical-align:0.125em;
+`
