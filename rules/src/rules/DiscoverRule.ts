@@ -29,9 +29,8 @@ export class DiscoverRule extends MaterialRulesPart {
         const observation = observationCard.getItem()!
         if (observation.location.rotation) {
           moves.push(observationCard.rotateItem(false))
+          moves.push(...this.addOrMoveScoreRing(observation, numberedCard))
         }
-
-        moves.push(...this.addOrMoveScoreRing(observation, numberedCard))
       }
     }
 
@@ -39,6 +38,7 @@ export class DiscoverRule extends MaterialRulesPart {
   }
 
   addOrMoveScoreRing(observation: MaterialItem, numberedCard: MaterialItem): MaterialMove[] {
+    const moves: MaterialMove[] = []
     for (const player of this.game.players) {
       const nodeValue = this
         .material(MaterialType.ExpeditionNodeValue)
@@ -47,31 +47,30 @@ export class DiscoverRule extends MaterialRulesPart {
         .filter((item) => item.id !== SpecialValue.Spider)
         .id((id: number) => (id + 1) === numberedCard.id)
 
-      if (nodeValue.length) {
-        const ring = this
+      if (!nodeValue.length) continue
+      const ring = this
+        .material(MaterialType.ScoreRing)
+        .location(LocationType.ObservationScores)
+        .locationId(observation.location.x)
+        .player(player)
+
+      if (ring.length) continue
+
+      moves.push(
+        this
           .material(MaterialType.ScoreRing)
-          .location(LocationType.ObservationScores)
-          .locationId(observation.location.x)
-          .player(player)
+          .createItem({
+            location: {
+              id: observation.location.x,
+              type: LocationType.ObservationScores,
+              x: 0,
+              player: player,
+            },
+          }),
+      )
 
-        if (ring.length) return []
 
-        return [
-          this
-            .material(MaterialType.ScoreRing)
-            .createItem({
-              location: {
-                id: observation.location.x,
-                type: LocationType.ObservationScores,
-                x: 0,
-                player: player
-              }
-            })
-        ]
-      }
     }
-
-    return []
+    return moves
+    }
   }
-
-}

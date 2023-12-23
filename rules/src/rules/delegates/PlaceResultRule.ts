@@ -90,7 +90,21 @@ export class PlaceResultRule extends MaterialRulesPart {
       .locationId(observation.location.x)
       .player(move.item.location.player)
 
-    if (!ring.length) return []
+    if (!ring.length) {
+      return [
+        this
+          .material(MaterialType.ScoreRing)
+          .createItem({
+            location: {
+              id: observation.location.x,
+              type: LocationType.ObservationScores,
+              x: 0,
+              player: move.item.location.player,
+            },
+          })
+        ]
+    }
+
     const item = ring.getItem()!
     if (item.location.x! < 5) {
       return ring.moveItems({
