@@ -35,8 +35,8 @@ export class ExplorationMapDescription extends BoardDescription {
   getFrontExtraCss(itemId: any, context: MaterialContext): Interpolation<Theme> {
     if (itemId === 1) {
       return css`
-      outline:solid 0.2em lime;
-      filter:drop-shadow(0em 0em 0.5em lime);
+      outline:solid 0.2em yellow;
+      filter:drop-shadow(0em 0em 0.5em yellow);
     `
     } else return css``
 
