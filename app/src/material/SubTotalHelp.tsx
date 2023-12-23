@@ -1,28 +1,30 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { MaterialHelpProps } from '@gamepark/react-game'
+import { MaterialHelpProps, usePlayerId } from '@gamepark/react-game'
 import { Trans, useTranslation } from 'react-i18next'
 
 export const SubTotalHelp = ({item}:MaterialHelpProps) => {
     const { t } = useTranslation()
+    const player = usePlayerId()
+    const isPlayer = item.location?.player === player
 
     return <>
         <h2>{t(`sub.total.help.title`)}</h2>
-        <p><Trans defaults={getScoringLabel(item.location?.id)} values={{scoring:item.id}} ></Trans></p>
+        <p><Trans defaults={getScoringLabel(item.location?.id, isPlayer)} values={{scoring:item.id}} ></Trans></p>
     </>
 }
 
-const getScoringLabel = (idLabel:number):string => {
+const getScoringLabel = (idLabel:number, isPlayer:boolean):string => {
     switch (idLabel){
         case 0:
-            return "sub.total.observations.text"
+            return isPlayer ? "sub.total.observations.yours.text" : "sub.total.observations.theirs.text"
         case 1:
-            return "sub.total.pathways.text"
+            return isPlayer ? "sub.total.observations.yours.text" : "sub.total.pathways.theirs.text"
         case 2:
-            return "sub.total.areas.text"
+            return isPlayer ? "sub.total.observations.yours.text" : "sub.total.areas.theirs.text"
         case 3:
         default:
-            return "sub.total.dangers.text"
+            return isPlayer ? "sub.total.observations.yours.text" : "sub.total.dangers.theirs.text"
 
     }
 

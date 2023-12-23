@@ -1,17 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { ItemContext, MaterialHelpProps, useGame, usePlayer, usePlayerId, useRules } from '@gamepark/react-game'
-import { MaterialGame } from '@gamepark/rules-api'
-import { Trek12AmazonieRules } from '@gamepark/trek12-amazonie/Trek12AmazonieRules'
-import { ExplorationCardScores } from '@gamepark/trek12-amazonie/material/ExplorationCard'
-import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
-import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
-import { Trans, useTranslation } from 'react-i18next'
+import { MaterialHelpProps, usePlayerId } from '@gamepark/react-game'
+import { useTranslation } from 'react-i18next'
 
 export const ExplorationMapHelp = ({item}:MaterialHelpProps)=> {
     const { t } = useTranslation()
     const player = usePlayerId()
-    const isPlayer = item.location?.player === player
+    const isPlayer = item.id === player
 
     return <>
         <h2>{t(`exploration.map.help.title`)}</h2>
