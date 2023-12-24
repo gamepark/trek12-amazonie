@@ -51,7 +51,6 @@ export class Area extends MaterialRulesPart {
         return this.mergeAreaNodes(adjacentNodes)
       }
     }
-    console.log("rules : adjacentNodes = ", adjacentNodes)
     return this.addUniqAreaNodes(adjacentNodes)
   }
 
