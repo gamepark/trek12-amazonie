@@ -51,7 +51,7 @@ export class Area extends MaterialRulesPart {
         return this.mergeAreaNodes(adjacentNodes)
       }
     }
-
+    console.log("rules : adjacentNodes = ", adjacentNodes)
     return this.addUniqAreaNodes(adjacentNodes)
   }
 
@@ -109,11 +109,10 @@ export class Area extends MaterialRulesPart {
     const node = new Node(this.game, this.player, adjacentNodes[0].location.id)
     if (!node.areaNode) {
       const randomColor = stringToColour(`${this.nodeValue.id}-${this.nodeValue.location.id}`)
-      return this.material(MaterialType.AreaNode)
-        .createItems([
-          { id: randomColor, location: { ...adjacentNodes[0].location } },
-          { id: randomColor, location: { ...this.nodeValue.location } }
-        ])
+      const materialToReturn = []
+      adjacentNodes.forEach(node => materialToReturn.push(this.material(MaterialType.AreaNode).createItem({ id: randomColor, location: { ...node.location } })))
+      materialToReturn.push(this.material(MaterialType.AreaNode).createItem({ id: randomColor, location: { ...this.nodeValue.location } }))
+      return materialToReturn
 
     } else {
       return [
