@@ -59,7 +59,6 @@ export class Score extends MaterialRulesPart {
     let score = 0
     for (const ring of rings) {
       const observation = observations.find((o) => o.location.x === ring.location.id)!
-      if (!observation.id) continue
       score += ExplorationCardScores[observation.id][ring.location.x]
     }
 

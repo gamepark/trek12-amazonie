@@ -84,6 +84,7 @@ export class PlaceResultRule extends MaterialRulesPart {
       .location((location) => location.x === card.location.x)
 
     const observation = observationCard.getItem()!
+    if (observation.location.rotation) return []
     const ring = this
       .material(MaterialType.ScoreRing)
       .location(LocationType.ObservationScores)
