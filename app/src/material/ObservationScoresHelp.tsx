@@ -1,11 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { ItemContext, MaterialHelpProps, useGame, usePlayer, usePlayerId, useRules } from '@gamepark/react-game'
-import { MaterialGame } from '@gamepark/rules-api'
-import { Trek12AmazonieRules } from '@gamepark/trek12-amazonie/Trek12AmazonieRules'
-import { ExplorationCardScores } from '@gamepark/trek12-amazonie/material/ExplorationCard'
-import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
-import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
+import { MaterialHelpProps } from '@gamepark/react-game'
 import { Trans, useTranslation } from 'react-i18next'
 
 export const ObservationScoresHelp = ({item}:MaterialHelpProps)=> {

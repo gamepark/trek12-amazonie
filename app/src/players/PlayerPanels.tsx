@@ -4,8 +4,6 @@ import { PlayerPanel, usePlayers, useRules } from '@gamepark/react-game'
 import { FC, HTMLAttributes } from 'react'
 import { faStar } from '@fortawesome/free-solid-svg-icons/faStar'
 import { Trek12AmazonieRules } from '@gamepark/trek12-amazonie/Trek12AmazonieRules'
-import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
-import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 type Trek12AmazoniePlayerPanelProps = {

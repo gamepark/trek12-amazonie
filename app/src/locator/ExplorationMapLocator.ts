@@ -1,4 +1,4 @@
-import { ItemContext, ItemLocator, getRelativePlayerIndex } from '@gamepark/react-game'
+import { ItemContext, ItemLocator } from '@gamepark/react-game'
 import { Coordinates, MaterialItem } from '@gamepark/rules-api'
 import { ExplorationMapDescription } from './description/ExplorationMapDescription'
 import { explorationMapDescription } from '../material/ExplorationMapDescription'

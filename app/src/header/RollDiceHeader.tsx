@@ -1,5 +1,3 @@
-import { useLegalMoves, usePlayerId, useRules } from '@gamepark/react-game'
-import { SimultaneousRule } from '@gamepark/rules-api'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 

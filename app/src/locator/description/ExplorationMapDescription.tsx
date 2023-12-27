@@ -1,9 +1,6 @@
-import { css } from '@emotion/react'
-import { ItemContext, LocationContext, LocationDescription, MaterialContext } from '@gamepark/react-game'
-import { Location, MaterialItem, Coordinates } from '@gamepark/rules-api'
+import { LocationContext, LocationDescription, MaterialContext } from '@gamepark/react-game'
+import { Location, Coordinates } from '@gamepark/rules-api'
 import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
-import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
-import { PlayerId } from '@gamepark/trek12-amazonie/Trek12AmazonieOptions'
 import { explorationMapDescription } from '../../material/ExplorationMapDescription'
 import { PlayerReminder } from './PlayerReminder'
 

@@ -1,4 +1,4 @@
-import { BoardDescription, ComponentSize, ItemContext, MaterialContext, useRules } from '@gamepark/react-game'
+import { BoardDescription, ItemContext, MaterialContext } from '@gamepark/react-game'
 import { MaterialItem } from '@gamepark/rules-api'
 import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { Operator } from '@gamepark/trek12-amazonie/material/Operator'
@@ -8,7 +8,6 @@ import { nodeCoordinates } from '../locator/ExplorationNodeLocator'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 import { ExplorationMapHelp } from './ExplorationMapHelp'
 import { Interpolation, Theme, css } from '@emotion/react'
-import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 
 export class ExplorationMapDescription extends BoardDescription {
   width = EXPEDITION_MAP_SIZE
@@ -20,7 +19,7 @@ export class ExplorationMapDescription extends BoardDescription {
     return players.map((player) => ({ id: player, location: { type: LocationType.ExplorationMap } }))
   }
 
-  getLocations(item: MaterialItem, context: ItemContext) {
+  getLocations(item: MaterialItem, _context: ItemContext) {
     const player = item.id!
     return [
       ...nodeCoordinates.map((c, index) => ({ type: LocationType.ExpeditionNode, id: index, player })),
@@ -32,7 +31,7 @@ export class ExplorationMapDescription extends BoardDescription {
     ]
   }
 
-  getFrontExtraCss(itemId: any, context: MaterialContext): Interpolation<Theme> {
+  getFrontExtraCss(itemId: any, _context: MaterialContext): Interpolation<Theme> {
     if (itemId === 1) {
       return css`
       outline:solid 0.2em yellow;

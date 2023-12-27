@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react'
 import { MaterialHelpProps, usePlayerId } from '@gamepark/react-game'
 import { Trans, useTranslation } from 'react-i18next'
 
@@ -16,7 +15,3 @@ export const PathwayScoreHelp = ({item}:MaterialHelpProps) => {
         }
     </>
 }
-
-const textCss = css`
-    margin-top:0.5em;
-`
