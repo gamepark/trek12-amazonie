@@ -7,8 +7,7 @@ export class ExplorationMapLocator extends ItemLocator {
   locationDescription = new ExplorationMapDescription()
 
   getPosition(item: MaterialItem<number, number>, context: ItemContext<number, number, number>): Coordinates {
-    const hasGameMoreThanThreePlayers = context.rules.game.players.length > 3
-    const base = hasGameMoreThanThreePlayers ? { x: -20, y: -5, z: 0} : { x: -20, y: 5, z: 0}
+    const base = getBaseCoordinates(context.rules.game.players.length)
 
 
     return {
@@ -20,3 +19,18 @@ export class ExplorationMapLocator extends ItemLocator {
 }
 
 export const expeditionBoardLocator = new ExplorationMapLocator()
+
+function getBaseCoordinates(players:number):Coordinates{
+  switch(players){
+    case 1:
+      return {x:-20,y:-5,z:0}
+    case 2:
+    case 3:
+      return {x:-20,y:5,z:0}
+    case 4:
+    case 5:
+    case 6:
+    default:
+      return {x:-20,y:-5,z:0}
+  }
+}

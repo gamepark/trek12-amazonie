@@ -21,8 +21,7 @@ export class ExplorationMapDescription extends LocationDescription {
   }
 
   getCoordinates(location: Location, context: LocationContext): Coordinates {
-    const hasGameMoreThanThreePlayers = context.rules.game.players.length > 3
-    const base = hasGameMoreThanThreePlayers ? { x: -25.3, y: -3.5, z: 0} : { x: -25.3, y: 6.5, z: 0}
+    const base = getBaseCoordinates(context.rules.game.players.length)
 
     return {
       ...base,
@@ -33,4 +32,19 @@ export class ExplorationMapDescription extends LocationDescription {
   }
 
   content = PlayerReminder
+}
+
+function getBaseCoordinates(players:number):Coordinates{
+  switch(players){
+    case 1:
+      return {x:-25.3,y:-3.5,z:0}
+    case 2:
+    case 3:
+      return {x:-25.3,y:6.5,z:0}
+    case 4:
+    case 5:
+    case 6:
+    default:
+      return {x:-25.3,y:-3.5,z:0}
+  }
 }
