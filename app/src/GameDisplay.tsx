@@ -21,7 +21,7 @@ export const GameDisplay: FC<GameDisplayProps> = ({ players }) => {
       collisionAlgorithm={pointerWithin}
       margin={{ top: 7.5, left: 0, right: tableSizes.margin, bottom: 0 }}
     />
-      <PlayerPanels />
+      {players !== 1 && <PlayerPanels />}
     </>
   )
 }
@@ -29,7 +29,7 @@ export const GameDisplay: FC<GameDisplayProps> = ({ players }) => {
 function getTableSize(playerNumber:number):{xMin:number, xMax:number, yMin:number, yMax:number, margin:number} {
   switch (playerNumber){
     case 1:
-      return {xMin:-30, xMax:12, yMin:-15, yMax:5, margin:35}
+      return {xMin:-30, xMax:12, yMin:-15, yMax:5, margin:0}
     case 2:
     case 3:
       return {xMin:-30, xMax:30, yMin:-15, yMax:15, margin:30}
