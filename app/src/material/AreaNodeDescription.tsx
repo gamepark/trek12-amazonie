@@ -7,7 +7,7 @@ import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 export class AreaNodeDescription extends WritingDescription {
   height = 0.104 * EXPEDITION_MAP_SIZE
   width = 0.104 * EXPEDITION_MAP_SIZE
-  borderRadius= 4
+  borderRadius = 4
 
   /*getStaticItems(_context: MaterialContext<number, number, number>): MaterialItem<number, number>[] {
     return range(27).map((index) => ({
@@ -22,7 +22,7 @@ export class AreaNodeDescription extends WritingDescription {
 
   getFrontContent(itemId: any) {
     return (
-      <div css={areaNode(itemId)} />
+      <div css={areaNode(itemId)}/>
     )
   }
 

@@ -1,7 +1,7 @@
 import { TokenDescription } from '@gamepark/react-game'
 import Piranha from '../images/piranha.png'
-import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 import { PiranhaHelp } from './PiranhaHelp'
+import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 
 export class PiranhaDescription extends TokenDescription {
   width = 0.0315 * EXPEDITION_MAP_SIZE

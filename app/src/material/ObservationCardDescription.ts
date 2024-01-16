@@ -26,7 +26,7 @@ export class ObservationCardDescription extends CardDescription {
     [ExplorationCard.Butterfly]: Butterfly,
     [ExplorationCard.PoisonDartFrog]: PoisonDartFrog,
     [ExplorationCard.Tamarind]: Tamarind,
-    [ExplorationCard.PygmyMarmoset]: PygmyMarmoset,
+    [ExplorationCard.PygmyMarmoset]: PygmyMarmoset
     //[ExplorationCard.CarnivorousPlant]
   }
 

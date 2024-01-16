@@ -13,25 +13,26 @@ export class ExplorationNodeDescription extends LocationDescription<PlayerId, Ma
   alwaysVisible = true
   height = 0.104 * EXPEDITION_MAP_SIZE
   width = 0.104 * EXPEDITION_MAP_SIZE
-  borderRadius= 4
+  borderRadius = 4
+  help = AreaNodeHelp
 
   /**getExtraCss(location: Location) {
-    return css`
-      &:after {
-        position: absolute;
-        font-size: 0.5em;
-        left: 0;
-        color: black;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        content: '${location.id}';
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
-      }
-    `
-  }**/
+   return css`
+   &:after {
+   position: absolute;
+   font-size: 0.5em;
+   left: 0;
+   color: black;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   content: '${location.id}';
+   display: flex;
+   align-items: flex-end;
+   justify-content: center;
+   }
+   `
+   }**/
 
   isMoveToLocation(move: MaterialMove, location: Location, { rules }: MaterialContext): boolean {
     if (!isCreateItemType(MaterialType.ExpeditionNodeValue)(move)) return false
@@ -41,9 +42,4 @@ export class ExplorationNodeDescription extends LocationDescription<PlayerId, Ma
       .location((location) => equal(move.item.location, location))
       .length
   }
-
-  
-
-
-  help = AreaNodeHelp
 }

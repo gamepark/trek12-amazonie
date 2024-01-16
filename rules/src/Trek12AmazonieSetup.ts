@@ -1,12 +1,12 @@
 import { MaterialGameSetup } from '@gamepark/rules-api'
-import { Trek12AmazonieRules } from './Trek12AmazonieRules'
-import { PlayerId, Trek12AmazonieOptions } from './Trek12AmazonieOptions'
-import { MaterialType } from './material/MaterialType'
-import { LocationType } from './material/LocationType'
-import { numberCards } from './material/NumberCard'
 import shuffle from 'lodash/shuffle'
 import { explorationCards } from './material/ExplorationCard'
+import { LocationType } from './material/LocationType'
+import { MaterialType } from './material/MaterialType'
+import { numberCards } from './material/NumberCard'
 import { RuleId } from './rules/RuleId'
+import { PlayerId, Trek12AmazonieOptions } from './Trek12AmazonieOptions'
+import { Trek12AmazonieRules } from './Trek12AmazonieRules'
 
 export class Trek12AmazonieSetup extends MaterialGameSetup<PlayerId, MaterialType, LocationType, Trek12AmazonieOptions> {
   Rules = Trek12AmazonieRules
@@ -18,13 +18,13 @@ export class Trek12AmazonieSetup extends MaterialGameSetup<PlayerId, MaterialTyp
   }
 
   setupNumberCards = () => {
-    const numbers =  shuffle(numberCards)
+    const numbers = shuffle(numberCards)
       .slice(0, 3)
       .map((id) => ({
         id,
         location: {
-          type: LocationType.Numbers,
-        },
+          type: LocationType.Numbers
+        }
       }))
 
     this.material(MaterialType.NumberCard).createItems(numbers)
@@ -39,7 +39,7 @@ export class Trek12AmazonieSetup extends MaterialGameSetup<PlayerId, MaterialTyp
         location: {
           type: LocationType.Observations,
           rotation: true
-        },
+        }
       }))
 
     this.material(MaterialType.ObservationCard).createItems(observations)
@@ -47,8 +47,8 @@ export class Trek12AmazonieSetup extends MaterialGameSetup<PlayerId, MaterialTyp
   }
 
   setupDice() {
-    this.material(MaterialType.GreenDice).createItem(({ id: 1, location: { type: LocationType.DiceArea }}))
-    this.material(MaterialType.YellowDice).createItem(({ id: 2, location: { type: LocationType.DiceArea }}))
+    this.material(MaterialType.GreenDice).createItem(({ id: 1, location: { type: LocationType.DiceArea } }))
+    this.material(MaterialType.YellowDice).createItem(({ id: 2, location: { type: LocationType.DiceArea } }))
   }
 
   start(_options: Trek12AmazonieOptions): void {

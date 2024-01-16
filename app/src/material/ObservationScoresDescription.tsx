@@ -5,12 +5,13 @@ import { ExplorationCardScores } from '@gamepark/trek12-amazonie/material/Explor
 import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 import React from 'react'
-import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 import { ObservationScoresHelp } from './ObservationScoresHelp'
+import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 
 export class ObservationScoresDescription extends WritingDescription {
   height = 0.037 * EXPEDITION_MAP_SIZE
   width = 0.037 * EXPEDITION_MAP_SIZE
+  help = ObservationScoresHelp
 
   getStaticItems(context: MaterialContext) {
     const { rules } = context
@@ -23,7 +24,7 @@ export class ObservationScoresDescription extends WritingDescription {
     return players.flatMap((player) =>
       observations
         .flatMap((item) => {
-          const { id = undefined, location: { x } } = item
+            const { id = undefined, location: { x } } = item
             if (!id) return []
             return ExplorationCardScores[id].map((points: number, index: number) => ({
               id: points,
@@ -32,18 +33,16 @@ export class ObservationScoresDescription extends WritingDescription {
                 type: LocationType.ObservationScores,
                 player,
                 x: index
-              },
+              }
             }))
-          },
-        ),
+          }
+        )
     )
   }
 
   getFrontContent(itemId: any) {
     return <span css={itemIdStyle}>{itemId}</span>
   }
-
-  help = ObservationScoresHelp
 
 }
 

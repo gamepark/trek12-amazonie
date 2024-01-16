@@ -1,4 +1,6 @@
 /** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react'
+import { faArrowDown, faArrowUp, faMinus, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { PlayMoveButton, useLegalMoves, usePlayerId, useRules } from '@gamepark/react-game'
 import { isCustomMoveType, SimultaneousRule } from '@gamepark/rules-api'
@@ -8,8 +10,6 @@ import { CustomMoveType } from '@gamepark/trek12-amazonie/rules/CustomMoveType'
 import { Memory } from '@gamepark/trek12-amazonie/rules/Memory'
 import { FC } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { faArrowDown, faArrowUp, faMinus, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons'
-import { css } from '@emotion/react'
 
 export const ChooseResultHeader: FC = () => {
   const rules = useRules<SimultaneousRule>()!
@@ -21,18 +21,18 @@ export const ChooseResultHeader: FC = () => {
     return <><Trans defaults="header.opponent.choose"></Trans></>
   }
 
-  if (moves.find(move => move.itemType === 11)){
+  if (moves.find(move => move.itemType === 11)) {
     return <><Trans defaults="header.player.choose.path"></Trans></>
   }
 
   const dice = [
     rules.material(MaterialType.YellowDice).getItem()!.location.rotation,
-    rules.material(MaterialType.GreenDice).getItem()!.location.rotation + 1,
+    rules.material(MaterialType.GreenDice).getItem()!.location.rotation + 1
   ]
 
   const operand = rules.remind(Memory.Operand, player)
   if (operand) {
-    return <><Trans defaults="header.you.choose.node" values={{result:applyOperator(operand, dice)}}></Trans></>
+    return <><Trans defaults="header.you.choose.node" values={{ result: applyOperator(operand, dice) }}></Trans></>
   }
 
   const max = moves.find((move) => isCustomMoveType(CustomMoveType.ChooseOperand)(move) && move.data.operator === Operator.MAX)
@@ -48,7 +48,7 @@ export const ChooseResultHeader: FC = () => {
     <PlayMoveButton move={plus}> <FontAwesomeIcon icon={faPlus}/> <span css={alignCss}> ({applyOperator(Operator.PLUS, dice)}) </span> </PlayMoveButton>
     <PlayMoveButton move={multiply}> <FontAwesomeIcon icon={faTimes}/> <span css={alignCss}> ({applyOperator(Operator.MULTIPLY, dice)})</span> </PlayMoveButton>
   </>
-} 
+}
 
 const alignCss = css`
   vertical-align:0.125em;

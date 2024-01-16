@@ -4,12 +4,13 @@ import { MaterialContext, WritingDescription } from '@gamepark/react-game'
 import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 import React from 'react'
-import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 import { ObservationNumberHelp } from './ObservationNumberHelp'
+import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 
 export class ObservationNumberDescription extends WritingDescription {
   height = 0.045 * EXPEDITION_MAP_SIZE
   width = 0.045 * EXPEDITION_MAP_SIZE
+  help = ObservationNumberHelp
 
   getStaticItems(context: MaterialContext) {
     const { rules } = context
@@ -26,15 +27,13 @@ export class ObservationNumberDescription extends WritingDescription {
         id: index,
         type: LocationType.ObservationNumber,
         player
-      },
+      }
     })))
   }
 
   getFrontContent(itemId: any) {
     return <span css={observationNumber}>{itemId}</span>
   }
-
-  help = ObservationNumberHelp
 
 }
 

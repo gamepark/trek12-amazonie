@@ -1,10 +1,8 @@
-
-import range from 'lodash/range'
+import { CustomMove, isCustomMoveType, MaterialGame, MaterialMove, MaterialRulesPart } from '@gamepark/rules-api'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
-import { applyOperator, Operator, operators, SpecialValue } from '../../material/Operator'
+import { Operator, operators } from '../../material/Operator'
 import { PlayerId } from '../../Trek12AmazonieOptions'
-import { CustomMove, isCustomMoveType, MaterialGame, MaterialMove, MaterialRulesPart } from '@gamepark/rules-api'
 import { CustomMoveType } from '../CustomMoveType'
 import { Memory } from '../Memory'
 
@@ -17,9 +15,9 @@ export class ChooseOperandRule extends MaterialRulesPart {
 
   getLegalMoves(): MaterialMove<number, number, number>[] {
 
-      return operators
-        .filter((operator) => this.canChooseOperator(operator))
-        .map((operator) => this.rules().customMove(CustomMoveType.ChooseOperand, { operator, player: this.player }))
+    return operators
+      .filter((operator) => this.canChooseOperator(operator))
+      .map((operator) => this.rules().customMove(CustomMoveType.ChooseOperand, { operator, player: this.player }))
   }
 
   onCustomMove(move: CustomMove) {

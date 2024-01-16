@@ -7,8 +7,10 @@ import { MaterialType } from '../../material/MaterialType'
 import { applyOperator, Operator, SpecialValue } from '../../material/Operator'
 import { PlayerId } from '../../Trek12AmazonieOptions'
 import { Area } from '../helper/Area'
+import { AreaScore } from '../helper/AreaScore'
 import { Node } from '../helper/Node'
 import { Pathway } from '../helper/Pathway'
+import { PathwayScore } from '../helper/PathwayScore'
 import { Memory } from '../Memory'
 import { ChoosePathNodeRule } from './ChoosePathNodeRule'
 
@@ -17,6 +19,13 @@ export class PlaceResultRule extends MaterialRulesPart {
 
   constructor(game: MaterialGame, readonly player: PlayerId) {
     super(game)
+  }
+
+  get dicesValues() {
+    return [
+      this.material(MaterialType.YellowDice).getItem()!.location.rotation,
+      this.material(MaterialType.GreenDice).getItem()!.location.rotation + 1
+    ]
   }
 
   getLegalMoves(): MaterialMove<number, number, number>[] {
@@ -43,6 +52,14 @@ export class PlaceResultRule extends MaterialRulesPart {
   afterItemMove(move: ItemMove): MaterialMove<number, number, number>[] {
     if (this.remind(Memory.PlacedNode, this.player) !== undefined) {
       return new ChoosePathNodeRule(this.game, this.player).afterItemMove(move)
+    }
+
+    if (isCreateItemType(MaterialType.Path)(move)) {
+      return new PathwayScore(this.game, this.player).refreshMoves
+    }
+
+    if (isCreateItemType(MaterialType.AreaNode)(move)) {
+      return new AreaScore(this.game, this.player).refreshMoves
     }
 
     if (!isCreateItemType(MaterialType.ExpeditionNodeValue)(move)) return []
@@ -100,10 +117,10 @@ export class PlaceResultRule extends MaterialRulesPart {
               id: observation.location.x,
               type: LocationType.ObservationScores,
               x: 0,
-              player: move.item.location.player,
-            },
+              player: move.item.location.player
+            }
           })
-        ]
+      ]
     }
 
     const item = ring.getItem()!
@@ -117,12 +134,5 @@ export class PlaceResultRule extends MaterialRulesPart {
     }
 
     return []
-  }
-
-  get dicesValues() {
-    return [
-      this.material(MaterialType.YellowDice).getItem()!.location.rotation,
-      this.material(MaterialType.GreenDice).getItem()!.location.rotation + 1
-    ]
   }
 }

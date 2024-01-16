@@ -28,36 +28,40 @@ export class Trek12AmazonieRules extends SecretMaterialRules<PlayerId, MaterialT
   implements CompetitiveScore<MaterialGame<PlayerId, MaterialType, LocationType>, MaterialMove<PlayerId, MaterialType, LocationType>, PlayerId>,
     TimeLimit<MaterialGame<PlayerId, MaterialType, LocationType>, MaterialMove<PlayerId, MaterialType, LocationType>, PlayerId> {
 
-  getScore(playerId: PlayerId): number {
-    return new Score(this.game, playerId).total
-  }
-
-  giveTime(): number {
-    return 20
-  }
-
   rules = {
     [RuleId.RollDice]: RollDiceRule,
     [RuleId.ChooseResult]: ChooseResultRule,
     [RuleId.EndOfGameRule]: EndOfGameRule,
     [RuleId.Discover]: DiscoverRule
   }
-
   hidingStrategies = {
     [MaterialType.ObservationCard]: {
       [LocationType.Observations]: hideIdWhenNotRotated
     }
   }
-
   locationsStrategies = {
     [MaterialType.NumberCard]: {
       [LocationType.Numbers]: new PositiveSequenceStrategy()
     },
     [MaterialType.ObservationCard]: {
-      [LocationType.Observations]: new PositiveSequenceStrategy(),
+      [LocationType.Observations]: new PositiveSequenceStrategy()
     },
     [MaterialType.Cross]: {
       [LocationType.OperatorChoice]: new PositiveSequenceStrategy()
+    },
+    [MaterialType.PathwayScore]: {
+      [LocationType.PathwayScore]: new PositiveSequenceStrategy()
+    },
+    [MaterialType.AreaScore]: {
+      [LocationType.AreaScore]: new PositiveSequenceStrategy()
     }
+  }
+
+  getScore(playerId: PlayerId): number {
+    return new Score(this.game, playerId).total
+  }
+
+  giveTime(): number {
+    return 20
   }
 }

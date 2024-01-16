@@ -1,4 +1,3 @@
-
 import { GridLocator } from '@gamepark/react-game'
 import { Location } from '@gamepark/rules-api'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
@@ -13,7 +12,7 @@ export class AreaScoreLocator extends GridLocator {
 
 
   coordinates = { x: 0, y: 0, z: 1 }
-  positionOnParent =  { x: 57.3, y: 67.9 }
+  positionOnParent = { x: 57.3, y: 67.9 }
 
   getParentItemId(location: Location) {
     return location.player

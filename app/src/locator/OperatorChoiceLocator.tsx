@@ -8,15 +8,12 @@ export class OperatorChoiceLocator extends LineLocator {
   parentItemType = MaterialType.ExplorationMap
 
   locationDescription = new OperatorChoiceDescription()
+  delta = { x: 0.041 * EXPEDITION_MAP_SIZE, y: -0.01 }
+  coordinates = { x: 0, y: 0, z: 1 }
 
   getDelta(_item: MaterialItem<number, number>, _context: ItemContext<number, number, number>): Partial<Coordinates> {
     return super.getDelta(_item, _context)
   }
-
-  delta = { x: 0.041 * EXPEDITION_MAP_SIZE, y: -0.01  }
-
-  coordinates = { x: 0, y: 0, z: 1 }
-
 
   getPositionOnParent(location: Location) {
     return {

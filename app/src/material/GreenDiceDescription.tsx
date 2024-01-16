@@ -12,7 +12,7 @@ import { GreenDiceHelp } from './GreenDiceHelp'
 export class GreenDiceDescription extends CubicDiceDescription {
   width = 2
   borderRadius = 0
-  color= '#6db236'
+  color = '#6db236'
   images = [
     Face1,
     Face2,
@@ -21,13 +21,11 @@ export class GreenDiceDescription extends CubicDiceDescription {
     Face5,
     Face6
   ]
+  help = GreenDiceHelp
 
   getRotations(item: MaterialItem, context: ItemContext) {
     return ['rotate3d(1, -1, 0, 15deg)', 'translateZ(1em)', ...super.getRotations(item, context)]
   }
-
-  
-  help = GreenDiceHelp
 
 }
 

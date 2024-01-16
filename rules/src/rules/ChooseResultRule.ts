@@ -1,13 +1,20 @@
-import { CustomMove, isCreateItemType, isCustomMoveType, ItemMove, MaterialMove, SimultaneousRule } from '@gamepark/rules-api'
+import { CustomMove, isCreateItemType, isCustomMoveType, isEndPlayerTurn, ItemMove, MaterialMove, RuleMove, SimultaneousRule } from '@gamepark/rules-api'
+import { LocationType } from '../material/LocationType'
 import { MaterialType } from '../material/MaterialType'
 import { CustomMoveType } from './CustomMoveType'
 import { ChooseOperandRule } from './delegates/ChooseOperandRule'
 import { PlaceResultRule } from './delegates/PlaceResultRule'
+import { AreaScore } from './helper/AreaScore'
+import { PathwayScore } from './helper/PathwayScore'
 import { Memory } from './Memory'
 import { RuleId } from './RuleId'
 
 export class ChooseResultRule extends SimultaneousRule {
 
+
+  get allCrossPlaced() {
+    return this.game.players.every((p) => this.material(MaterialType.Cross).player(p).length === 20)
+  }
 
   getLegalMoves(playerId: number): MaterialMove<number, number, number>[] {
     if (!this.isTurnToPlay(playerId)) return []
@@ -20,7 +27,7 @@ export class ChooseResultRule extends SimultaneousRule {
   }
 
   afterItemMove(move: ItemMove): MaterialMove[] {
-    if (!isCreateItemType(MaterialType.ExpeditionNodeValue)(move) && !isCreateItemType(MaterialType.Path)(move)) return []
+    if (!isCreateItemType(MaterialType.ExpeditionNodeValue)(move) && !isCreateItemType(MaterialType.Path)(move) && !isCreateItemType(MaterialType.AreaNode)(move)) return []
     return new PlaceResultRule(this.game, move.item.location.player!).afterItemMove(move)
   }
 
@@ -36,8 +43,41 @@ export class ChooseResultRule extends SimultaneousRule {
     return [this.rules().startRule(RuleId.Discover)]
   }
 
-  get allCrossPlaced() {
-    return this.game.players.every((p) => this.material(MaterialType.Cross).player(p).length === 20)
+  onRuleEnd(move: RuleMove) {
+    if (!isEndPlayerTurn(move)) return []
+    const player = move.player
+    const pathwayScore = new PathwayScore(this.game, player)
+    const moves: MaterialMove[] = [
+      this.material(MaterialType.PathwayScore)
+        .player(player)
+        .deleteItemsAtOnce(),
+      this.material(MaterialType.PathwayScore)
+        .player(player)
+        .createItemsAtOnce(pathwayScore.scores.map((score) => ({
+          id: score,
+          location: {
+            type: LocationType.PathwayScore,
+            player
+          }
+        })))
+    ]
+
+    const areaScore = new AreaScore(this.game, player)
+    moves.push(
+      this.material(MaterialType.AreaScore)
+        .player(player)
+        .deleteItemsAtOnce(),
+      this.material(MaterialType.AreaScore)
+        .player(player)
+        .createItemsAtOnce(areaScore.scores.map((score) => ({
+          id: score,
+          location: {
+            type: LocationType.AreaScore,
+            player
+          }
+        })))
+    )
+    return moves
   }
 
 }

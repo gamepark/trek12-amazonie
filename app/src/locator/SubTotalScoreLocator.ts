@@ -18,13 +18,13 @@ export class SubTotalScoreLocator extends LineLocator {
         break
       case SubTotalId.Pathways:
         basePosition.x = 47.1
-        break;
+        break
       case SubTotalId.Areas:
         basePosition.x = 59.5
-        break;
+        break
       case SubTotalId.Danger:
         basePosition.x = 74.1
-        break;
+        break
     }
 
     return basePosition

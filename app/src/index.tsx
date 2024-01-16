@@ -4,7 +4,7 @@ import { Trek12AmazonieRules } from '@gamepark/trek12-amazonie/Trek12AmazonieRul
 import { Trek12AmazonieSetup } from '@gamepark/trek12-amazonie/Trek12AmazonieSetup'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom'
-import { Trek12AmazonieAnimations } from './animations/Trek12AmazonieAnimations'
+import { trek12AmazonieAnimations } from './animations/Trek12AmazonieAnimations'
 import App from './App'
 import { locators } from './locator/Locators'
 import { material } from './material/Material'
@@ -20,7 +20,7 @@ ReactDOM.render(
                   optionsSpec={Trek12AmazonieOptionsSpec}
                   material={material}
                   locators={locators}
-                  animations={new Trek12AmazonieAnimations()}
+                  animations={trek12AmazonieAnimations}
                   theme={{
                     root: {
                       background: {

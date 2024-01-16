@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { Avatar, usePlayerName, useRules } from '@gamepark/react-game'
-import { FC } from 'react'
-import { Location } from "@gamepark/rules-api"
+import { Location } from '@gamepark/rules-api'
 import { Trek12AmazonieRules } from '@gamepark/trek12-amazonie/Trek12AmazonieRules'
+import { FC } from 'react'
 
 type PlayerReminder = {
   location: Location
@@ -16,17 +16,19 @@ export const PlayerReminder: FC<PlayerReminder> = (props) => {
 
   const playerName = usePlayerName(player)
 
-  if(playerNumber !== 1) {return (
-       <div css={reminderStyle}>
-        <Avatar css={avatarStyle} playerId={player} speechBubbleProps={{css:css`display:none;`}} />
+  if (playerNumber !== 1) {
+    return (
+      <div css={reminderStyle}>
+        <Avatar css={avatarStyle} playerId={player} speechBubbleProps={{ css: css`display:none;` }}/>
         <span css={playerNameStyle}>{playerName}</span>
       </div>
-  ) } else {
+    )
+  } else {
     return <></>
   }
 }
 
-const size=1.4
+const size = 1.4
 
 const reminderStyle = css`
   color: white;
@@ -46,7 +48,7 @@ const avatarStyle = css`
 `
 
 const playerNameStyle = css`
-  font-size: ${size/2.5}em;
+  font-size: ${size / 2.5}em;
   padding: 0.2em;
   padding-left: 2.2em;
   overflow: hidden;

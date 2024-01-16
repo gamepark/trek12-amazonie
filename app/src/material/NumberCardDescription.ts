@@ -24,7 +24,7 @@ export class NumberCardDescription extends CardDescription {
     [NumberCard.Three]: Three,
     [NumberCard.Four]: Four,
     [NumberCard.Five]: Five,
-    [NumberCard.Six]: Six,
+    [NumberCard.Six]: Six
   }
 
   help = NumberCardHelp

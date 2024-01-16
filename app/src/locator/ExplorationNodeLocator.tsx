@@ -65,7 +65,7 @@ export const nodeCoordinates: XYCoordinates[] = [
   { x: 43.1, y: 49.2 }, // 23
   { x: 61.9, y: 49.2 }, // 24
   { x: 71.3, y: 43.8 }, // 25
-  { x: 80.8, y: 38.4 }, // 26
+  { x: 80.8, y: 38.4 } // 26
 ]
 
 export const explorationSpaceLocator = new ExplorationNodeLocator()

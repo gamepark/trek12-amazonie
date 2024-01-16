@@ -7,22 +7,21 @@ import { isCreateItemType, MaterialMove } from '@gamepark/rules-api'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 import { SpecialValue } from '@gamepark/trek12-amazonie/material/Operator'
 import { Memory } from '@gamepark/trek12-amazonie/rules/Memory'
-import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 import { ExpeditionNodeNumberHelp } from './ExpeditionNodeNumberHelp'
+import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 
 export class ExpeditionNodeNumberDescription extends WritingDescription {
   height = 0.104 * EXPEDITION_MAP_SIZE
   width = 0.104 * EXPEDITION_MAP_SIZE
-  borderRadius= 4
-
-
+  borderRadius = 4
+  help = ExpeditionNodeNumberHelp
 
   getFrontContent(itemId: any) {
     return (
       <>
         {
-          itemId === SpecialValue.Spider?
-            <FontAwesomeIcon icon={faSpider} css={expeditionValue} /> :
+          itemId === SpecialValue.Spider ?
+            <FontAwesomeIcon icon={faSpider} css={expeditionValue}/> :
             <span css={expeditionValue}>{itemId}</span>
         }
 
@@ -47,8 +46,6 @@ export class ExpeditionNodeNumberDescription extends WritingDescription {
     return canLongClick
 
   }
-
-  help = ExpeditionNodeNumberHelp
 }
 
 const expeditionValue = css`

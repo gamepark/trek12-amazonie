@@ -15,32 +15,32 @@ export class DiceAreaLocator extends LineLocator {
 
 export const diceAreaLocator = new DiceAreaLocator()
 
-function getYellowDiceCoordinates(players:number):Coordinates{
-  switch(players){
+function getYellowDiceCoordinates(players: number): Coordinates {
+  switch (players) {
     case 1:
-      return { x: -0.2,  y: 3, z: 0}
+      return { x: -0.2, y: 3, z: 0 }
     case 2:
     case 3:
-      return { x: 10,  y: -10, z: 0} 
+      return { x: 10, y: -10, z: 0 }
     case 4:
     case 5:
     case 6:
     default:
-      return { x: 33,  y: 17, z: 0}
+      return { x: 33, y: 17, z: 0 }
   }
 }
 
-function getGreenDiceCoordinates(players:number):Coordinates{
-  switch(players){
+function getGreenDiceCoordinates(players: number): Coordinates {
+  switch (players) {
     case 1:
-      return { x: 2.8,  y: 3, z: 0} 
+      return { x: 2.8, y: 3, z: 0 }
     case 2:
     case 3:
-      return { x: 14, y: -10, z: 0}
+      return { x: 14, y: -10, z: 0 }
     case 4:
     case 5:
     case 6:
     default:
-      return { x: 37,  y: 17, z: 0} 
+      return { x: 37, y: 17, z: 0 }
   }
 }

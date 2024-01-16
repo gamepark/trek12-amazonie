@@ -8,7 +8,10 @@
   "license": "ISC",
   "devDependencies": {
     "lerna": "^4.0.0",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "image-minimizer-webpack-plugin": "^3.8.3",
+    "imagemin": "^8.0.1",
+    "imagemin-webp": "^8.0.0"
   },
   "resolutions": {
     "@types/react": "^17"
@@ -20,6 +23,7 @@
     "unlinkgp": "yarn unlink @gamepark/react-client @gamepark/rules-api @gamepark/react-game",
     "start": "yarn workspace @gamepark/trek12-amazonie-app run start",
     "build": "yarn workspace @gamepark/trek12-amazonie-app run build",
-    "deploy": "yarn workspace @gamepark/trek12-amazonie-app run deploy"
+    "deploy": "yarn workspace @gamepark/trek12-amazonie-app run deploy",
+    "cwebp-osx": "rm -f ./node_modules/cwebp-bin/vendor/cwebp && ln -s /opt/homebrew/bin/cwebp ./node_modules/cwebp-bin/vendor/cwebp"
   }
 }

@@ -1,16 +1,10 @@
 import { MaterialItem, MaterialMove, MaterialRulesPart } from '@gamepark/rules-api'
-import { RuleId } from './RuleId'
-import { MaterialType } from '../material/MaterialType'
 import { LocationType } from '../material/LocationType'
+import { MaterialType } from '../material/MaterialType'
 import { SpecialValue } from '../material/Operator'
+import { RuleId } from './RuleId'
 
 export class DiscoverRule extends MaterialRulesPart {
-  onRuleStart() {
-    const moves = this.revealObservationCard
-    moves.push(this.rules().startRule(RuleId.RollDice))
-    return moves
-  }
-
   get revealObservationCard() {
     const numberedCards = this.material(MaterialType.NumberCard).getItems()
     const moves: MaterialMove[] = []
@@ -34,6 +28,12 @@ export class DiscoverRule extends MaterialRulesPart {
       }
     }
 
+    return moves
+  }
+
+  onRuleStart() {
+    const moves = this.revealObservationCard
+    moves.push(this.rules().startRule(RuleId.RollDice))
     return moves
   }
 
@@ -64,13 +64,13 @@ export class DiscoverRule extends MaterialRulesPart {
               id: observation.location.x,
               type: LocationType.ObservationScores,
               x: 0,
-              player: player,
-            },
-          }),
+              player: player
+            }
+          })
       )
 
 
     }
     return moves
-    }
   }
+}

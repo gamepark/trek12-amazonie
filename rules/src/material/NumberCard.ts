@@ -10,4 +10,4 @@ export enum NumberCard {
   Six
 }
 
-export const numberCards =  Object.values(NumberCard).filter(isEnumValue)
+export const numberCards = Object.values(NumberCard).filter(isEnumValue)

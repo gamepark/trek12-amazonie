@@ -12,21 +12,20 @@ import { YellowDiceHelp } from './YellowDiceHelp'
 export class YellowDiceDescription extends CubicDiceDescription {
   width = 2
   borderRadius = 0
-  color= '#f0c800'
+  color = '#f0c800'
   images = [
     Face0,
     Face1,
     Face2,
     Face3,
     Face4,
-    Face5,
+    Face5
   ]
+  help = YellowDiceHelp
 
   getRotations(item: MaterialItem, context: ItemContext) {
     return ['rotate3d(1, -1, 0, 15deg)', 'translateZ(1em)', ...super.getRotations(item, context)]
   }
-
-  help = YellowDiceHelp
 
 }
 

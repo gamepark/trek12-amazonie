@@ -1,12 +1,10 @@
 import { MaterialGame, MaterialItem, MaterialRulesPart } from '@gamepark/rules-api'
-import sum from 'lodash/sum'
 import uniqBy from 'lodash/uniqBy'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
 import { SpecialValue } from '../../material/Operator'
 import { PlayerId } from '../../Trek12AmazonieOptions'
 import { Node } from './Node'
-import maxBy from 'lodash/maxBy'
 
 export class Area extends MaterialRulesPart {
   private nodeId: number
@@ -35,7 +33,7 @@ export class Area extends MaterialRulesPart {
   get addAreaNodeMoves() {
     const adjacentNodes = this.nodes.filter((node) => node.location.id !== this.nodeId)
 
-    if (!adjacentNodes.length ) return []
+    if (!adjacentNodes.length) return []
     if (adjacentNodes.length > 1) {
       // TODO: let player choose
       const uniqAreaNodes = uniqBy(
@@ -84,19 +82,18 @@ export class Area extends MaterialRulesPart {
     )
 
     const color = stringToColour(`${this.nodeValue.id}-${this.nodeValue.location.id}`)
-    const addition  = this.material(MaterialType.AreaNode)
+    const addition = this.material(MaterialType.AreaNode)
       .createItems(adjacentNodes.map((item) => ({
-        id: color,
-        location: item.location
-      }))
-
-    )
+          id: color,
+          location: item.location
+        }))
+      )
 
     const newNode = this.material(MaterialType.AreaNode)
-        .createItem({
-          id: color,
-          location: { ...this.nodeValue.location }
-        })
+      .createItem({
+        id: color,
+        location: { ...this.nodeValue.location }
+      })
     return [
       newNode,
       ...deletion,

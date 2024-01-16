@@ -1,4 +1,4 @@
 export enum Field {
-    Forest = 1,
-    Water, OOB
+  Forest = 1,
+  Water, OOB
 }

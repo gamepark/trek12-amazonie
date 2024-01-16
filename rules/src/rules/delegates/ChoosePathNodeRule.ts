@@ -1,15 +1,28 @@
+import { isCreateItemType, ItemMove, MaterialGame, MaterialMove, MaterialRulesPart } from '@gamepark/rules-api'
 import equal from 'fast-deep-equal'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
 import { PlayerId } from '../../Trek12AmazonieOptions'
-import { isCreateItemType, isMoveItemType, ItemMove, MaterialGame, MaterialMove, MaterialRulesPart } from '@gamepark/rules-api'
 import { createPath, mapGraph } from '../helper/Node'
-import { Nodes, Memory, PlacedNode } from '../Memory'
+import { PathwayScore } from '../helper/PathwayScore'
+import { Memory, Nodes, PlacedNode } from '../Memory'
 
 export class ChoosePathNodeRule extends MaterialRulesPart {
 
   constructor(game: MaterialGame, readonly player: PlayerId) {
     super(game)
+  }
+
+  get placedNode() {
+    return this.remind<PlacedNode>(Memory.PlacedNode, this.player)
+  }
+
+  get chooseSuperiorNode() {
+    return this.remind<Nodes>(Memory.ChooseSuperiorPathNode, this.player)
+  }
+
+  get chooseInferiorNode() {
+    return this.remind<Nodes>(Memory.ChooseInferiorPathNode, this.player)
   }
 
   getLegalMoves() {
@@ -52,28 +65,20 @@ export class ChoosePathNodeRule extends MaterialRulesPart {
       this.forget(Memory.ChooseSuperiorPathNode, this.player)
     }
 
-    return [this.rules().endPlayerTurn(move.item.location.player!)]
+
+    const moves: MaterialMove[] = new PathwayScore(this.game, this.player).refreshMoves
+    moves.push(this.rules().endPlayerTurn(move.item.location.player!))
+
+    return moves
   }
 
   choiceToMove(nodes: Nodes) {
-   return nodes.map((node) => this.material(MaterialType.Path).createItem({
+    return nodes.map((node) => this.material(MaterialType.Path).createItem({
       location: {
         id: mapGraph.find((path) => equal(path, createPath(node, this.placedNode)))!,
         type: LocationType.Path,
         player: this.player
       }
     }))
-  }
-
-  get placedNode() {
-    return this.remind<PlacedNode>(Memory.PlacedNode, this.player)
-  }
-
-  get chooseSuperiorNode() {
-    return this.remind<Nodes>(Memory.ChooseSuperiorPathNode, this.player)
-  }
-
-  get chooseInferiorNode() {
-    return this.remind<Nodes>(Memory.ChooseInferiorPathNode, this.player)
   }
 }

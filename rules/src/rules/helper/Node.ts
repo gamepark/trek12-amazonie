@@ -1,9 +1,9 @@
-import { Material, MaterialGame, MaterialItem, MaterialRulesPart } from '@gamepark/rules-api'
+import { MaterialGame, MaterialRulesPart } from '@gamepark/rules-api'
+import equal from 'fast-deep-equal'
+import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
 import { SpecialValue } from '../../material/Operator'
 import { PlayerId } from '../../Trek12AmazonieOptions'
-import { LocationType } from '../../material/LocationType'
-import equal from 'fast-deep-equal'
 
 export class Node extends MaterialRulesPart {
 
@@ -22,12 +22,37 @@ export class Node extends MaterialRulesPart {
       .length
   }
 
+  get areaNode() {
+    return this
+      .material(MaterialType.AreaNode)
+      .location(LocationType.ExpeditionNode)
+      .locationId(this.nodeId)
+      .player(this.player)
+      .getItem()
+  }
+
+  get isWritable() {
+    if (!this.isEmpty) return false
+    if (this.isMapEmpty) return true
+    return mapGraph
+      .filter((path) => path.includes(this.nodeId))
+      .some((path) => this.isWrittenNode(path.find((id) => id !== this.nodeId)!))
+
+  }
+
+  get isMapEmpty() {
+    return !this
+      .material(MaterialType.ExpeditionNodeValue)
+      .player(this.player)
+      .length
+  }
+
   hasPathTo(nodeId: number) {
     return !!this
       .material(MaterialType.Path)
       .location(LocationType.Path)
       .player(this.player)
-      .locationId((id: number[]) =>  equal(id, createPath(this.nodeId, nodeId)))
+      .locationId((id: number[]) => equal(id, createPath(this.nodeId, nodeId)))
       .length
   }
 
@@ -65,31 +90,6 @@ export class Node extends MaterialRulesPart {
     }
 
     return value === (node.id)
-  }
-
-  get areaNode() {
-    return this
-      .material(MaterialType.AreaNode)
-      .location(LocationType.ExpeditionNode)
-      .locationId(this.nodeId)
-      .player(this.player)
-      .getItem()
-  }
-
-  get isWritable() {
-    if (!this.isEmpty) return false
-    if (this.isMapEmpty) return true
-    return mapGraph
-      .filter((path) => path.includes(this.nodeId))
-      .some((path) => this.isWrittenNode(path.find((id) => id !== this.nodeId)!))
-
-  }
-
-  get isMapEmpty() {
-    return !this
-      .material(MaterialType.ExpeditionNodeValue)
-      .player(this.player)
-      .length
   }
 
   isWrittenNode(id: number) {
@@ -166,5 +166,5 @@ export const mapGraph = [
   [21, 22],
   [22, 23],
   [24, 25],
-  [25, 26],
+  [25, 26]
 ]

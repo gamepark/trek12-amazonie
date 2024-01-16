@@ -1,15 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { PlayerPanel, usePlayers, useRules } from '@gamepark/react-game'
-import { FC, HTMLAttributes } from 'react'
 import { faStar } from '@fortawesome/free-solid-svg-icons/faStar'
-import { Trek12AmazonieRules } from '@gamepark/trek12-amazonie/Trek12AmazonieRules'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { PlayerPanel, usePlayers, useRules } from '@gamepark/react-game'
+import { Trek12AmazonieRules } from '@gamepark/trek12-amazonie/Trek12AmazonieRules'
+import { FC, HTMLAttributes } from 'react'
 
-type Trek12AmazoniePlayerPanelProps = {
-} & HTMLAttributes<HTMLDivElement>
+type Trek12AmazoniePlayerPanelProps = {} & HTMLAttributes<HTMLDivElement>
 
-export const PlayerPanels: FC<Trek12AmazoniePlayerPanelProps> = ({...props}) => {
+export const PlayerPanels: FC<Trek12AmazoniePlayerPanelProps> = ({ ...props }) => {
   const players = usePlayers({ sortFromMe: true })
   const rules = useRules<Trek12AmazonieRules>()
 
@@ -20,7 +19,7 @@ export const PlayerPanels: FC<Trek12AmazoniePlayerPanelProps> = ({...props}) => 
           <div css={indicators}>
 
             <span><FontAwesomeIcon icon={faStar} css={fontIcon} fill="#28B8CE"/> {rules?.getScore(player.id)}</span>
-            
+
 
           </div>
         </PlayerPanel>

@@ -1,16 +1,14 @@
 import { MaterialGame, MaterialRulesPart } from '@gamepark/rules-api'
-import sum from 'lodash/sum'
+import sumBy from 'lodash/sumBy'
 import { ExplorationCardScores } from '../../material/ExplorationCard'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
 import { SpecialValue } from '../../material/Operator'
 import { PlayerId } from '../../Trek12AmazonieOptions'
-import { Area } from './Area'
-import { Pathway } from './Pathway'
 
 export class Score extends MaterialRulesPart {
 
-  constructor (game: MaterialGame, readonly player: PlayerId) {
+  constructor(game: MaterialGame, readonly player: PlayerId) {
     super(game)
   }
 
@@ -66,56 +64,20 @@ export class Score extends MaterialRulesPart {
 
   }
 
-  get pathwayScoreList(): number[] {
-    const nodesIds: number[] = []
-    const values = this
-      .material(MaterialType.ExpeditionNodeValue)
-      .location(LocationType.ExpeditionNode)
-      .player(this.player)
-      .getItems()
-
-    const scores: number[] = []
-    let x = 0;
-    for (const valueNode of values) {
-      if (nodesIds.includes(valueNode.location.id)) continue
-      const pathway = new Pathway(this.game, this.player, valueNode)
-      nodesIds.push(...pathway.nodeIds)
-      const score = pathway.score
-      if (!score) continue
-      scores.push(score)
-    }
-
-    return scores
-
-  }
 
   get areaScore(): number {
-    return sum(this.areaScoreList)
+    console.time('Area Score' + this.player)
+    const scores = this.material(MaterialType.AreaScore).player(this.player).getItems()
+    const total = sumBy(scores, (item) => item.id)
+    console.timeEnd('Area Score' + this.player)
+    return total
   }
 
   get pathwayScore(): number {
-    return sum(this.pathwayScoreList)
-  }
-
-  get areaScoreList(): number[] {
-    const nodesIds: number[] = []
-    const values = this
-      .material(MaterialType.ExpeditionNodeValue)
-      .location(LocationType.ExpeditionNode)
-      .player(this.player)
-      .getItems()
-
-    const scores: number[] = []
-    let x = 0;
-    for (const valueNode of values) {
-      if (nodesIds.includes(valueNode.location.id)) continue
-      const area = new Area(this.game, this.player, valueNode)
-      nodesIds.push(...area.nodeIds)
-      const score = area.score
-      if (!score) continue
-      scores.push(area.score)
-    }
-
-    return scores
+    console.time('Path Score' + this.player)
+    const scores = this.material(MaterialType.PathwayScore).player(this.player).getItems()
+    const total = sumBy(scores, (item) => item.id)
+    console.timeEnd('Path Score' + this.player)
+    return total
   }
 }
