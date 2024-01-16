@@ -66,18 +66,12 @@ export class Score extends MaterialRulesPart {
 
 
   get areaScore(): number {
-    console.time('Area Score' + this.player)
     const scores = this.material(MaterialType.AreaScore).player(this.player).getItems()
-    const total = sumBy(scores, (item) => item.id)
-    console.timeEnd('Area Score' + this.player)
-    return total
+    return sumBy(scores, (item) => item.id)
   }
 
   get pathwayScore(): number {
-    console.time('Path Score' + this.player)
     const scores = this.material(MaterialType.PathwayScore).player(this.player).getItems()
-    const total = sumBy(scores, (item) => item.id)
-    console.timeEnd('Path Score' + this.player)
-    return total
+    return sumBy(scores, (item) => item.id)
   }
 }
