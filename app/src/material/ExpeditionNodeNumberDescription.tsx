@@ -11,8 +11,8 @@ import { ExpeditionNodeNumberHelp } from './ExpeditionNodeNumberHelp'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 
 export class ExpeditionNodeNumberDescription extends WritingDescription {
-  height = 0.104 * EXPEDITION_MAP_SIZE
-  width = 0.104 * EXPEDITION_MAP_SIZE
+  height = 0.105 * EXPEDITION_MAP_SIZE
+  width = 0.105 * EXPEDITION_MAP_SIZE
   borderRadius = 4
   help = ExpeditionNodeNumberHelp
 

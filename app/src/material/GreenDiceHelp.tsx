@@ -9,8 +9,14 @@ export const GreenDiceHelp = () => {
   return <>
     <h2>{t(`green.dice.help.title`)}</h2>
     <p css={textCss}>{t(`green.dice.help.text`)}</p>
-    <p css={diceCss}><Picture src={Images.greenDice1}/> <Picture src={Images.greenDice2}/> <Picture src={Images.greenDice3}/> <Picture src={Images.greenDice4}/>
-      <Picture src={Images.greenDice5}/> <Picture src={Images.greenDice6}/></p>
+    <p css={diceCss}>
+      <Picture src={Images.greenDice1}/>&nbsp;
+      <Picture src={Images.greenDice2}/>&nbsp;
+      <Picture src={Images.greenDice3}/>&nbsp;
+      <Picture src={Images.greenDice4}/>&nbsp;
+      <Picture src={Images.greenDice5}/>&nbsp;
+      <Picture src={Images.greenDice6}/>
+    </p>
   </>
 }
 

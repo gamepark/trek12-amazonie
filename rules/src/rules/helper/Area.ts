@@ -81,7 +81,7 @@ export class Area extends MaterialRulesPart {
         .deleteItems()
     )
 
-    const color = stringToColour(`${this.nodeValue.id}-${this.nodeValue.location.id}`)
+    const color = this.availableColors[0]
     const addition = this.material(MaterialType.AreaNode)
       .createItems(adjacentNodes.map((item) => ({
           id: color,
@@ -104,7 +104,7 @@ export class Area extends MaterialRulesPart {
   addUniqAreaNodes(adjacentNodes: MaterialItem[]) {
     const node = new Node(this.game, this.player, adjacentNodes[0].location.id)
     if (!node.areaNode) {
-      const randomColor = stringToColour(`${this.nodeValue.id}-${this.nodeValue.location.id}`)
+      const randomColor = this.availableColors[0]
       const materialToReturn = []
       adjacentNodes.forEach(node => materialToReturn.push(this.material(MaterialType.AreaNode).createItem({ id: randomColor, location: { ...node.location } })))
       materialToReturn.push(this.material(MaterialType.AreaNode).createItem({ id: randomColor, location: { ...this.nodeValue.location } }))
@@ -120,18 +120,24 @@ export class Area extends MaterialRulesPart {
       ]
     }
   }
+
+  get availableColors() {
+    return colors.filter((c) => !this.material(MaterialType.AreaNode).player(this.player).id(c).length)
+  }
 }
 
-// TODO: Pick a color into list
-const stringToColour = (str: string) => {
-  let hash = 0
-  str.split('').forEach(char => {
-    hash = char.charCodeAt(0) + ((hash << 5) - hash)
-  })
-  let colour = '#'
-  for (let i = 0; i < 3; i++) {
-    const value = (hash >> (i * 8)) & 0xff
-    colour += value.toString(16).padStart(2, '0')
-  }
-  return colour
-}
+const colors = [
+  "#d00e86",
+  "#d2c925",
+  "#61db53",
+  "#0a50fe",
+  "#d3f0c9",
+  "#10693e",
+  "#45fadf",
+  "#9f211b",
+  "#d2630a",
+  "#ad31da",
+  "#a36f17",
+  "#1381a9",
+  "#efc934",
+]
