@@ -1,13 +1,15 @@
 import { css, Interpolation, Theme } from '@emotion/react'
-import { BoardDescription, ItemContext, MaterialContext } from '@gamepark/react-game'
+import { Player } from '@gamepark/react-client/dist/Types/Player'
+import { BoardDescription, getRelativePlayerIndex, ItemContext, MaterialContext } from '@gamepark/react-game'
 import { MaterialItem } from '@gamepark/rules-api'
 import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { Operator } from '@gamepark/trek12-amazonie/material/Operator'
-import { range } from 'lodash'
 import Images from '../images/Images'
 import { nodeCoordinates } from '../locator/ExplorationNodeLocator'
 import { ExplorationMapHelp } from './ExplorationMapHelp'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
+import orderBy from 'lodash/orderBy'
+import range from 'lodash/range'
 
 export class ExplorationMapDescription extends BoardDescription {
   width = EXPEDITION_MAP_SIZE
@@ -16,8 +18,10 @@ export class ExplorationMapDescription extends BoardDescription {
   image = Images.forest1
   help = ExplorationMapHelp
 
-  getStaticItems({ rules: { players } }: MaterialContext) {
-    return players.map((player) => ({ id: player, location: { type: LocationType.ExplorationMap } }))
+  getStaticItems(context: MaterialContext) {
+    const { rules: { players }} = context
+    return orderBy(players, (p) => getRelativePlayerIndex(context, p))
+      .map((player) => ({ id: player, location: { type: LocationType.ExplorationMap } }))
   }
 
   getLocations(item: MaterialItem, _context: ItemContext) {
