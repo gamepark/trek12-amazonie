@@ -1,5 +1,4 @@
 import { css, Interpolation, Theme } from '@emotion/react'
-import { Player } from '@gamepark/react-client/dist/Types/Player'
 import { BoardDescription, getRelativePlayerIndex, ItemContext, MaterialContext } from '@gamepark/react-game'
 import { MaterialItem } from '@gamepark/rules-api'
 import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'

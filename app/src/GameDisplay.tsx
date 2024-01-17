@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { pointerWithin } from '@dnd-kit/core'
-import { GameTable } from '@gamepark/react-game'
+import { css } from '@emotion/react'
+import { GameTable, GameTableNavigation } from '@gamepark/react-game'
 import { FC } from 'react'
 import { PlayerPanels } from './players/PlayerPanels'
 
@@ -19,11 +20,24 @@ export const GameDisplay: FC<GameDisplayProps> = ({ players }) => {
         yMax={tableSizes.yMax}
         collisionAlgorithm={pointerWithin}
         margin={{ top: 7.5, left: 0, right: tableSizes.margin, bottom: 0 }}
-      />
+      >
+        { players > 1 && <GameTableNavigation css={navigationPosition(players)} /> }
+      </GameTable>
       {players !== 1 && <PlayerPanels/>}
     </>
   )
 }
+const navigationPosition = (index: number) => css`
+  position: absolute;
+  left: auto;
+  right: 1em;
+  top: ${8.5 + index * 14}em;
+  width: 14em;
+  height: 12em;
+  > button {
+    filter: drop-shadow(0.1em 0.1em 0.05em black);
+  }
+`
 
 function getTableSize(playerNumber: number): { xMin: number, xMax: number, yMin: number, yMax: number, margin: number } {
   switch (playerNumber) {

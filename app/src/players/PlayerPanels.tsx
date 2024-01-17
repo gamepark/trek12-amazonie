@@ -15,7 +15,7 @@ export const PlayerPanels: FC<Trek12AmazoniePlayerPanelProps> = ({ ...props }) =
   return (
     <>
       {players.map((player, index) =>
-        <PlayerPanel key={player.id} playerId={player.id} css={panelPosition(index)} {...props}>
+        <PlayerPanel activeRing key={player.id} playerId={player.id} css={panelPosition(index)} {...props}>
           <div css={indicators}>
 
             <span><FontAwesomeIcon icon={faStar} css={fontIcon} fill="#28B8CE"/> {rules?.getScore(player.id)}</span>
