@@ -18,11 +18,10 @@ export class TotalDescription extends WritingDescription {
     const { rules } = context
     const { players } = rules
     return players
-      .flatMap((player) => {
+      .map((player) => {
         const score = new Score(rules.game, player)
-        return [{ id: score.total, location: { type: LocationType.TotalScore, player, x: 0 } }]
+        return { id: score.total, location: { type: LocationType.TotalScore, player, x: 0 } }
       })
-
   }
 
   getFrontContent(itemId: any) {
