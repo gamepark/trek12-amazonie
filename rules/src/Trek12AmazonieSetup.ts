@@ -17,7 +17,7 @@ export class Trek12AmazonieSetup extends MaterialGameSetup<PlayerId, MaterialTyp
     this.setupDice()
   }
 
-  setupNumberCards = () => {
+  setupNumberCards() {
     const numbers = shuffle(numberCards)
       .slice(0, 3)
       .map((id) => ({

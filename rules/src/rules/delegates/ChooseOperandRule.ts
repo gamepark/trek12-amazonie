@@ -31,7 +31,7 @@ export class ChooseOperandRule extends MaterialRulesPart {
       })
   }
 
-  beforeItemMove(move: ItemMove) {
+  afterItemMove(move: ItemMove) {
     if (!isCreateItemType(MaterialType.Cross)(move)) return []
     this.memorize(Memory.Operand, move.item.location.id, this.player)
     return []

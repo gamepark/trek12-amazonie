@@ -86,7 +86,7 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
     {
       popup: {
         text: () => <Trans defaults="tuto.choose.value.1"><strong/><em/></Trans>,
-        position: { x: -40, y: 20 }
+        position: { x: -40, y: 15 }
       },
       focus: () => [
         this.location(LocationType.ExpeditionNode).player(1).id(15)

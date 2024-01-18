@@ -1,4 +1,14 @@
-import { CustomMove, isCreateItemType, isCustomMoveType, isEndPlayerTurn, ItemMove, MaterialMove, RuleMove, SimultaneousRule } from '@gamepark/rules-api'
+import {
+  CustomMove,
+  isCreateItem,
+  isCreateItemType,
+  isCustomMoveType,
+  isEndPlayerTurn,
+  ItemMove,
+  MaterialMove, playMove,
+  RuleMove,
+  SimultaneousRule
+} from '@gamepark/rules-api'
 import { LocationType } from '../material/LocationType'
 import { MaterialType } from '../material/MaterialType'
 import { CustomMoveType } from './CustomMoveType'
@@ -27,6 +37,10 @@ export class ChooseResultRule extends SimultaneousRule {
   }
 
   afterItemMove(move: ItemMove): MaterialMove[] {
+    if (isCreateItemType(MaterialType.Cross)(move)) {
+      return new ChooseOperandRule(this.game, move.item.location.player!).afterItemMove(move)
+    }
+
     if (!isCreateItemType(MaterialType.ExpeditionNodeValue)(move) && !isCreateItemType(MaterialType.Path)(move) && !isCreateItemType(MaterialType.AreaNode)(move)) return []
     return new PlaceResultRule(this.game, move.item.location.player!).afterItemMove(move)
   }
