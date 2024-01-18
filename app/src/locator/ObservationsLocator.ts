@@ -17,15 +17,15 @@ export const observationsLocator = new ObservationsLocator()
 function getCardsCoordinates(players: number): Coordinates {
   switch (players) {
     case 1:
-      return { x: -6, y: -10, z: 0 }
+      return { x: -6, y: -10, z: 1 }
     case 2:
     case 3:
-      return { x: -26.5, y: -10, z: 0 }
+      return { x: -26.5, y: -10, z: 1 }
     case 4:
     case 5:
     case 6:
     default:
-      return { x: 33, y: -10, z: 0 }
+      return { x: 33, y: -10, z: 1 }
   }
 }
 

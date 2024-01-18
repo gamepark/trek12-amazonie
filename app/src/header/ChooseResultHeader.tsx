@@ -3,7 +3,7 @@ import { css } from '@emotion/react'
 import { faArrowDown, faArrowUp, faMinus, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { PlayMoveButton, useLegalMoves, usePlayerId, useRules } from '@gamepark/react-game'
-import { isCustomMoveType, SimultaneousRule } from '@gamepark/rules-api'
+import { isCreateItemType, isCustomMoveType, SimultaneousRule } from '@gamepark/rules-api'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 import { applyOperator, Operator } from '@gamepark/trek12-amazonie/material/Operator'
 import { CustomMoveType } from '@gamepark/trek12-amazonie/rules/CustomMoveType'
@@ -35,11 +35,11 @@ export const ChooseResultHeader: FC = () => {
     return <><Trans defaults="header.you.choose.node" values={{ result: applyOperator(operand, dice) }}></Trans></>
   }
 
-  const max = moves.find((move) => isCustomMoveType(CustomMoveType.ChooseOperand)(move) && move.data.operator === Operator.MAX)
-  const min = moves.find((move) => isCustomMoveType(CustomMoveType.ChooseOperand)(move) && move.data.operator === Operator.MIN)
-  const minus = moves.find((move) => isCustomMoveType(CustomMoveType.ChooseOperand)(move) && move.data.operator === Operator.MINUS)
-  const plus = moves.find((move) => isCustomMoveType(CustomMoveType.ChooseOperand)(move) && move.data.operator === Operator.PLUS)
-  const multiply = moves.find((move) => isCustomMoveType(CustomMoveType.ChooseOperand)(move) && move.data.operator === Operator.MULTIPLY)
+  const max = moves.find((move) => isCreateItemType(MaterialType.Cross)(move) && move.item.location.id === Operator.MAX)
+  const min = moves.find((move) => isCreateItemType(MaterialType.Cross)(move) && move.item.location.id === Operator.MIN)
+  const minus = moves.find((move) => isCreateItemType(MaterialType.Cross)(move) && move.item.location.id === Operator.MINUS)
+  const plus = moves.find((move) => isCreateItemType(MaterialType.Cross)(move) && move.item.location.id === Operator.PLUS)
+  const multiply = moves.find((move) => isCreateItemType(MaterialType.Cross)(move) && move.item.location.id === Operator.MULTIPLY)
 
   return <>{t(`header.you.choose.operand`)}
     <PlayMoveButton move={min}><FontAwesomeIcon icon={faArrowDown}/> <span css={alignCss}> ({applyOperator(Operator.MIN, dice)}) </span></PlayMoveButton>

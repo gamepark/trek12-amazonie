@@ -2,6 +2,7 @@ import { LineLocator } from '@gamepark/react-game'
 import { Location } from '@gamepark/rules-api'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 import { EXPEDITION_MAP_SIZE } from '../material/utils/MapUtils'
+import { ObservationScoreDescription } from './description/ObservationScoreDescription'
 
 export class ObservationScoresLocator extends LineLocator {
   parentItemType = MaterialType.ExplorationMap
@@ -9,6 +10,7 @@ export class ObservationScoresLocator extends LineLocator {
   delta = { x: 0.038 * EXPEDITION_MAP_SIZE }
 
   coordinates = { x: 0, y: 0, z: 1 }
+  locationDescription = new ObservationScoreDescription()
 
   getPositionOnParent(location: Location) {
     return {

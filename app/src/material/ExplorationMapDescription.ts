@@ -27,11 +27,11 @@ export class ExplorationMapDescription extends BoardDescription {
     const player = item.id!
     return [
       ...nodeCoordinates.map((c, index) => ({ type: LocationType.ExpeditionNode, id: index, player })),
-      ...range(4).map((x) => ({ id: Operator.MIN, type: LocationType.OperatorChoice, x })),
-      ...range(4).map((x) => ({ id: Operator.MAX, type: LocationType.OperatorChoice, x })),
-      ...range(4).map((x) => ({ id: Operator.MINUS, type: LocationType.OperatorChoice, x })),
-      ...range(4).map((x) => ({ id: Operator.PLUS, type: LocationType.OperatorChoice, x })),
-      ...range(4).map((x) => ({ id: Operator.MULTIPLY, type: LocationType.OperatorChoice, x }))
+      ...range(4).map((x) => ({ id: Operator.MIN, type: LocationType.OperatorChoice, x, player })),
+      ...range(4).map((x) => ({ id: Operator.MAX, type: LocationType.OperatorChoice, x, player })),
+      ...range(4).map((x) => ({ id: Operator.MINUS, type: LocationType.OperatorChoice, x, player })),
+      ...range(4).map((x) => ({ id: Operator.PLUS, type: LocationType.OperatorChoice, x, player })),
+      ...range(4).map((x) => ({ id: Operator.MULTIPLY, type: LocationType.OperatorChoice, x, player }))
     ]
   }
 

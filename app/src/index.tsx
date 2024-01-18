@@ -9,6 +9,7 @@ import App from './App'
 import { locators } from './locator/Locators'
 import { material } from './material/Material'
 import translations from './translations.json'
+import { Tutorial } from './tutorial/Tutorial'
 
 setupTranslation(translations, { debug: false })
 
@@ -21,6 +22,7 @@ ReactDOM.render(
                   material={material}
                   locators={locators}
                   animations={trek12AmazonieAnimations}
+                  tutorial={new Tutorial()}
                   theme={{
                     root: {
                       background: {

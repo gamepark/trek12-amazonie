@@ -9,8 +9,8 @@ import { ObservationScoresHelp } from './ObservationScoresHelp'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 
 export class ObservationScoresDescription extends WritingDescription {
-  height = 0.037 * EXPEDITION_MAP_SIZE
-  width = 0.037 * EXPEDITION_MAP_SIZE
+  height = 0.038 * EXPEDITION_MAP_SIZE
+  width = 0.038 * EXPEDITION_MAP_SIZE
   help = ObservationScoresHelp
 
   getStaticItems(context: MaterialContext) {

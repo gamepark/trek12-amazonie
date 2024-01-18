@@ -17,7 +17,7 @@ export const numbersLocator = new NumbersLocator()
 function getCardsCoordinates(players: number): Coordinates {
   switch (players) {
     case 1:
-      return { x: -6, y: -3, z: -1 }
+      return { x: -6, y: -3, z: 0 }
     case 2:
     case 3:
       return { x: -21.5, y: -8, z: 0 }
@@ -25,7 +25,7 @@ function getCardsCoordinates(players: number): Coordinates {
     case 5:
     case 6:
     default:
-      return { x: 37, y: -10, z: -1 }
+      return { x: 37, y: -10, z: 0 }
   }
 }
 

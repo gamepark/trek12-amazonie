@@ -17,7 +17,7 @@ export class OperatorChoiceLocator extends LineLocator {
 
   getPositionOnParent(location: Location) {
     return {
-      x: 78.0,
+      x: 78.0 + ((location.id - 1) * 0.05),
       y: 59.6 + ((location.id - 1) * 3.8)
     }
   }

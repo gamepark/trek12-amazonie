@@ -1,4 +1,4 @@
-import { CustomMove, isCustomMoveType, MaterialGame, MaterialMove, MaterialRulesPart } from '@gamepark/rules-api'
+import { CustomMove, isCreateItemType, isCustomMoveType, ItemMove, MaterialGame, MaterialMove, MaterialRulesPart } from '@gamepark/rules-api'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
 import { Operator, operators } from '../../material/Operator'
@@ -14,33 +14,27 @@ export class ChooseOperandRule extends MaterialRulesPart {
   }
 
   getLegalMoves(): MaterialMove<number, number, number>[] {
-
     return operators
       .filter((operator) => this.canChooseOperator(operator))
-      .map((operator) => this.rules().customMove(CustomMoveType.ChooseOperand, { operator, player: this.player }))
+      .map((operator) => {
+        const existingCross = this.material(MaterialType.Cross).player(this.player).locationId(operator).length
+
+        return this.material(MaterialType.Cross)
+          .createItem({
+            location: {
+              type: LocationType.OperatorChoice,
+              id: operator,
+              player: this.player,
+              x: existingCross
+            }
+          })
+      })
   }
 
-  onCustomMove(move: CustomMove) {
-    if (isCustomMoveType(CustomMoveType.ChooseOperand)(move)) {
-      this.memorize(Memory.Operand, move.data.operator, this.player)
-      return this.addCross(move.data.operator)
-    }
-
+  beforeItemMove(move: ItemMove) {
+    if (!isCreateItemType(MaterialType.Cross)(move)) return []
+    this.memorize(Memory.Operand, move.item.location.id, this.player)
     return []
-  }
-
-  addCross(operator: Operator) {
-
-    return [
-      this.material(MaterialType.Cross)
-        .createItem({
-          location: {
-            type: LocationType.OperatorChoice,
-            id: operator,
-            player: this.player
-          }
-        })
-    ]
   }
 
   canChooseOperator(operator: Operator) {

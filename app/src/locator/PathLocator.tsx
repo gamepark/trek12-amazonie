@@ -1,11 +1,13 @@
-import { ItemLocator, MaterialContext } from '@gamepark/react-game'
+import { ItemContext, ItemLocator, MaterialContext } from '@gamepark/react-game'
 import { Location, MaterialItem, XYCoordinates } from '@gamepark/rules-api'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 import mean from 'lodash/mean'
+import { PathLocationDescription } from './description/PathLocationDescription'
 import { nodeCoordinates } from './ExplorationNodeLocator'
 
 export class PathLocator extends ItemLocator {
   parentItemType = MaterialType.ExplorationMap
+  locationDescription = new PathLocationDescription()
 
   getPositionOnParent(location: Location, _context: MaterialContext): XYCoordinates {
     const coordinates = this.getPathCoordinates(location)

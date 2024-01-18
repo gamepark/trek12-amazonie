@@ -1,5 +1,5 @@
 import {
-  CompetitiveScore,
+  CompetitiveScore, HiddenMaterialRules,
   HidingStrategy,
   MaterialGame,
   MaterialItem,
@@ -24,7 +24,7 @@ export const hideIdWhenNotRotated: HidingStrategy = (
   return !item.location.rotation ? [] : ['id']
 }
 
-export class Trek12AmazonieRules extends SecretMaterialRules<PlayerId, MaterialType, LocationType>
+export class Trek12AmazonieRules extends HiddenMaterialRules<PlayerId, MaterialType, LocationType>
   implements CompetitiveScore<MaterialGame<PlayerId, MaterialType, LocationType>, MaterialMove<PlayerId, MaterialType, LocationType>, PlayerId>,
     TimeLimit<MaterialGame<PlayerId, MaterialType, LocationType>, MaterialMove<PlayerId, MaterialType, LocationType>, PlayerId> {
 
