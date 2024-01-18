@@ -57,13 +57,12 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.choose.op.1"><strong/><em/></Trans>,
+        text: () => <Trans defaults="tuto.choose.op.1"><strong/><em/><span css={iconStyle(Images.MinIcon)}/></Trans>,
         position: { x: -20, y: -15 }
       },
       focus: (game) => [
         this.location(LocationType.OperatorChoice).player(1).id(Operator.MIN).x(0),
         this.material(game, MaterialType.YellowDice),
-        this.material(game, MaterialType.GreenDice),
       ],
       move: {
         filter: (move) => {
@@ -133,7 +132,7 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.choose.op.2"><strong/><em/></Trans>,
+        text: () => <Trans defaults="tuto.choose.op.2"><strong/><em/><span css={iconStyle(Images.MaxIcon)}/></Trans>,
         position: { x: -20, y: -15 }
       },
       focus: (game) => [

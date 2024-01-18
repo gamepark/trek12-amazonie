@@ -15,13 +15,6 @@ export class PathDescription extends WritingDescription {
   getFrontContent() {
     return <span css={path}/>
   }
-
-  getImages(): string[] {
-    return [
-      ...super.getImages(),
-      Images.MinusIcon
-    ]
-  }
 }
 
 const path = css`

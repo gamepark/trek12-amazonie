@@ -29,6 +29,8 @@ import animalNumber5 from './number/5.jpg'
 import animalNumber6 from './number/6.jpg'
 import animalNumberBack from './number/back.jpg'
 import MinusIcon from './icons/minus.jpg'
+import MinIcon from './icons/min.jpg'
+import MaxIcon from './icons/max.jpg'
 
 const Images = {
   animalBack, animalNumberBack,
@@ -37,7 +39,7 @@ const Images = {
   forest1,
   yellowDice0, yellowDice1, yellowDice2, yellowDice3, yellowDice4, yellowDice5,
   greenDice1, greenDice2, greenDice3, greenDice4, greenDice5, greenDice6,
-  MinusIcon
+  MinusIcon, MinIcon, MaxIcon
 }
 
 export default Images
