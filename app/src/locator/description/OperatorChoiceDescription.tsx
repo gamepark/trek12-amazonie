@@ -8,7 +8,7 @@ import { EXPEDITION_MAP_SIZE } from '../../material/utils/MapUtils'
 export class OperatorChoiceDescription extends LocationDescription<PlayerId, MaterialType, LocationType> {
   height = 0.037 * EXPEDITION_MAP_SIZE
   width = 0.039 * EXPEDITION_MAP_SIZE
-  rotateZ = -2
+  //rotateZ = -2
 
   getCoordinates(location: Location): Coordinates {
     return {
