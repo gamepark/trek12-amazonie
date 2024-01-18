@@ -1,5 +1,5 @@
 import { LocationContext, LocationDescription } from '@gamepark/react-game'
-import { Location } from '@gamepark/rules-api/dist/material/location/Location'
+import { Location } from '@gamepark/rules-api'
 import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 import { PlayerId } from '@gamepark/trek12-amazonie/Trek12AmazonieOptions'

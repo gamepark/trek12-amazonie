@@ -1,10 +1,7 @@
-import { LocationContext, LocationDescription, MaterialContext } from '@gamepark/react-game'
-import { Coordinates, Location } from '@gamepark/rules-api/dist/material/location/Location'
-import { isCustomMoveType } from '@gamepark/rules-api/dist/material/moves/CustomMove'
-import { MaterialMove } from '@gamepark/rules-api/dist/material/moves/MaterialMove'
+import { LocationDescription } from '@gamepark/react-game'
+import { Coordinates, Location } from '@gamepark/rules-api'
 import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
-import { CustomMoveType } from '@gamepark/trek12-amazonie/rules/CustomMoveType'
 import { PlayerId } from '@gamepark/trek12-amazonie/Trek12AmazonieOptions'
 import { EXPEDITION_MAP_SIZE } from '../../material/utils/MapUtils'
 
