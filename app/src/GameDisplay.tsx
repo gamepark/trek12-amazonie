@@ -20,7 +20,7 @@ export const GameDisplay: FC<GameDisplayProps> = ({ players }) => {
         yMax={tableSizes.yMax}
         collisionAlgorithm={pointerWithin}
         margin={{ top: 7.5, left: 0, right: tableSizes.margin, bottom: 0 }}
-        css={css`background-color: rgba(255, 255, 255, 0.47)`}
+        //css={css`background-color: rgba(255, 255, 255, 0.47)`}
       >
         { players > 1 && <GameTableNavigation css={navigationPosition(players)} /> }
       </GameTable>
