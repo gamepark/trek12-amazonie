@@ -112,7 +112,7 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
     {
       popup: {
         text: () => <Trans defaults="tuto.obs.choose"><strong/><em/></Trans>,
-        position: { x: -50, y: -10 }
+        position: { x: -45, y: -10 }
       },
       focus: () => [
         ...range(6).map((c) => this.location(LocationType.ObservationScores).id(0).player(1).x(c)),
@@ -123,7 +123,7 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
     {
       popup: {
         text: () => <Trans defaults="tuto.obs.score"><strong/><em/></Trans>,
-        position: { x: -50, y: -10 }
+        position: { x: -45, y: -10 }
       },
       focus: () => [
         ...range(6).map((c) => this.location(LocationType.ObservationScores).id(0).player(1).x(c)),
