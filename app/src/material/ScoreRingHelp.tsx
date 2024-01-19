@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { MaterialHelpProps, usePlayerId, useRules } from '@gamepark/react-game'
+import { MaterialHelpProps, usePlayerId, usePlayerName, useRules } from '@gamepark/react-game'
 import { ExplorationCardScores } from '@gamepark/trek12-amazonie/material/ExplorationCard'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 import { Trek12AmazonieRules } from '@gamepark/trek12-amazonie/Trek12AmazonieRules'
@@ -11,6 +11,7 @@ export const ScoreRingHelp = ({ item }: MaterialHelpProps) => {
   const rules = useRules<Trek12AmazonieRules>()
   const player = usePlayerId()
   const isPlayer = item.location?.player === player
+  const playerName = usePlayerName(item.location?.player)
 
   const ringScoringPosition = item.location?.x ?? 0
 
@@ -22,7 +23,7 @@ export const ScoreRingHelp = ({ item }: MaterialHelpProps) => {
     </p>
     {isPlayer
       ? <p><Trans defaults="score.ring.yours.scoring" values={{ scoring: scoreArray[ringScoringPosition] }}></Trans></p>
-      : <p><Trans defaults="score.ring.theirs.scoring" values={{ scoring: scoreArray[ringScoringPosition] }}></Trans></p>
+      : <p><Trans defaults="score.ring.theirs.scoring" values={{ scoring: scoreArray[ringScoringPosition], player: playerName }}></Trans></p>
     }
   </>
 }

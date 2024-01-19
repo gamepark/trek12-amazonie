@@ -1,15 +1,16 @@
 /** @jsxImportSource @emotion/react */
-import { MaterialHelpProps, usePlayerId } from '@gamepark/react-game'
+import { MaterialHelpProps, usePlayerId, usePlayerName } from '@gamepark/react-game'
 import { Trans, useTranslation } from 'react-i18next'
 
 export const SubTotalHelp = ({ item }: MaterialHelpProps) => {
   const { t } = useTranslation()
   const player = usePlayerId()
   const isPlayer = item.location?.player === player
+  const playerName = usePlayerName(item.location?.player)
 
   return <>
     <h2>{t(`sub.total.help.title`)}</h2>
-    <p><Trans defaults={getScoringLabel(item.location?.id, isPlayer)} values={{ scoring: item.id }}></Trans></p>
+    <p><Trans defaults={getScoringLabel(item.location?.id, isPlayer)} values={{ scoring: item.id, player: playerName }}></Trans></p>
   </>
 }
 
@@ -23,7 +24,7 @@ const getScoringLabel = (idLabel: number, isPlayer: boolean): string => {
       return isPlayer ? 'sub.total.observations.yours.text' : 'sub.total.areas.theirs.text'
     case 3:
     default:
-      return isPlayer ? 'sub.total.observations.yours.text' : 'sub.total.dangers.theirs.text'
+      return isPlayer ? 'sub.total.dangers.yours.text' : 'sub.total.dangers.theirs.text'
 
   }
 

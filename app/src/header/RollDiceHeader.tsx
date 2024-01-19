@@ -1,7 +1,6 @@
 import { FC } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 
 export const RollDiceHeader: FC = () => {
-  const { t } = useTranslation()
-  return <>{t(`header.dice.rolling`)}</>
+  return <><Trans defaults="header.dice.rolling"></Trans></>
 }

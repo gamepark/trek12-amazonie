@@ -21,7 +21,7 @@ export const ChooseResultHeader: FC = () => {
     return <><Trans defaults="header.opponent.choose"></Trans></>
   }
 
-  if (moves.find(move => move.itemType === 11)) {
+  if (moves.find(isCreateItemType(MaterialType.Path))) {
     return <><Trans defaults="header.player.choose.path"></Trans></>
   }
 

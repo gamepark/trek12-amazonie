@@ -19,16 +19,17 @@ export const ObservationCardHelp = ({ item }: MaterialHelpProps) => {
     .locationId(item.location?.x)
     .player(player).getItem()?.location.x
 
+  const number = rules?.material(MaterialType.NumberCard).location((l) => l.x === item.location?.x!).getItem()!.id - 1
   return <>
     <h2>{t(`observation.card.help.title`)}</h2>
     {isHidden
       ?
       <p css={textCss}>
-        {t(`observation.card.hidden.help.text`)}
+        {t(`observation.card.hidden.help.text`, { number: number })}
       </p>
       :
       <p css={textCss}>
-        <Trans defaults="observation.card.revelead.help.text" values={{ pointsEarned: scoreArray[ring] ?? 0 }}></Trans>
+        <Trans defaults="observation.card.revelead.help.text" values={{ pointsEarned: scoreArray[ring] ?? 0, number: number }}></Trans>
         <span>{}</span>
       </p>
     }

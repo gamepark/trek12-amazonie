@@ -17,10 +17,7 @@ export const PlayerPanels: FC<Trek12AmazoniePlayerPanelProps> = ({ ...props }) =
       {players.map((player, index) =>
         <PlayerPanel activeRing key={player.id} playerId={player.id} css={panelPosition(index)} {...props}>
           <div css={indicators}>
-
             <span><FontAwesomeIcon icon={faStar} css={fontIcon} fill="#28B8CE"/> {rules?.getScore(player.id)}</span>
-
-
           </div>
         </PlayerPanel>
       )}
@@ -41,7 +38,7 @@ const indicators = css`
   display: flex;
   flex-direction: row;
   position: absolute;
-  bottom: 0.4em;
+  bottom: 0;
   left: 0.8em;
   flex-wrap: wrap;
 
