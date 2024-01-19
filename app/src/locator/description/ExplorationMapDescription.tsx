@@ -1,4 +1,4 @@
-import { LocationContext, LocationDescription, MaterialContext } from '@gamepark/react-game'
+import { getRelativePlayerIndex, LocationContext, LocationDescription, MaterialContext } from '@gamepark/react-game'
 import { Coordinates, Location } from '@gamepark/rules-api'
 import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { explorationMapDescription } from '../../material/ExplorationMapDescription'
@@ -22,12 +22,14 @@ export class ExplorationMapDescription extends LocationDescription {
   }
 
   getCoordinates(location: Location, context: LocationContext): Coordinates {
-    const base = getBaseCoordinates(context.rules.game.players.length)
+    const players = context.rules.game.players
+    const base = getBaseCoordinates(players.length)
+    const index = getRelativePlayerIndex(context, location.player)
 
     return {
       ...base,
-      x: (base.x + ((explorationMapDescription.width + 0.9) * ((location.player! - 1) % 3))),
-      y: base.y + (location.player! < 4 ? 0 : 20),
+      x: (base.x + ((explorationMapDescription.width + 0.9) * ((index) % 3))),
+      y: base.y + (index < 3 ? 0 : 20),
       z: 10
     }
   }
