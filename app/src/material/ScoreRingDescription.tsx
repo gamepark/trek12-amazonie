@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { MaterialContext, WritingDescription } from '@gamepark/react-game'
+import { WritingDescription } from '@gamepark/react-game'
 import React from 'react'
 import { ScoreRingHelp } from './ScoreRingHelp'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
@@ -11,7 +11,7 @@ export class ScoreRingDescription extends WritingDescription {
   borderRadius = 4
   help = ScoreRingHelp
 
-  getFrontContent(_itemId: any, _context: MaterialContext<number, number, number>): React.ReactNode | undefined {
+  getFrontContent() {
     return <div css={circle}></div>
   }
 }

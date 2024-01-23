@@ -29,7 +29,7 @@ export class DangerTickDescription extends WritingDescription {
     })
   }
 
-  getFrontContent(_itemId: any, _context: MaterialContext<number, number, number>): React.ReactNode | undefined {
+  getFrontContent() {
     return <div css={circle}>X</div>
   }
 }
