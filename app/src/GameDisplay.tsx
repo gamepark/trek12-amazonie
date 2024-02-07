@@ -34,7 +34,7 @@ const navigationPosition = (index: number) => css`
   right: 1em;
   top: ${8.5 + index * 14}em;
   width: 14em;
-  height: 12em;
+  height: 14em;
   > button {
     padding: 0;
     filter: drop-shadow(0.1em 0.1em 0.05em black);

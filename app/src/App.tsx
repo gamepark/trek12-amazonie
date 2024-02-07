@@ -23,7 +23,7 @@ export default function App() {
       <LoadingScreen display={loading} author="Bruno Cathala & Corentin Lebrat" artist="Olivier Derouetteau & Maxime Morin" publisher="Lumberjacks"
                      developer="Game Park & Théo Grégorio"/>
       <MaterialImageLoader onImagesLoad={() => setImagesLoading(false)}/>
-      <MaterialHeader rulesStepsHeaders={headers}/>
+      <MaterialHeader rulesStepsHeaders={headers} loading={loading} />
       <Menu/>
       <FailuresDialog/>
       <FullscreenDialog/>

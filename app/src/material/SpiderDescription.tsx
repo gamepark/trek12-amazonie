@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { faSpider } from '@fortawesome/free-solid-svg-icons'
+import { faSpider } from '@fortawesome/free-solid-svg-icons/faSpider'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { WritingDescription } from '@gamepark/react-game'
 import React from 'react'

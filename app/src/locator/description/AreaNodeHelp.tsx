@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { faSailboat } from '@fortawesome/free-solid-svg-icons'
+import { faSailboat } from '@fortawesome/free-solid-svg-icons/faSailboat'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { LocationHelpProps, PlayMoveButton, useLegalMoves, usePlayerId, usePlayerName } from '@gamepark/react-game'
 import { ForestBasicFieldTypes } from '@gamepark/trek12-amazonie/forests/Forest'
