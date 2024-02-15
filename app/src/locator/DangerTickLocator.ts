@@ -1,5 +1,5 @@
-import { GridLocator } from '@gamepark/react-game'
-import { Location } from '@gamepark/rules-api'
+import { GridLocator, ItemContext } from '@gamepark/react-game'
+import { Coordinates, Location, MaterialItem } from '@gamepark/rules-api'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 import { EXPEDITION_MAP_SIZE } from '../material/utils/MapUtils'
 import { DangerAreaDescription } from './description/DangerAreaDescription'
@@ -13,6 +13,13 @@ export class DangerTickLocator extends GridLocator {
 
   parentItemType = MaterialType.ExplorationMap
 
+  getCoordinates(item: MaterialItem<number, number>, _context: ItemContext<number, number, number>): Coordinates {
+    if(item.location.x! < 8) {
+      return { x: 0, y: 0, z: 1 }
+    }
+
+    return { x: 15, y: -5, z: 1 }
+  }
 
   coordinates = { x: 0, y: 0, z: 1 }
   positionOnParent = { x: 70.1, y: 83.6 }

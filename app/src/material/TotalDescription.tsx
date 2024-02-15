@@ -30,7 +30,7 @@ export class TotalDescription extends WritingDescription {
 }
 
 const itemIdStyle = css`
-  font-size: ${0.04 * EXPEDITION_MAP_SIZE}em;
+  font-size: ${0.035 * EXPEDITION_MAP_SIZE}em;
   font-weight: bold;
   font-family: 'Rock Salt', cursive;
   color: black;
