@@ -36,34 +36,42 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
         text: () => <Trans defaults="tuto.dice"><strong/><em/></Trans>,
         position: { x: 45, y: 5 }
       },
-      focus: (game) => [
-        this.material(game, MaterialType.YellowDice),
-        this.material(game, MaterialType.GreenDice),
-      ]
+      focus: (game) => ({
+        materials: [
+          this.material(game, MaterialType.YellowDice),
+          this.material(game, MaterialType.GreenDice),
+        ]
+      })
     },
     {
       popup: {
         text: () => <Trans defaults="tuto.operator"><strong/><em/></Trans>,
         position: { x: -20, y: -15 }
       },
-      focus: () => [
-        ...range(4).map((x) => this.location(LocationType.OperatorChoice).id(Operator.MIN).x(x)),
-        ...range(4).map((x) => this.location(LocationType.OperatorChoice).id(Operator.MAX).x(x)),
-        ...range(4).map((x) => this.location(LocationType.OperatorChoice).id(Operator.MINUS).x(x)),
-        ...range(4).map((x) => this.location(LocationType.OperatorChoice).id(Operator.PLUS).x(x)),
-        ...range(4).map((x) => this.location(LocationType.OperatorChoice).id(Operator.MULTIPLY).x(x))
+      focus: () => ({
+        locations: [
+          ...range(4).map((x) => this.location(LocationType.OperatorChoice).id(Operator.MIN).x(x).location),
+          ...range(4).map((x) => this.location(LocationType.OperatorChoice).id(Operator.MAX).x(x).location),
+          ...range(4).map((x) => this.location(LocationType.OperatorChoice).id(Operator.MINUS).x(x).location),
+          ...range(4).map((x) => this.location(LocationType.OperatorChoice).id(Operator.PLUS).x(x).location),
+          ...range(4).map((x) => this.location(LocationType.OperatorChoice).id(Operator.MULTIPLY).x(x).location)
 
-      ]
+        ]
+      })
     },
     {
       popup: {
         text: () => <Trans defaults="tuto.choose.op.1"><strong/><em/><span css={iconStyle(Images.MinIcon)}/></Trans>,
         position: { x: -20, y: -15 }
       },
-      focus: (game) => [
-        this.location(LocationType.OperatorChoice).player(1).id(Operator.MIN).x(0),
-        this.material(game, MaterialType.YellowDice),
-      ],
+      focus: (game) => ({
+        materials: [
+          this.material(game, MaterialType.YellowDice),
+        ],
+        locations: [
+          this.location(LocationType.OperatorChoice).player(1).id(Operator.MIN).x(0).location
+        ]
+      }),
       move: {
         filter: (move) => {
           return isCreateItemType(MaterialType.Cross)(move) && move.item.location.id === Operator.MIN
@@ -75,18 +83,22 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
         text: () => <Trans defaults="tuto.operator.exp"><strong/><em/></Trans>,
         position: { x: -20, y: -15 }
       },
-      focus: () => [
-        this.location(LocationType.OperatorChoice).player(1).id(Operator.MIN).x(0)
-      ],
+      focus: () => ({
+        locations: [
+          this.location(LocationType.OperatorChoice).player(1).id(Operator.MIN).x(0).location
+        ]
+      }),
     },
     {
       popup: {
         text: () => <Trans defaults="tuto.choose.value.1"><strong/><em/></Trans>,
         position: { x: -40, y: 15 }
       },
-      focus: () => [
-        this.location(LocationType.ExpeditionNode).player(1).id(15)
-      ],
+      focus: () => ({
+        locations: [
+          this.location(LocationType.ExpeditionNode).player(1).id(15).location
+        ]
+      }),
       move: {
         filter: (move) => isCreateItemType(MaterialType.ExpeditionNodeValue)(move) && move.item.location.id === 15,
         randomize: (move) => {
@@ -103,42 +115,46 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
         text: () => <Trans defaults="tuto.obs.exp"><strong/><em/></Trans>,
         position: { x: -45, y: 0 }
       },
-      focus: (game) => [
-        this.material(game, MaterialType.ObservationCard),
-        this.material(game, MaterialType.NumberCard)
-      ],
+      focus: (game) => ({
+        materials: [
+          this.material(game, MaterialType.ObservationCard),
+          this.material(game, MaterialType.NumberCard)
+        ]
+      }),
     },
     {
       popup: {
         text: () => <Trans defaults="tuto.obs.choose"><strong/><em/></Trans>,
         position: { x: -45, y: -10 }
       },
-      focus: () => [
-        ...range(6).map((c) => this.location(LocationType.ObservationScores).id(0).player(1).x(c)),
-        ...range(6).map((c) => this.location(LocationType.ObservationScores).id(1).player(1).x(c )),
-        ...range(6).map((c) => this.location(LocationType.ObservationScores).id(2).player(1).x(c))
-      ],
+      focus: () => ({
+        locations: [
+          ...range(6).map((c) => this.location(LocationType.ObservationScores).id(0).player(1).x(c).location),
+          ...range(6).map((c) => this.location(LocationType.ObservationScores).id(1).player(1).x(c).location),
+          ...range(6).map((c) => this.location(LocationType.ObservationScores).id(2).player(1).x(c).location)
+        ]
+      }),
     },
     {
       popup: {
         text: () => <Trans defaults="tuto.obs.score"><strong/><em/></Trans>,
         position: { x: -45, y: -10 }
       },
-      focus: () => [
-        ...range(6).map((c) => this.location(LocationType.ObservationScores).id(0).player(1).x(c)),
-        ...range(6).map((c) => this.location(LocationType.ObservationScores).id(1).player(1).x(c )),
-        ...range(6).map((c) => this.location(LocationType.ObservationScores).id(2).player(1).x(c))
-      ],
+      focus: (game) => this.steps[game.tutorialStep! - 1].focus!(game),
     },
     {
       popup: {
         text: () => <Trans defaults="tuto.choose.op.2"><strong/><em/><span css={iconStyle(Images.MaxIcon)}/></Trans>,
         position: { x: -20, y: -15 }
       },
-      focus: (game) => [
-        this.location(LocationType.OperatorChoice).player(1).id(Operator.MAX).x(0),
-        this.material(game, MaterialType.GreenDice),
-      ],
+      focus: (game) => ({
+        materials: [
+          this.material(game, MaterialType.GreenDice),
+        ],
+        locations: [
+          this.location(LocationType.OperatorChoice).player(1).id(Operator.MAX).x(0).location
+        ]
+      }),
       move: {
         filter: (move) => isCreateItemType(MaterialType.Cross)(move) && move.item.location.id === Operator.MAX
       }
@@ -148,19 +164,18 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
         text: () => <Trans defaults="tuto.pirogue"><strong/><em/></Trans>,
         position: { x: -20, y: -15 }
       },
-      focus: (game) => [
-        this.location(LocationType.OperatorChoice).player(1).id(Operator.MAX).x(0),
-        this.material(game, MaterialType.GreenDice),
-      ],
+      focus: (game) => this.steps[game.tutorialStep! - 1].focus!(game),
     },
     {
       popup: {
         text: () => <Trans defaults="tuto.choose.value.2"><strong/><em/></Trans>,
         position: { x: -40, y: 20 }
       },
-      focus: () => [
-        this.location(LocationType.ExpeditionNode).player(1).id(16)
-      ],
+      focus: () => ({
+        locations: [
+          this.location(LocationType.ExpeditionNode).player(1).id(16).location
+        ]
+      }),
       move: {
         filter: (move) => isCreateItemType(MaterialType.ExpeditionNodeValue)(move) && move.item.location.id === 16,
         randomize: (move) => {
@@ -176,36 +191,38 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
       popup: {
         text: () => <Trans defaults="tuto.path"><strong/><em/></Trans>
       },
-      focus: () => [
-        this.location(LocationType.Path).player(1).id([15,16])
-      ]
+      focus: () => ({
+        locations: [
+          this.location(LocationType.Path).player(1).id([15,16]).location
+        ]
+      })
     },
     {
       popup: {
         text: () => <Trans defaults="tuto.path.exp"><strong/><em/></Trans>
       },
-      focus: () => [
-        this.location(LocationType.Path).player(1).id([15,16])
-      ]
+      focus: (game) => this.steps[game.tutorialStep! - 1].focus!(game),
     },
     {
       popup: {
         text: () => <Trans defaults="tuto.path.score"><strong/><em/></Trans>
       },
-      focus: () => [
-        this.location(LocationType.Path).player(1).id([15,16])
-      ]
+      focus: (game) => this.steps[game.tutorialStep! - 1].focus!(game),
     },
     {
       popup: {
         text: () => <Trans defaults="tuto.choose.op.3"><strong/><em/><span css={iconStyle(Images.MinusIcon)} /></Trans>,
         position: { x: -20, y: -15 }
       },
-      focus: (game) => [
-        this.location(LocationType.OperatorChoice).player(1).id(Operator.MINUS).x(0),
-        this.material(game, MaterialType.YellowDice),
-        this.material(game, MaterialType.GreenDice),
-      ],
+      focus: (game) => ({
+        materials: [
+          this.material(game, MaterialType.YellowDice),
+          this.material(game, MaterialType.GreenDice),
+        ],
+        locations: [
+          this.location(LocationType.OperatorChoice).player(1).id(Operator.MINUS).x(0).location
+        ]
+      }),
       move: {
         filter: (move) => isCreateItemType(MaterialType.Cross)(move) && move.item.location.id === Operator.MINUS
       }
@@ -215,9 +232,11 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
         text: () => <Trans defaults="tuto.choose.value.2"><strong/><em/></Trans>,
         position: { x: -40, y: 15 }
       },
-      focus: () => [
-        this.location(LocationType.ExpeditionNode).player(1).id(17)
-      ],
+      focus: () => ({
+        locations: [
+          this.location(LocationType.ExpeditionNode).player(1).id(17).location
+        ]
+      }),
       move: {
         filter: (move) => isCreateItemType(MaterialType.ExpeditionNodeValue)(move) && move.item.location.id === 17,
         randomize: (move) => {
@@ -234,57 +253,57 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
         text: () => <Trans defaults="tuto.area"><strong/><em/></Trans>,
         position: { x: 15, y: -10}
       },
-      focus: (game) => [
-        this.material(game, MaterialType.AreaNode),
-        this.location(LocationType.ExpeditionNode).player(1).id(16),
-        this.location(LocationType.ExpeditionNode).player(1).id(17)
-      ],
+      focus: (game) => ({
+        materials: [
+          this.material(game, MaterialType.AreaNode)
+        ],
+        locations: [
+          this.location(LocationType.ExpeditionNode).player(1).id(16).location,
+          this.location(LocationType.ExpeditionNode).player(1).id(17).location
+        ]
+      }),
     },
     {
       popup: {
         text: () => <Trans defaults="tuto.area.exp"><strong/><em/></Trans>,
         position: { x: 15, y: -10}
       },
-      focus: (game) => [
-        this.material(game, MaterialType.AreaNode),
-        this.location(LocationType.ExpeditionNode).player(1).id(16),
-        this.location(LocationType.ExpeditionNode).player(1).id(17)
-      ],
+      focus: (game) => this.steps[game.tutorialStep! - 1].focus!(game),
     },
     {
       popup: {
         text: () => <Trans defaults="tuto.area.score"><strong/><em/></Trans>,
         position: { x: 15, y: -10}
       },
-      focus: (game) => [
-        this.material(game, MaterialType.AreaNode),
-        this.location(LocationType.ExpeditionNode).player(1).id(16),
-        this.location(LocationType.ExpeditionNode).player(1).id(17)
-      ],
+      focus: (game) => this.steps[game.tutorialStep! - 1].focus!(game),
     },
     {
       popup: {
         text: () => <Trans defaults="tuto.end.1"><strong/><em/></Trans>,
         position: { x: -15, y: -15}
       },
-      focus: (game) => [
-        ...range(4).map((x) => this.location(LocationType.OperatorChoice).id(Operator.MIN).x(x)),
-        ...range(4).map((x) => this.location(LocationType.OperatorChoice).id(Operator.MAX).x(x)),
-        ...range(4).map((x) => this.location(LocationType.OperatorChoice).id(Operator.MINUS).x(x)),
-        ...range(4).map((x) => this.location(LocationType.OperatorChoice).id(Operator.PLUS).x(x)),
-        ...range(4).map((x) => this.location(LocationType.OperatorChoice).id(Operator.MULTIPLY).x(x))
-      ],
+      focus: (game) => ({
+        locations: [
+          ...range(4).map((x) => this.location(LocationType.OperatorChoice).id(Operator.MIN).x(x).location),
+          ...range(4).map((x) => this.location(LocationType.OperatorChoice).id(Operator.MAX).x(x).location),
+          ...range(4).map((x) => this.location(LocationType.OperatorChoice).id(Operator.MINUS).x(x).location),
+          ...range(4).map((x) => this.location(LocationType.OperatorChoice).id(Operator.PLUS).x(x).location),
+          ...range(4).map((x) => this.location(LocationType.OperatorChoice).id(Operator.MULTIPLY).x(x).location)
+        ]
+      }),
     },
     {
       popup: {
         text: () => <Trans defaults="tuto.end.2"><strong/><em/></Trans>,
         position: { x: 30, y: -15}
       },
-      focus: (game) => [
-        this.location(LocationType.DangerTick).player(1),
-        ...nodeCoordinates
-          .flatMap((c, index) => [15, 16, 17].includes(index)? []: this.location(LocationType.ExpeditionNode).id(index).player(1)),
-      ],
+      focus: (game) => ({
+        locations: [
+          this.location(LocationType.DangerTick).player(1).location,
+          ...nodeCoordinates
+            .flatMap((c, index) => [15, 16, 17].includes(index)? []: this.location(LocationType.ExpeditionNode).id(index).player(1).location),
+        ]
+      }),
     },
     {
       popup: {

@@ -5,10 +5,10 @@ import { Location } from '@gamepark/rules-api'
 import { Trek12AmazonieRules } from '@gamepark/trek12-amazonie/Trek12AmazonieRules'
 import { FC } from 'react'
 
-type PlayerReminder = {
+type PlayerReminderProps = {
   location: Location
 }
-export const PlayerReminder: FC<PlayerReminder> = (props) => {
+export const PlayerReminder: FC<PlayerReminderProps> = (props) => {
   const { location } = props
   const { player } = location
   const rules = useRules<Trek12AmazonieRules>()
