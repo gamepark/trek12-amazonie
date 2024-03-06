@@ -13,7 +13,7 @@ export class DangerTickLocator extends GridLocator {
 
   parentItemType = MaterialType.ExplorationMap
 
-  getCoordinates(item: MaterialItem<number, number>, _context: ItemContext<number, number, number>): Coordinates {
+  getCoordinates(item: MaterialItem<number, number>, context: ItemContext<number, number, number>): Coordinates {
     if(item.location.x! < 8) {
       return { x: 0, y: 0, z: 1 }
     }
@@ -24,9 +24,28 @@ export class DangerTickLocator extends GridLocator {
   coordinates = { x: 0, y: 0, z: 1 }
   positionOnParent = { x: 70.1, y: 83.6 }
 
+  getPositionOnParent(_location: Location, context: ItemContext<number, number, number>): Coordinates {
+    return getDangerTicketCoordinates(context.rules.game.players.length)
+  }
+
   getParentItemId(location: Location) {
     return location.player
   }
 }
 
 export const dangerTickLocator = new DangerTickLocator()
+
+function getDangerTicketCoordinates(players:number): Coordinates{
+  switch (players){
+    case 1 :
+      return { x: -8.9, y: 109.7, z:0 }
+    case 2:
+    case 3:
+      return { x: -8.9, y: 109.7, z:0 }
+    case 4:
+    case 5:
+    case 6:
+    default:
+      return { x: -8.9, y: 109.7, z:0 }
+  }
+}
