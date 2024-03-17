@@ -32,8 +32,8 @@ export class ExplorationNodeLocator extends ItemLocator<PlayerId, MaterialType, 
     return nodeCoordinates[location.id!]
   }
 
-  getParentItemId(location: Location) {
-    return location.player
+  getParentItem(location: Location) {
+    return { type: MaterialType.ExplorationMap, location: { type: LocationType.ExplorationMap, player: location.player } }
   }
 
 }

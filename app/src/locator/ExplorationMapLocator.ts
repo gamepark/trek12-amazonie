@@ -6,11 +6,11 @@ import { ExplorationMapDescription } from './description/ExplorationMapDescripti
 export class ExplorationMapLocator extends ItemLocator {
   locationDescription = new ExplorationMapDescription()
 
-  getPosition(item: MaterialItem<number, number>, context: ItemContext<number, number, number>): Coordinates {
+  getPosition(item: MaterialItem, context: ItemContext) {
     const players = context.rules.game.players
     const base = getBaseCoordinates(players.length)
 
-    const index = getRelativePlayerIndex(context, item.id)
+    const index = getRelativePlayerIndex(context, item.location.player)
 
     return {
       ...base,

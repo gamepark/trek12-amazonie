@@ -1,5 +1,6 @@
 import { LineLocator } from '@gamepark/react-game'
 import { Location } from '@gamepark/rules-api'
+import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 
 export class ObservationNumberLocator extends LineLocator {
@@ -14,8 +15,8 @@ export class ObservationNumberLocator extends LineLocator {
     }
   }
 
-  getParentItemId(location: Location) {
-    return location.player
+  getParentItem(location: Location) {
+    return { type: MaterialType.ExplorationMap, location: { type: LocationType.ExplorationMap, player: location.player } }
   }
 }
 

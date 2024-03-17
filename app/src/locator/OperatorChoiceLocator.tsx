@@ -1,5 +1,6 @@
 import { ItemContext, LineLocator } from '@gamepark/react-game'
 import { Coordinates, Location, MaterialItem } from '@gamepark/rules-api'
+import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 import { EXPEDITION_MAP_SIZE } from '../material/utils/MapUtils'
 import { OperatorChoiceDescription } from './description/OperatorChoiceDescription'
@@ -22,8 +23,8 @@ export class OperatorChoiceLocator extends LineLocator {
     }
   }
 
-  getParentItemId(location: Location) {
-    return location.player
+  getParentItem(location: Location) {
+    return { type: MaterialType.ExplorationMap, location: { type: LocationType.ExplorationMap, player: location.player } }
   }
 }
 

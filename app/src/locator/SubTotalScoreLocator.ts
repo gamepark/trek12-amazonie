@@ -1,5 +1,6 @@
 import { LineLocator } from '@gamepark/react-game'
 import { Location, XYCoordinates } from '@gamepark/rules-api'
+import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 import { SubTotalId } from '../material/SubTotalDescription'
 
@@ -30,8 +31,8 @@ export class SubTotalScoreLocator extends LineLocator {
     return basePosition
   }
 
-  getParentItemId(location: Location) {
-    return location.player
+  getParentItem(location: Location) {
+    return { type: MaterialType.ExplorationMap, location: { type: LocationType.ExplorationMap, player: location.player } }
   }
 }
 

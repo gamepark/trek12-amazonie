@@ -1,5 +1,6 @@
 import { GridLocator } from '@gamepark/react-game'
 import { Location } from '@gamepark/rules-api'
+import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 import { EXPEDITION_MAP_SIZE } from '../material/utils/MapUtils'
 
@@ -14,8 +15,8 @@ export class AreaScoreLocator extends GridLocator {
   coordinates = { x: 0, y: 0, z: 1 }
   positionOnParent = { x: 57.3, y: 67.9 }
 
-  getParentItemId(location: Location) {
-    return location.player
+  getParentItem(location: Location) {
+    return { type: MaterialType.ExplorationMap, location: { type: LocationType.ExplorationMap, player: location.player } }
   }
 }
 

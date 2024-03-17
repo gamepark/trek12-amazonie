@@ -18,11 +18,11 @@ export class ExplorationMapDescription extends BoardDescription {
 
   getStaticItems(context: MaterialContext) {
     const { rules: { players } } = context
-    return players.map((player) => ({ id: player, location: { type: LocationType.ExplorationMap } }))
+    return players.map((player) => ({ location: { type: LocationType.ExplorationMap, player } }))
   }
 
   getLocations(item: MaterialItem, _context: ItemContext) {
-    const player = item.id!
+    const player = item.location.player
     return [
       ...nodeCoordinates.map((c, index) => ({ type: LocationType.ExpeditionNode, id: index, player })),
       ...range(4).map((x) => ({ id: Operator.MIN, type: LocationType.OperatorChoice, x, player })),
