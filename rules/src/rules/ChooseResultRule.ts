@@ -1,14 +1,4 @@
-import {
-  CustomMove,
-  isCreateItem,
-  isCreateItemType,
-  isCustomMoveType,
-  isEndPlayerTurn,
-  ItemMove,
-  MaterialMove, playMove,
-  RuleMove,
-  SimultaneousRule
-} from '@gamepark/rules-api'
+import { CustomMove, isCreateItemType, isCustomMoveType, isEndPlayerTurn, ItemMove, MaterialMove, RuleMove, SimultaneousRule } from '@gamepark/rules-api'
 import { LocationType } from '../material/LocationType'
 import { MaterialType } from '../material/MaterialType'
 import { CustomMoveType } from './CustomMoveType'
@@ -26,8 +16,7 @@ export class ChooseResultRule extends SimultaneousRule {
     return this.game.players.every((p) => this.material(MaterialType.Cross).player(p).length === 20)
   }
 
-  getLegalMoves(playerId: number): MaterialMove<number, number, number>[] {
-    if (!this.isTurnToPlay(playerId)) return []
+  getActivePlayerLegalMoves(playerId: number) {
     const operand = this.remind(Memory.Operand, playerId)
     if (operand || this.remind(Memory.PlacedNode, playerId) !== undefined) {
       return new PlaceResultRule(this.game, playerId).getLegalMoves()
