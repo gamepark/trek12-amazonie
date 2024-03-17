@@ -4,6 +4,7 @@ import { NumberCard } from '@gamepark/trek12-amazonie/material/NumberCard'
 import { RuleId } from '@gamepark/trek12-amazonie/rules/RuleId'
 import { Trek12AmazonieOptions } from '@gamepark/trek12-amazonie/Trek12AmazonieOptions'
 import { Trek12AmazonieSetup } from '@gamepark/trek12-amazonie/Trek12AmazonieSetup'
+
 export class TutorialSetup extends Trek12AmazonieSetup {
 
   setupDice() {
@@ -13,7 +14,7 @@ export class TutorialSetup extends Trek12AmazonieSetup {
 
   setupNumberCards() {
     this.material(MaterialType.NumberCard).createItem({
-      id: NumberCard.Four,
+      id: NumberCard.One,
       location: {
         type: LocationType.Numbers
       }

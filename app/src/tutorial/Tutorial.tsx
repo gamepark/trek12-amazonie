@@ -91,13 +91,7 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
       }),
       move: {
         filter: (move) => isCreateItemType(MaterialType.ExpeditionNodeValue)(move) && move.item.location.id === 15,
-        randomize: (move) => {
-          if (isRoll(move)) {
-            move.location.rotation = 1
-          }
-
-          return move
-        }
+        interrupt: (move) => isRoll(move)
       }
     },
     {
@@ -130,7 +124,15 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
         text: () => <Trans defaults="tuto.obs.score"><strong/><em/></Trans>,
         position: { x: -45, y: -10 }
       },
-      focus: (game: MaterialGame) => this.steps[game.tutorialStep! - 1].focus!(game)
+      focus: (game: MaterialGame) => this.steps[game.tutorialStep! - 1].focus!(game),
+      move: {
+        randomize: (move) => {
+          if (isRoll(move)) {
+            move.location.rotation = 1
+          }
+          return move
+        }
+      }
     },
     {
       popup: {
