@@ -12,9 +12,12 @@ export class ExplorationMapLocator extends ItemLocator {
 
     const index = getRelativePlayerIndex(context, item.location.player)
 
+    let additionalX = ((explorationMapDescription.width + 0.9) * ((index) % 3))
+    if (players.length === 2 && index === 1) additionalX += 5
+
     return {
       ...base,
-      x: (base.x + ((explorationMapDescription.width + 0.9) * ((index) % 3))),
+      x: base.x + additionalX,
       y: base.y + (index < 3 ? 0 : 20)
     }
   }
@@ -27,7 +30,7 @@ function getBaseCoordinates(players: number): Coordinates {
     case 1:
       return { x: -20, y: -5, z: 0 }
     case 2:
-      return { x: -10, y: 5, z: 0 }
+      return { x: -20, y: 5, z: 0 }
     case 3:
       return { x: -20, y: 5, z: 0 }
     case 4:

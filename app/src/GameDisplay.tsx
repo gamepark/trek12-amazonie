@@ -46,7 +46,7 @@ function getTableSize(playerNumber: number): { xMin: number, xMax: number, yMin:
     case 1:
       return { xMin: -30, xMax: 12, yMin: -15, yMax: 5, margin: 0 }
     case 2:
-      return { xMin: -30, xMax: 32, yMin: -15, yMax: 15, margin: 0 }
+      return { xMin: -30, xMax: 15, yMin: -15, yMax: 15, margin: 0 }
     case 3:
       return { xMin: -30, xMax: 30, yMin: -15, yMax: 15, margin: 30 }
     case 4:

@@ -20,6 +20,7 @@ function getYellowDiceCoordinates(players: number): Coordinates {
     case 1:
       return { x: -0.2, y: 3, z: 0 }
     case 2:
+      return { x: 7, y: -10, z: 0 }
     case 3:
       return { x: 10, y: -10, z: 0 }
     case 4:
@@ -35,6 +36,7 @@ function getGreenDiceCoordinates(players: number): Coordinates {
     case 1:
       return { x: 2.8, y: 3, z: 0 }
     case 2:
+      return { x: 10, y: -10, z: 0 }
     case 3:
       return { x: 14, y: -10, z: 0 }
     case 4:
