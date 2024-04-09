@@ -58,18 +58,27 @@ export class ChoosePathNodeRule extends MaterialRulesPart {
       .locationId(this.placedNode)
       .getItem()!.id
 
-    this.forget(Memory.PlacedNode, this.player)
     if (placedValue > targetValue) {
       this.forget(Memory.ChooseInferiorPathNode, this.player)
     } else {
       this.forget(Memory.ChooseSuperiorPathNode, this.player)
     }
 
-
     const moves: MaterialMove[] = new PathwayScore(this.game, this.player).refreshMoves
-    moves.push(this.rules().endPlayerTurn(move.item.location.player!))
+    if (!this.superiorPathNodes && !this.inferiorPathNodes) {
+      this.forget(Memory.PlacedNode, this.player)
+      moves.push(this.rules().endPlayerTurn(move.item.location.player!))
+    }
 
     return moves
+  }
+
+  get superiorPathNodes() {
+    return this.remind(Memory.ChooseSuperiorPathNode, this.player)
+  }
+
+  get inferiorPathNodes() {
+    return this.remind(Memory.ChooseInferiorPathNode, this.player)
   }
 
   choiceToMove(nodes: Nodes) {

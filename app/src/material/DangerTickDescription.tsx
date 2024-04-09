@@ -17,15 +17,15 @@ export class DangerTickDescription extends WritingDescription {
   getStaticItems(context: MaterialContext): MaterialItem[] {
     const { rules } = context
     const { players } = rules
-    return players.map((player) => {
+    return players.flatMap((player) => {
       const score = new Score(rules.game, player)
-      return {
-        quantity: score.dangerCount,
+      return Array.from(Array(score.dangerCount)).map((_, index) => ({
         location: {
           type: LocationType.DangerTick,
-          player
+          player,
+          x: index
         }
-      }
+      }))
     })
   }
 

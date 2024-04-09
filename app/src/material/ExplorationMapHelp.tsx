@@ -6,7 +6,7 @@ import { Trans, useTranslation } from 'react-i18next'
 export const ExplorationMapHelp = ({ item }: MaterialHelpProps) => {
   const { t } = useTranslation()
   const player = usePlayerId()
-  const isPlayer = item.id === player
+  const isPlayer = item.location?.player   === player
   const playerName = usePlayerName(item.location?.player)
 
   return <>
