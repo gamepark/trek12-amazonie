@@ -1,6 +1,6 @@
 {
   "name": "@gamepark/trek12-amazonie",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Trek 12 Amazonie rules for Game Park",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
