@@ -27,6 +27,7 @@ function getBaseCoordinates(players: number): Coordinates {
     case 1:
       return { x: -20, y: -5, z: 0 }
     case 2:
+      return { x: -10, y: 5, z: 0 }
     case 3:
       return { x: -20, y: 5, z: 0 }
     case 4:

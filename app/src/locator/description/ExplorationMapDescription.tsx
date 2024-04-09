@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react'
 import { getRelativePlayerIndex, LocationContext, LocationDescription, MaterialContext } from '@gamepark/react-game'
 import { Coordinates, Location } from '@gamepark/rules-api'
 import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
@@ -9,6 +11,7 @@ export class ExplorationMapDescription extends LocationDescription {
   borderRadius = 1
   alwaysVisible = true
   content = PlayerReminder
+  extraCss = css`pointer-events: none`
 
   getSize() {
     return { width: 6.5, height: 2 }
@@ -40,6 +43,7 @@ function getBaseCoordinates(players: number): Coordinates {
     case 1:
       return { x: -25.3, y: -3.5, z: 0 }
     case 2:
+      return { x: -15.3, y: 6.5, z: 0 }
     case 3:
       return { x: -25.3, y: 6.5, z: 0 }
     case 4:
