@@ -11,14 +11,15 @@ type Trek12AmazoniePlayerPanelProps = {} & HTMLAttributes<HTMLDivElement>
 export const PlayerPanels: FC<Trek12AmazoniePlayerPanelProps> = ({ ...props }) => {
   const players = usePlayers({ sortFromMe: true })
   const rules = useRules<Trek12AmazonieRules>()
-
   return (
     <>
       {players.map((player, index) =>
         <PlayerPanel activeRing key={player.id} playerId={player.id} css={panelPosition(index)} {...props}>
-          <div css={indicators}>
+          {rules?.game?.rule === undefined && (
+            <div css={indicators}>
             <span><FontAwesomeIcon icon={faStar} css={fontIcon} fill="#28B8CE"/> {rules?.getScore(player.id)}</span>
           </div>
+      )}
         </PlayerPanel>
       )}
     </>
