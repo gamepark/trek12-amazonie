@@ -1,4 +1,4 @@
-import { MaterialGame, MaterialRulesPart } from '@gamepark/rules-api'
+import { MaterialGame, MaterialMove, MaterialRulesPart } from '@gamepark/rules-api'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
 import { PlayerId } from '../../Trek12AmazonieOptions'
@@ -34,21 +34,17 @@ export class AreaScore extends MaterialRulesPart {
     return scores
   }
 
-  get refreshMoves() {
+  get computeAreaScore(): MaterialMove[] {
     const player = this.player
-    return [
-      this.material(MaterialType.AreaScore)
-        .player(player)
-        .deleteItemsAtOnce(),
-      this.material(MaterialType.AreaScore)
-        .player(player)
-        .createItemsAtOnce(this.scores.map((score) => ({
+    return this.material(MaterialType.AreaScore)
+      .createItems(
+        this.scores.map((score) => ({
           id: score,
           location: {
             type: LocationType.AreaScore,
             player
           }
-        })))
-    ]
+        }))
+      )
   }
 }

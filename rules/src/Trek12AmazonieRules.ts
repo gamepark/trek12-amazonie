@@ -1,18 +1,17 @@
 import {
-  CompetitiveScore, HiddenMaterialRules,
+  CompetitiveScore,
+  HiddenMaterialRules,
   HidingStrategy,
   MaterialGame,
   MaterialItem,
   MaterialMove,
   PositiveSequenceStrategy,
-  SecretMaterialRules,
   TimeLimit
 } from '@gamepark/rules-api'
 import { LocationType } from './material/LocationType'
 import { MaterialType } from './material/MaterialType'
 import { ChooseResultRule } from './rules/ChooseResultRule'
 import { DiscoverRule } from './rules/DiscoverRule'
-import { EndOfGameRule } from './rules/EndOfGameRule'
 import { Score } from './rules/helper/Score'
 import { RollDiceRule } from './rules/RollDiceRule'
 import { RuleId } from './rules/RuleId'
@@ -31,7 +30,6 @@ export class Trek12AmazonieRules extends HiddenMaterialRules<PlayerId, MaterialT
   rules = {
     [RuleId.RollDice]: RollDiceRule,
     [RuleId.ChooseResult]: ChooseResultRule,
-    [RuleId.EndOfGameRule]: EndOfGameRule,
     [RuleId.Discover]: DiscoverRule
   }
   hidingStrategies = {

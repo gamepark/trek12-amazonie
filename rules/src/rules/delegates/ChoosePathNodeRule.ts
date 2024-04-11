@@ -49,12 +49,14 @@ export class ChoosePathNodeRule extends MaterialRulesPart {
     const targetValue = this
       .material(MaterialType.ExpeditionNodeValue)
       .location(LocationType.ExpeditionNode)
+      .player(this.player)
       .locationId(target)
       .getItem()!.id
 
     const placedValue = this
       .material(MaterialType.ExpeditionNodeValue)
       .location(LocationType.ExpeditionNode)
+      .player(this.player)
       .locationId(this.placedNode)
       .getItem()!.id
 
@@ -64,7 +66,7 @@ export class ChoosePathNodeRule extends MaterialRulesPart {
       this.forget(Memory.ChooseSuperiorPathNode, this.player)
     }
 
-    const moves: MaterialMove[] = new PathwayScore(this.game, this.player).refreshMoves
+    const moves: MaterialMove[] = []
     if (!this.superiorPathNodes && !this.inferiorPathNodes) {
       this.forget(Memory.PlacedNode, this.player)
       moves.push(this.rules().endPlayerTurn(move.item.location.player!))

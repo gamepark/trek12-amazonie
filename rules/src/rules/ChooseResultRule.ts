@@ -1,6 +1,7 @@
 import { CustomMove, isCreateItemType, isCustomMoveType, isEndPlayerTurn, ItemMove, MaterialMove, RuleMove, SimultaneousRule } from '@gamepark/rules-api'
 import { LocationType } from '../material/LocationType'
 import { MaterialType } from '../material/MaterialType'
+import { PlayerId } from '../Trek12AmazonieOptions'
 import { CustomMoveType } from './CustomMoveType'
 import { ChooseOperandRule } from './delegates/ChooseOperandRule'
 import { PlaceResultRule } from './delegates/PlaceResultRule'
@@ -8,12 +9,17 @@ import { AreaScore } from './helper/AreaScore'
 import { PathwayScore } from './helper/PathwayScore'
 import { Memory } from './Memory'
 import { RuleId } from './RuleId'
+import { ScoringRule } from './ScoringRule'
 
 export class ChooseResultRule extends SimultaneousRule {
 
 
   get allCrossPlaced() {
-    return this.game.players.every((p) => this.material(MaterialType.Cross).player(p).length === 20)
+    return this.game.players.every((p) => this.hasAllCrossPlaced(p))
+  }
+
+  hasAllCrossPlaced(playerId: PlayerId) {
+    return this.material(MaterialType.Cross).player(playerId).length === 20
   }
 
   getActivePlayerLegalMoves(playerId: number) {
@@ -26,61 +32,34 @@ export class ChooseResultRule extends SimultaneousRule {
   }
 
   afterItemMove(move: ItemMove): MaterialMove[] {
+    const moves: MaterialMove[] = []
     if (isCreateItemType(MaterialType.Cross)(move)) {
-      return new ChooseOperandRule(this.game, move.item.location.player!).afterItemMove(move)
+      moves.push(
+        ...new ChooseOperandRule(this.game, move.item.location.player!).afterItemMove(move)
+      )
     }
 
-    if (!isCreateItemType(MaterialType.ExpeditionNodeValue)(move) && !isCreateItemType(MaterialType.Path)(move) && !isCreateItemType(MaterialType.AreaNode)(move)) return []
-    return new PlaceResultRule(this.game, move.item.location.player!).afterItemMove(move)
-  }
 
-  onCustomMove(move: CustomMove) {
-    if (!isCustomMoveType(CustomMoveType.ChooseOperand)(move)) return []
-    return new ChooseOperandRule(this.game, move.data.player).onCustomMove(move)
+    if (isCreateItemType(MaterialType.ExpeditionNodeValue)(move) || isCreateItemType(MaterialType.Path)(move) || isCreateItemType(MaterialType.AreaNode)(move)) {
+      moves.push(
+        ...new PlaceResultRule(this.game, move.item.location.player!).afterItemMove(move)
+      )
+    }
+
+    const endPlayerTurn = moves.find(isEndPlayerTurn)
+    if (endPlayerTurn && this.hasAllCrossPlaced(endPlayerTurn.player)) {
+      moves.push(
+        ...new ScoringRule(this.game, endPlayerTurn.player).endOfPlayerTurnMoves
+      )
+    }
+
+    return moves
   }
 
   getMovesAfterPlayersDone(): MaterialMove<number, number, number>[] {
     if (this.allCrossPlaced) {
-      return [this.rules().startRule(RuleId.EndOfGameRule)]
+      return [this.rules().endGame()]
     }
     return [this.rules().startRule(RuleId.Discover)]
   }
-
-  onRuleEnd(move: RuleMove) {
-    if (!isEndPlayerTurn(move)) return []
-    const player = move.player
-    const pathwayScore = new PathwayScore(this.game, player)
-    const moves: MaterialMove[] = [
-      this.material(MaterialType.PathwayScore)
-        .player(player)
-        .deleteItemsAtOnce(),
-      this.material(MaterialType.PathwayScore)
-        .player(player)
-        .createItemsAtOnce(pathwayScore.scores.map((score) => ({
-          id: score,
-          location: {
-            type: LocationType.PathwayScore,
-            player
-          }
-        })))
-    ]
-
-    const areaScore = new AreaScore(this.game, player)
-    moves.push(
-      this.material(MaterialType.AreaScore)
-        .player(player)
-        .deleteItemsAtOnce(),
-      this.material(MaterialType.AreaScore)
-        .player(player)
-        .createItemsAtOnce(areaScore.scores.map((score) => ({
-          id: score,
-          location: {
-            type: LocationType.AreaScore,
-            player
-          }
-        })))
-    )
-    return moves
-  }
-
 }

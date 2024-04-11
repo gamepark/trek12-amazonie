@@ -1,4 +1,4 @@
-import { MaterialGame, MaterialRulesPart } from '@gamepark/rules-api'
+import { MaterialGame, MaterialMove, MaterialRulesPart } from '@gamepark/rules-api'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
 import { PlayerId } from '../../Trek12AmazonieOptions'
@@ -35,21 +35,17 @@ export class PathwayScore extends MaterialRulesPart {
 
   }
 
-  get refreshMoves() {
+  get computePathwayScore(): MaterialMove[] {
     const player = this.player
-    return [
-      this.material(MaterialType.PathwayScore)
-        .player(player)
-        .deleteItemsAtOnce(),
-      this.material(MaterialType.PathwayScore)
-        .player(player)
-        .createItemsAtOnce(this.scores.map((score) => ({
+    return this.material(MaterialType.PathwayScore)
+      .createItems(
+        this.scores.map((score) => ({
           id: score,
           location: {
             type: LocationType.PathwayScore,
             player
           }
-        })))
-    ]
+        }))
+      )
   }
 }

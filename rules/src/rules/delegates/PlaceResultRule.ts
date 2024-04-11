@@ -10,7 +10,6 @@ import { Area } from '../helper/Area'
 import { AreaScore } from '../helper/AreaScore'
 import { Node } from '../helper/Node'
 import { Pathway } from '../helper/Pathway'
-import { PathwayScore } from '../helper/PathwayScore'
 import { Memory } from '../Memory'
 import { ChoosePathNodeRule } from './ChoosePathNodeRule'
 
@@ -52,14 +51,6 @@ export class PlaceResultRule extends MaterialRulesPart {
   afterItemMove(move: ItemMove): MaterialMove<number, number, number>[] {
     if (this.remind(Memory.PlacedNode, this.player) !== undefined) {
       return new ChoosePathNodeRule(this.game, this.player).afterItemMove(move)
-    }
-
-    if (isCreateItemType(MaterialType.Path)(move)) {
-      return new PathwayScore(this.game, this.player).refreshMoves
-    }
-
-    if (isCreateItemType(MaterialType.AreaNode)(move)) {
-      return new AreaScore(this.game, this.player).refreshMoves
     }
 
     if (!isCreateItemType(MaterialType.ExpeditionNodeValue)(move)) return []

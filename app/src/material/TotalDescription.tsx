@@ -16,6 +16,7 @@ export class TotalDescription extends WritingDescription {
 
   getStaticItems(context: MaterialContext) {
     const { rules } = context
+    if (rules.game.rule?.id) return []
     const { players } = rules
     return players
       .map((player) => {

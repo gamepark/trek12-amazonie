@@ -23,6 +23,7 @@ export class SubTotalDescription extends WritingDescription {
 
   getStaticItems(context: MaterialContext) {
     const { rules } = context
+    if (rules.game.rule?.id) return []
     const { players } = rules
     return players
       .flatMap((player) => {
