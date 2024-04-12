@@ -1,12 +1,8 @@
-import { CustomMove, isCreateItemType, isCustomMoveType, isEndPlayerTurn, ItemMove, MaterialMove, RuleMove, SimultaneousRule } from '@gamepark/rules-api'
-import { LocationType } from '../material/LocationType'
+import { isCreateItemType, isEndPlayerTurn, ItemMove, MaterialMove, SimultaneousRule } from '@gamepark/rules-api'
 import { MaterialType } from '../material/MaterialType'
 import { PlayerId } from '../Trek12AmazonieOptions'
-import { CustomMoveType } from './CustomMoveType'
 import { ChooseOperandRule } from './delegates/ChooseOperandRule'
 import { PlaceResultRule } from './delegates/PlaceResultRule'
-import { AreaScore } from './helper/AreaScore'
-import { PathwayScore } from './helper/PathwayScore'
 import { Memory } from './Memory'
 import { RuleId } from './RuleId'
 import { ScoringRule } from './ScoringRule'
@@ -58,7 +54,12 @@ export class ChooseResultRule extends SimultaneousRule {
 
   getMovesAfterPlayersDone(): MaterialMove<number, number, number>[] {
     if (this.allCrossPlaced) {
-      return [this.rules().endGame()]
+      const moves: MaterialMove[] = []
+      for (const player of this.game.players) {
+        moves.push(...new ScoringRule(this.game, player).drawSpiderOnIsolatedNodeMoves)
+      }
+      moves.push(this.rules().endGame())
+      return moves
     }
     return [this.rules().startRule(RuleId.Discover)]
   }

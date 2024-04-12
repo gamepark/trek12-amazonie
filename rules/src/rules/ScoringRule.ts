@@ -30,7 +30,13 @@ export class ScoringRule extends MaterialRulesPart {
 
   get endOfPlayerTurnMoves(): MaterialMove[] {
     const moves: MaterialMove[] = []
+    moves.push(...new PathwayScore(this.game, this.player).computePathwayScore)
+    moves.push(...new AreaScore(this.game, this.player).computeAreaScore)
+    return moves
+  }
 
+  get drawSpiderOnIsolatedNodeMoves() {
+    const moves: MaterialMove[] = []
     const isolatedNodes = this.isolatedNodes
     for (const item of isolatedNodes) {
       moves.push(
@@ -44,9 +50,6 @@ export class ScoringRule extends MaterialRulesPart {
           })
       )
     }
-
-    moves.push(...new PathwayScore(this.game, this.player).computePathwayScore)
-    moves.push(...new AreaScore(this.game, this.player).computeAreaScore)
     return moves
   }
 }
