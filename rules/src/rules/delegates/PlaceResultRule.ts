@@ -31,6 +31,7 @@ export class PlaceResultRule extends MaterialRulesPart {
     if (this.remind(Memory.PlacedNode, this.player) !== undefined) {
       return new ChoosePathNodeRule(this.game, this.player).getLegalMoves()
     }
+
     const operand = this.remind(Memory.Operand, this.player)
     const result = applyOperator(operand, this.dicesValues)
     return range(27)
@@ -62,8 +63,7 @@ export class PlaceResultRule extends MaterialRulesPart {
     moves.push(...this.moveRing(move))
 
     this.forget(Memory.Operand, move.item.location.player!)
-
-    if (this.remind(Memory.PlacedNode, this.player)) return moves
+    if (this.remind(Memory.PlacedNode, this.player) !== undefined) return moves
 
     moves.push(this.rules().endPlayerTurn(move.item.location.player!))
     return moves

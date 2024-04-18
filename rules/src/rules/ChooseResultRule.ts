@@ -23,7 +23,6 @@ export class ChooseResultRule extends SimultaneousRule {
     if (operand || this.remind(Memory.PlacedNode, playerId) !== undefined) {
       return new PlaceResultRule(this.game, playerId).getLegalMoves()
     }
-
     return new ChooseOperandRule(this.game, playerId).getLegalMoves()
   }
 
