@@ -1,4 +1,4 @@
-import { ItemLocator } from '@gamepark/react-game'
+import { Locator } from '@gamepark/react-game'
 import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 import { PlayerId } from '@gamepark/trek12-amazonie/Trek12AmazonieOptions'
@@ -14,10 +14,11 @@ import { observationsLocator } from './ObservationsLocator'
 import { operatorChoiceLocator } from './OperatorChoiceLocator'
 import { pathLocator } from './PathLocator'
 import { pathwayScoreLocator } from './PathwayScoreLocator'
+import { playerIdentityLocator } from './PlayerIdentityLocator'
 import { subTotalScoreLocator } from './SubTotalScoreLocator'
 import { totalScoreLocator } from './TotalScoreLocator'
 
-export const locators: Partial<Record<LocationType, ItemLocator<PlayerId, MaterialType, LocationType>>> = {
+export const locators: Partial<Record<LocationType, Locator<PlayerId, MaterialType, LocationType>>> = {
   [LocationType.Numbers]: numbersLocator,
   [LocationType.Observations]: observationsLocator,
   [LocationType.ObservationNumber]: observationNumberLocator,
@@ -31,5 +32,6 @@ export const locators: Partial<Record<LocationType, ItemLocator<PlayerId, Materi
   [LocationType.AreaScore]: areaScoreLocator,
   [LocationType.SubTotalScore]: subTotalScoreLocator,
   [LocationType.TotalScore]: totalScoreLocator,
-  [LocationType.DangerTick]: dangerTickLocator
+  [LocationType.DangerTick]: dangerTickLocator,
+  [LocationType.PlayerIdentity]: playerIdentityLocator
 }

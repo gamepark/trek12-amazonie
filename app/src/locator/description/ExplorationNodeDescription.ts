@@ -1,38 +1,17 @@
 /** @jsxImportSource @emotion/react */
-import { LocationDescription, MaterialContext } from '@gamepark/react-game'
+import { DropAreaDescription, MaterialContext } from '@gamepark/react-game'
 import { isCreateItemType, Location, MaterialMove } from '@gamepark/rules-api'
-import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
-import { PlayerId } from '@gamepark/trek12-amazonie/Trek12AmazonieOptions'
 import equal from 'fast-deep-equal'
 import { EXPEDITION_MAP_SIZE } from '../../material/utils/MapUtils'
 import { AreaNodeHelp } from './AreaNodeHelp'
 
 
-export class ExplorationNodeDescription extends LocationDescription<PlayerId, MaterialType, LocationType> {
-  alwaysVisible = true
+export class ExplorationNodeDescription extends DropAreaDescription {
   height = 0.105 * EXPEDITION_MAP_SIZE
   width = 0.105 * EXPEDITION_MAP_SIZE
   borderRadius = 4
   help = AreaNodeHelp
-
-  // getExtraCss(location: Location) {
-  //  return css`
-  //  &:before, &:after {
-  //  position: absolute;
-  //  font-size: 0.5em;
-  //  left: 0;
-  //  color: white;
-  //  top: 0;
-  //  width: 100%;
-  //  height: 100%;
-  //  content: '${location.id}';
-  //  display: flex;
-  //  align-items: flex-end;
-  //  justify-content: center;background-color: black;
-  //  }
-  //  `
-  //  }
 
   isMoveToLocation(move: MaterialMove, location: Location, { rules }: MaterialContext): boolean {
     if (!isCreateItemType(MaterialType.ExpeditionNodeValue)(move)) return false

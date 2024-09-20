@@ -12,8 +12,6 @@ import Toucan from '../images/exploration/toucan.jpg'
 import { ObservationCardHelp } from './ObservationCardHelp'
 
 export class ObservationCardDescription extends CardDescription {
-  width = 6.3
-  height = 8.8
   borderRadius = 0.3
 
   backImage = Back

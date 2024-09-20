@@ -1,45 +1,17 @@
-import { ItemContext, LineLocator } from '@gamepark/react-game'
-import { Coordinates, MaterialItem } from '@gamepark/rules-api'
+import { MaterialContext } from '@gamepark/react-game'
+import { Location } from '@gamepark/rules-api'
+import { NumbersLocator } from './NumbersLocator'
 
-export class ObservationsLocator extends LineLocator {
+export class ObservationsLocator extends NumbersLocator {
 
-  getCoordinates(_item: MaterialItem<number, number>, context: ItemContext<number, number, number>): Coordinates {
-    return getCardsCoordinates(context.rules.game.players.length)
-  }
-
-  getDelta(_item: MaterialItem<number, number>, context: ItemContext<number, number, number>): Partial<Coordinates> {
-    return getDeltaCoordinates(context.rules.game.players.length)
+  getCoordinates(location: Location, context: MaterialContext) {
+    const { x, y } = super.getCoordinates(location, context)
+    if (context.rules.players.length === 1) {
+      return { x, y: y - 7, z: 0.5 }
+    } else {
+      return { x: x - 4.5, y, z: 0.5 }
+    }
   }
 }
 
 export const observationsLocator = new ObservationsLocator()
-
-function getCardsCoordinates(players: number): Coordinates {
-  switch (players) {
-    case 1:
-      return { x: -6, y: -10, z: 1 }
-    case 2:
-    case 3:
-      return { x: -26.5, y: -10, z: 1 }
-    case 4:
-    case 5:
-    case 6:
-    default:
-      return { x: 33, y: -10, z: 1 }
-  }
-}
-
-function getDeltaCoordinates(players: number): Coordinates {
-  switch (players) {
-    case 1:
-      return { x: 7, y: 0, z: 0 }
-    case 2:
-    case 3:
-      return { x: 11, y: 0, z: 0 }
-    case 4:
-    case 5:
-    case 6:
-    default:
-      return { x: 0, y: 10, z: 0 }
-  }
-}

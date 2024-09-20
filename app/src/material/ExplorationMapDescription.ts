@@ -16,14 +16,18 @@ export class ExplorationMapDescription extends BoardDescription {
   image = Images.forest1
   help = ExplorationMapHelp
 
-  getStaticItems(context: MaterialContext) {
-    const { rules: { players } } = context
-    return players.map((player) => ({ location: { type: LocationType.ExplorationMap, player } }))
+  getStaticItems({ rules: { players } }: MaterialContext) {
+    return players.map(player => this.getPlayerMap(player))
+  }
+
+  getPlayerMap(player: number) {
+    return { location: { type: LocationType.ExplorationMap, player } }
   }
 
   getLocations(item: MaterialItem, _context: ItemContext) {
     const player = item.location.player
     return [
+      { type: LocationType.PlayerIdentity, player },
       ...nodeCoordinates.map((c, index) => ({ type: LocationType.ExpeditionNode, id: index, player })),
       ...range(4).map((x) => ({ id: Operator.MIN, type: LocationType.OperatorChoice, x, player })),
       ...range(4).map((x) => ({ id: Operator.MAX, type: LocationType.OperatorChoice, x, player })),

@@ -12,5 +12,6 @@ export enum LocationType {
   AreaScore,
   SubTotalScore,
   TotalScore,
-  DangerTick
+  DangerTick,
+  PlayerIdentity
 }

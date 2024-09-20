@@ -1,22 +1,17 @@
-import { LineLocator } from '@gamepark/react-game'
+import { ListLocator } from '@gamepark/react-game'
 import { Location } from '@gamepark/rules-api'
-import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
+import { explorationMapDescription } from '../material/ExplorationMapDescription'
 
-export class ObservationNumberLocator extends LineLocator {
+export class ObservationNumberLocator extends ListLocator {
   parentItemType = MaterialType.ExplorationMap
-
-  coordinates = { x: 0, y: 0, z: 1 }
+  getParentItem = (location: Location) => explorationMapDescription.getPlayerMap(location.player!)
 
   getPositionOnParent(location: Location) {
     return {
       x: 9.4,
       y: 69.7 + (location.id * 6.35)
     }
-  }
-
-  getParentItem(location: Location) {
-    return { type: MaterialType.ExplorationMap, location: { type: LocationType.ExplorationMap, player: location.player } }
   }
 }
 

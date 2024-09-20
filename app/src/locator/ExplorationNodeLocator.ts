@@ -1,41 +1,36 @@
 /** @jsxImportSource @emotion/react */
-import { ItemContext, ItemLocator } from '@gamepark/react-game'
+import { ItemContext, Locator } from '@gamepark/react-game'
 import { Location, MaterialItem, XYCoordinates } from '@gamepark/rules-api'
 import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 import { PlayerId } from '@gamepark/trek12-amazonie/Trek12AmazonieOptions'
+import { explorationMapDescription } from '../material/ExplorationMapDescription'
 import { EXPEDITION_MAP_SIZE } from '../material/utils/MapUtils'
 import { ExplorationNodeDescription } from './description/ExplorationNodeDescription'
 
-export class ExplorationNodeLocator extends ItemLocator<PlayerId, MaterialType, LocationType> {
+export class ExplorationNodeLocator extends Locator<PlayerId, MaterialType, LocationType> {
   parentItemType = MaterialType.ExplorationMap
 
   locationDescription = new ExplorationNodeDescription()
 
-  getPosition(_item: MaterialItem, { type }: ItemContext) {
-    if (type === MaterialType.ExpeditionNodeValue) {
-      return { x: 0, y: 0, z: 2 }
+  getItemCoordinates(_: MaterialItem, { type }: ItemContext) {
+    switch (type) {
+      case MaterialType.ExpeditionNodeValue:
+        return { z: 0.05 }
+      case MaterialType.Piranha:
+        return { x: -0.015 * EXPEDITION_MAP_SIZE, y: -0.03 * EXPEDITION_MAP_SIZE }
+      case MaterialType.Spider:
+        return { x: -0.035 * EXPEDITION_MAP_SIZE }
+      default:
+        return {}
     }
-
-    if (type === MaterialType.Piranha) {
-      return { x: -0.015 * EXPEDITION_MAP_SIZE, y: -0.03 * EXPEDITION_MAP_SIZE, z: 2 }
-    }
-
-    if (type === MaterialType.Spider) {
-      return { x: -0.035 * EXPEDITION_MAP_SIZE, y: 0, z: 2 }
-    }
-
-    return { x: 0, y: 0, z: 1 }
   }
 
-  getPositionOnParent(location: Location): XYCoordinates {
+  getPositionOnParent(location: Location) {
     return nodeCoordinates[location.id!]
   }
 
-  getParentItem(location: Location) {
-    return { type: MaterialType.ExplorationMap, location: { type: LocationType.ExplorationMap, player: location.player } }
-  }
-
+  getParentItem = (location: Location) => explorationMapDescription.getPlayerMap(location.player!)
 }
 
 export const nodeCoordinates: XYCoordinates[] = [

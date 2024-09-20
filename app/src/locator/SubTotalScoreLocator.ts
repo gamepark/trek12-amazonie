@@ -1,38 +1,27 @@
-import { LineLocator } from '@gamepark/react-game'
-import { Location, XYCoordinates } from '@gamepark/rules-api'
-import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
+import { ListLocator } from '@gamepark/react-game'
+import { Location } from '@gamepark/rules-api'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
+import { explorationMapDescription } from '../material/ExplorationMapDescription'
 import { SubTotalId } from '../material/SubTotalDescription'
 
-export class SubTotalScoreLocator extends LineLocator {
+export class SubTotalScoreLocator extends ListLocator {
 
   parentItemType = MaterialType.ExplorationMap
 
-
-  coordinates = { x: 0, y: 0, z: 1 }
+  getParentItem = (location: Location) => explorationMapDescription.getPlayerMap(location.player!)
 
   getPositionOnParent(location: Location) {
-    const basePosition: XYCoordinates = { y: 91.9, x: 0 }
     switch (location.id) {
       case SubTotalId.Observations:
-        basePosition.x = 33.8
-        break
+        return { x: 33.8, y: 91.9 }
       case SubTotalId.Pathways:
-        basePosition.x = 47.1
-        break
+        return { x: 47.1, y: 91.9 }
       case SubTotalId.Areas:
-        basePosition.x = 59.5
-        break
+        return { x: 59.5, y: 91.9 }
       case SubTotalId.Danger:
-        basePosition.x = 74.1
-        break
+      default:
+        return { x: 74.1, y: 91.9 }
     }
-
-    return basePosition
-  }
-
-  getParentItem(location: Location) {
-    return { type: MaterialType.ExplorationMap, location: { type: LocationType.ExplorationMap, player: location.player } }
   }
 }
 

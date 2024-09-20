@@ -1,42 +1,21 @@
-import { getRelativePlayerIndex, ItemContext, ItemLocator } from '@gamepark/react-game'
-import { Coordinates, MaterialItem } from '@gamepark/rules-api'
-import { explorationMapDescription } from '../material/ExplorationMapDescription'
-import { ExplorationMapDescription } from './description/ExplorationMapDescription'
+import { FlexLocator, getRelativePlayerIndex, MaterialContext } from '@gamepark/react-game'
+import { Location } from '@gamepark/rules-api'
 
-export class ExplorationMapLocator extends ItemLocator {
-  locationDescription = new ExplorationMapDescription()
+export class ExplorationMapLocator extends FlexLocator {
+  getGap(_: Location, { rules: { players } }: MaterialContext) {
+    return players.length === 2 ? { x: 25 } : { x: 20 }
+  }
 
-  getPosition(item: MaterialItem, context: ItemContext) {
-    const players = context.rules.game.players
-    const base = getBaseCoordinates(players.length)
+  lineGap = { y: 20 }
+  lineSize = 3
 
-    const index = getRelativePlayerIndex(context, item.location.player)
+  getCoordinates(_: Location, { rules: { players } }: MaterialContext) {
+    return { x: -20, y: (players.length === 2 || players.length === 3) ? 5 : -5 }
+  }
 
-    let additionalX = ((explorationMapDescription.width + 0.9) * ((index) % 3))
-    if (players.length === 2 && index === 1) additionalX += 5
-
-    return {
-      ...base,
-      x: base.x + additionalX,
-      y: base.y + (index < 3 ? 0 : 20)
-    }
+  getLocationIndex(location: Location, context: MaterialContext) {
+    return getRelativePlayerIndex(context, location.player)
   }
 }
 
 export const expeditionBoardLocator = new ExplorationMapLocator()
-
-function getBaseCoordinates(players: number): Coordinates {
-  switch (players) {
-    case 1:
-      return { x: -20, y: -5, z: 0 }
-    case 2:
-      return { x: -20, y: 5, z: 0 }
-    case 3:
-      return { x: -20, y: 5, z: 0 }
-    case 4:
-    case 5:
-    case 6:
-    default:
-      return { x: -20, y: -5, z: 0 }
-  }
-}

@@ -1,48 +1,26 @@
-import { ItemContext, LineLocator } from '@gamepark/react-game'
-import { Coordinates, MaterialItem } from '@gamepark/rules-api'
+import { ItemContext, ListLocator, MaterialContext } from '@gamepark/react-game'
+import { Location, MaterialItem } from '@gamepark/rules-api'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 
-export class DiceAreaLocator extends LineLocator {
+export class DiceAreaLocator extends ListLocator {
 
-  getCoordinates(_item: MaterialItem, context: ItemContext<number, number, number>) {
-    if (context.type === MaterialType.YellowDice) {
-      return getYellowDiceCoordinates(context.rules.game.players.length)
-    } else {
-      return getGreenDiceCoordinates(context.rules.game.players.length)
+  getCoordinates(_: Location, { rules: { players } }: MaterialContext) {
+    switch (players.length) {
+      case 1:
+        return { x: -0.2, y: 3 }
+      case 2:
+        return { x: 7, y: -10 }
+      case 3:
+        return { x: 10, y: -10 }
+      default:
+        return { x: 33, y: 17 }
     }
+  }
+
+  getItemCoordinates(item: MaterialItem, context: ItemContext) {
+    const { x = 0, y } = super.getItemCoordinates(item, context)
+    return { x: context.type === MaterialType.YellowDice ? x : x + 3, y }
   }
 }
 
 export const diceAreaLocator = new DiceAreaLocator()
-
-function getYellowDiceCoordinates(players: number): Coordinates {
-  switch (players) {
-    case 1:
-      return { x: -0.2, y: 3, z: 0 }
-    case 2:
-      return { x: 7, y: -10, z: 0 }
-    case 3:
-      return { x: 10, y: -10, z: 0 }
-    case 4:
-    case 5:
-    case 6:
-    default:
-      return { x: 33, y: 17, z: 0 }
-  }
-}
-
-function getGreenDiceCoordinates(players: number): Coordinates {
-  switch (players) {
-    case 1:
-      return { x: 2.8, y: 3, z: 0 }
-    case 2:
-      return { x: 10, y: -10, z: 0 }
-    case 3:
-      return { x: 14, y: -10, z: 0 }
-    case 4:
-    case 5:
-    case 6:
-    default:
-      return { x: 37, y: 17, z: 0 }
-  }
-}
