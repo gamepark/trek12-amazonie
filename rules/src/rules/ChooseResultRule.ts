@@ -9,7 +9,6 @@ import { ScoringRule } from './ScoringRule'
 
 export class ChooseResultRule extends SimultaneousRule {
 
-
   get allCrossPlaced() {
     return this.game.players.every((p) => this.hasAllCrossPlaced(p))
   }
@@ -57,9 +56,9 @@ export class ChooseResultRule extends SimultaneousRule {
       for (const player of this.game.players) {
         moves.push(...new ScoringRule(this.game, player).drawSpiderOnIsolatedNodeMoves)
       }
-      moves.push(this.rules().endGame())
+      moves.push(this.endGame())
       return moves
     }
-    return [this.rules().startRule(RuleId.Discover)]
+    return [this.startRule(RuleId.Discover)]
   }
 }

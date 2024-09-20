@@ -1,4 +1,4 @@
-import { CreateItem, isCreateItemType, ItemMove, MaterialGame, MaterialMove, MaterialRulesPart } from '@gamepark/rules-api'
+import { CreateItem, isCreateItemType, ItemMove, MaterialGame, MaterialMove, MaterialMoveBuilder, MaterialRulesPart } from '@gamepark/rules-api'
 import range from 'lodash/range'
 import { ForestBasicFieldTypes } from '../../forests/Forest'
 import { Field } from '../../material/Field'
@@ -7,11 +7,11 @@ import { MaterialType } from '../../material/MaterialType'
 import { applyOperator, Operator, SpecialValue } from '../../material/Operator'
 import { PlayerId } from '../../Trek12AmazonieOptions'
 import { Area } from '../helper/Area'
-import { AreaScore } from '../helper/AreaScore'
 import { Node } from '../helper/Node'
 import { Pathway } from '../helper/Pathway'
 import { Memory } from '../Memory'
 import { ChoosePathNodeRule } from './ChoosePathNodeRule'
+import endPlayerTurn = MaterialMoveBuilder.endPlayerTurn
 
 
 export class PlaceResultRule extends MaterialRulesPart {
@@ -65,7 +65,7 @@ export class PlaceResultRule extends MaterialRulesPart {
     this.forget(Memory.Operand, move.item.location.player!)
     if (this.remind(Memory.PlacedNode, this.player) !== undefined) return moves
 
-    moves.push(this.rules().endPlayerTurn(move.item.location.player!))
+    moves.push(endPlayerTurn(move.item.location.player!))
     return moves
   }
 

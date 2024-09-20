@@ -33,7 +33,7 @@ export class DiscoverRule extends MaterialRulesPart {
 
   onRuleStart() {
     const moves = this.revealObservationCard
-    moves.push(this.rules().startRule(RuleId.RollDice))
+    moves.push(this.startRule(RuleId.RollDice))
     return moves
   }
 

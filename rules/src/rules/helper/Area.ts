@@ -35,7 +35,6 @@ export class Area extends MaterialRulesPart {
 
     if (!adjacentNodes.length) return []
     if (adjacentNodes.length > 1) {
-      // TODO: let player choose
       const uniqAreaNodes = uniqBy(
         adjacentNodes,
         (node) => this

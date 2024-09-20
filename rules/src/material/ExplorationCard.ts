@@ -1,4 +1,4 @@
-import { isEnumValue } from '@gamepark/rules-api'
+import { getEnumValues } from '@gamepark/rules-api'
 
 export enum ExplorationCard {
   Jaguar = 1,
@@ -14,7 +14,7 @@ export enum ExplorationCard {
   //CarnivorousPlant
 }
 
-export const explorationCards = Object.values(ExplorationCard).filter(isEnumValue)
+export const explorationCards = getEnumValues(ExplorationCard)
 
 export const ExplorationCardScores: Record<ExplorationCard, number[]> = {
   [ExplorationCard.Jaguar]: [0, 1, 2, 4, 7, 15],

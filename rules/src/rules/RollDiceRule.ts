@@ -9,7 +9,7 @@ export class RollDiceRule extends MaterialRulesPart {
     const moves: MaterialMove[] = []
     moves.push(this.material(MaterialType.GreenDice).rollItem({ type: LocationType.DiceArea }))
     moves.push(this.material(MaterialType.YellowDice).rollItem({ type: LocationType.DiceArea }))
-    moves.push(this.rules().startSimultaneousRule(RuleId.ChooseResult))
+    moves.push(this.startSimultaneousRule(RuleId.ChooseResult))
     return moves
   }
 }

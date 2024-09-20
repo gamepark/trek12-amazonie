@@ -34,7 +34,7 @@ export class ExpeditionNodeNumberDescription extends WritingDescription {
     const canLongClick = super.canLongClick(move, context)
     if (!player) return canLongClick
 
-    const item = rules.material(MaterialType.ExpeditionNodeValue).index(index).getItem()!
+    const item = rules.material(MaterialType.ExpeditionNodeValue).getItem(index)
     const placedNode = rules.remind(Memory.PlacedNode, player)
     if (placedNode !== undefined) {
       if (!isCreateItemType(MaterialType.Path)(move)) return false

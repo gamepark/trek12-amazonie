@@ -1,11 +1,11 @@
-import { isCreateItemType, ItemMove, MaterialGame, MaterialMove, MaterialRulesPart } from '@gamepark/rules-api'
+import { isCreateItemType, ItemMove, MaterialGame, MaterialMove, MaterialMoveBuilder, MaterialRulesPart } from '@gamepark/rules-api'
 import equal from 'fast-deep-equal'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
 import { PlayerId } from '../../Trek12AmazonieOptions'
 import { createPath, mapGraph } from '../helper/Node'
-import { PathwayScore } from '../helper/PathwayScore'
 import { Memory, Nodes, PlacedNode } from '../Memory'
+import endPlayerTurn = MaterialMoveBuilder.endPlayerTurn
 
 export class ChoosePathNodeRule extends MaterialRulesPart {
 
@@ -69,7 +69,7 @@ export class ChoosePathNodeRule extends MaterialRulesPart {
     const moves: MaterialMove[] = []
     if (!this.superiorPathNodes && !this.inferiorPathNodes) {
       this.forget(Memory.PlacedNode, this.player)
-      moves.push(this.rules().endPlayerTurn(move.item.location.player!))
+      moves.push(endPlayerTurn(move.item.location.player!))
     }
 
     return moves

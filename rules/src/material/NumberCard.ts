@@ -1,4 +1,4 @@
-import { isEnumValue } from '@gamepark/rules-api'
+import { getEnumValues } from '@gamepark/rules-api'
 
 export enum NumberCard {
   Zero = 1,
@@ -10,4 +10,4 @@ export enum NumberCard {
   Six
 }
 
-export const numberCards = Object.values(NumberCard).filter(isEnumValue)
+export const numberCards = getEnumValues(NumberCard)

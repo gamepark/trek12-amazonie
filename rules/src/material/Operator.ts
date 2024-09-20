@@ -1,5 +1,4 @@
-import { isEnumValue } from '@gamepark/rules-api'
-
+import { getEnumValues } from '@gamepark/rules-api'
 
 export enum Operator {
   MIN = 1,
@@ -28,4 +27,4 @@ export const applyOperator = (operator: Operator, values: number[]): number => {
   }
 }
 
-export const operators = Object.values(Operator).filter(isEnumValue)
+export const operators = getEnumValues(Operator)
