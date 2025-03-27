@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { MaterialTutorial, TutorialStep } from '@gamepark/react-game'
+import { MaterialContext } from '@gamepark/react-game/dist/locators'
 import { isCreateItemType, isRoll, MaterialGame } from '@gamepark/rules-api'
 import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
@@ -124,7 +125,7 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
         text: () => <Trans defaults="tuto.obs.score"><strong/><em/></Trans>,
         position: { x: -45, y: -10 }
       },
-      focus: (game: MaterialGame) => this.steps[game.tutorial!.step - 1].focus!(game),
+      focus: (game: MaterialGame, context: MaterialContext) => this.steps[game.tutorial!.step - 1].focus!(game, context),
       move: {
         randomize: (move) => {
           if (isRoll(move)) {
@@ -152,7 +153,7 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
         text: () => <Trans defaults="tuto.pirogue"><strong/><em/></Trans>,
         position: { x: -20, y: -15 }
       },
-      focus: (game: MaterialGame) => this.steps[game.tutorial!.step - 1].focus!(game)
+      focus: (game: MaterialGame, context: MaterialContext) => this.steps[game.tutorial!.step - 1].focus!(game, context)
     },
     {
       popup: {
@@ -185,13 +186,13 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
       popup: {
         text: () => <Trans defaults="tuto.path.exp"><strong/><em/></Trans>
       },
-      focus: (game: MaterialGame) => this.steps[game.tutorial!.step - 1].focus!(game)
+      focus: (game: MaterialGame, context: MaterialContext) => this.steps[game.tutorial!.step - 1].focus!(game, context)
     },
     {
       popup: {
         text: () => <Trans defaults="tuto.path.score"><strong/><em/></Trans>
       },
-      focus: (game: MaterialGame) => this.steps[game.tutorial!.step - 2].focus!(game)
+      focus: (game: MaterialGame, context: MaterialContext) => this.steps[game.tutorial!.step - 2].focus!(game, context)
     },
     {
       popup: {
@@ -243,14 +244,14 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
         text: () => <Trans defaults="tuto.area.exp"><strong/><em/></Trans>,
         position: { x: 15, y: -10 }
       },
-      focus: (game: MaterialGame) => this.steps[game.tutorial!.step - 1].focus!(game)
+      focus: (game: MaterialGame, context: MaterialContext) => this.steps[game.tutorial!.step - 1].focus!(game, context)
     },
     {
       popup: {
         text: () => <Trans defaults="tuto.area.score"><strong/><em/></Trans>,
         position: { x: 15, y: -10 }
       },
-      focus: (game: MaterialGame) => this.steps[game.tutorial!.step - 2].focus!(game)
+      focus: (game: MaterialGame, context: MaterialContext) => this.steps[game.tutorial!.step - 2].focus!(game, context)
     },
     {
       popup: {
