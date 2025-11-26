@@ -1,10 +1,11 @@
-import { DropAreaDescription, ListLocator } from '@gamepark/react-game'
+import { ListLocator } from '@gamepark/react-game'
 import { Location } from '@gamepark/rules-api'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 import { explorationMapDescription } from '../material/ExplorationMapDescription'
+import { OperatorChoiceDescription } from './description/OperatorChoiceDescription'
 
 export class OperatorChoiceLocator extends ListLocator {
-  locationDescription = new DropAreaDescription({ width: 0.741, height: 0.741 })
+  locationDescription = new OperatorChoiceDescription()
   parentItemType = MaterialType.ExplorationMap
   getParentItem = (location: Location) => explorationMapDescription.getPlayerMap(location.player!)
 

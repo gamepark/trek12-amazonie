@@ -12,6 +12,7 @@ export class ExplorationNodeDescription extends DropAreaDescription {
   width = 0.105 * EXPEDITION_MAP_SIZE
   borderRadius = 4
   help = AreaNodeHelp
+  placeOnShortClick = true
 
   isMoveToLocation(move: MaterialMove, location: Location, { rules }: MaterialContext): boolean {
     if (!isCreateItemType(MaterialType.ExpeditionNodeValue)(move)) return false
