@@ -1,14 +1,16 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { MaterialContext, WritingDescription } from '@gamepark/react-game'
-import { ExplorationCardScores } from '@gamepark/trek12-amazonie/material/ExplorationCard'
+import { ExplorationCard, ExplorationCardScores } from '@gamepark/trek12-amazonie/material/ExplorationCard'
 import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
-import React from 'react'
 import { ObservationScoresHelp } from './ObservationScoresHelp'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 
 export class ObservationScoresDescription extends WritingDescription {
+  getImages(): string[] {
+    return []
+  }
+
   height = 0.038 * EXPEDITION_MAP_SIZE
   width = 0.038 * EXPEDITION_MAP_SIZE
   help = ObservationScoresHelp
@@ -26,7 +28,7 @@ export class ObservationScoresDescription extends WritingDescription {
         .flatMap((item) => {
             const { id = undefined, location: { x } } = item
             if (!id) return []
-            return ExplorationCardScores[id].map((points: number, index: number) => ({
+            return ExplorationCardScores[id as ExplorationCard].map((points: number, index: number) => ({
               id: points,
               location: {
                 id: x,
@@ -40,7 +42,7 @@ export class ObservationScoresDescription extends WritingDescription {
     )
   }
 
-  getFrontContent(itemId: any) {
+  getFrontContent(itemId: number) {
     return <span css={itemIdStyle}>{itemId}</span>
   }
 

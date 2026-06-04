@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { ItemContext, Locator } from '@gamepark/react-game'
 import { Location, MaterialItem, XYCoordinates } from '@gamepark/rules-api'
 import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'

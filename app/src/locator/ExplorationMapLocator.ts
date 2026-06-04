@@ -13,6 +13,10 @@ export class ExplorationMapLocator extends FlexLocator {
     return { x: -20, y: (players.length === 2 || players.length === 3) ? 5 : -5 }
   }
 
+  getPositionDependencies(_: Location, { rules: { players } }: MaterialContext) {
+    return { players: players.length }
+  }
+
   getLocationIndex(location: Location, context: MaterialContext) {
     return getRelativePlayerIndex(context, location.player)
   }

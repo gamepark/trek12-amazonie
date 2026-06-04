@@ -1,11 +1,13 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { WritingDescription } from '@gamepark/react-game'
-import React from 'react'
 import { ScoreRingHelp } from './ScoreRingHelp'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 
 export class ScoreRingDescription extends WritingDescription {
+  getImages(): string[] {
+    return []
+  }
+
   width = 0.052 * EXPEDITION_MAP_SIZE
   height = 0.052 * EXPEDITION_MAP_SIZE
   borderRadius = 4

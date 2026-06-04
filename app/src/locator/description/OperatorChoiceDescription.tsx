@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { DropAreaDescription } from '@gamepark/react-game'
 
 export class OperatorChoiceDescription extends DropAreaDescription {

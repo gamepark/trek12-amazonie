@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { faArrowDown, faArrowUp, faMinus, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -17,11 +16,11 @@ export const ChooseResultHeader: FC = () => {
   const { t } = useTranslation()
 
   if (!player || !rules.isTurnToPlay(player)) {
-    return <><Trans defaults="header.opponent.choose"></Trans></>
+    return <><Trans i18nKey="header.opponent.choose"></Trans></>
   }
 
   if (moves.find(isCreateItemType(MaterialType.Path))) {
-    return <><Trans defaults="header.player.choose.path"></Trans></>
+    return <><Trans i18nKey="header.player.choose.path"></Trans></>
   }
 
   const dice = [
@@ -31,7 +30,7 @@ export const ChooseResultHeader: FC = () => {
 
   const operand = rules.remind(Memory.Operand, player)
   if (operand) {
-    return <><Trans defaults="header.you.choose.node" values={{ result: applyOperator(operand, dice) }}></Trans></>
+    return <><Trans i18nKey="header.you.choose.node" values={{ result: applyOperator(operand, dice) }}></Trans></>
   }
 
   const max = moves.find((move) => isCreateItemType(MaterialType.Cross)(move) && move.item.location.id === Operator.MAX)

@@ -21,7 +21,6 @@ export class AreaScore extends MaterialRulesPart {
       .getItems()
 
     const scores: number[] = []
-    let x = 0
     for (const valueNode of values) {
       if (nodesIds.includes(valueNode.location.id)) continue
       const area = new Area(this.game, this.player, valueNode)

@@ -1,5 +1,5 @@
 import { CreateItem, isCreateItemType, ItemMove, MaterialGame, MaterialMove, MaterialMoveBuilder, MaterialRulesPart } from '@gamepark/rules-api'
-import range from 'lodash/range'
+import { range } from 'es-toolkit'
 import { ForestBasicFieldTypes } from '../../forests/Forest'
 import { Field } from '../../material/Field'
 import { LocationType } from '../../material/LocationType'

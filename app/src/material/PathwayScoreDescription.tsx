@@ -1,17 +1,19 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { WritingDescription } from '@gamepark/react-game'
-import React from 'react'
 import { PathwayScoreHelp } from './PathwayScoreHelp'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 
 export class PathwayScoreDescription extends WritingDescription {
+  getImages(): string[] {
+    return []
+  }
+
 
   height = 0.037 * EXPEDITION_MAP_SIZE
   width = 0.041 * EXPEDITION_MAP_SIZE
   help = PathwayScoreHelp
 
-  getFrontContent(itemId: any) {
+  getFrontContent(itemId: number) {
     return <span css={itemIdStyle}>{itemId}</span>
   }
 }

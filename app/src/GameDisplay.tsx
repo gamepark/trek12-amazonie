@@ -1,7 +1,6 @@
-/** @jsxImportSource @emotion/react */
 import { pointerWithin } from '@dnd-kit/core'
 import { css } from '@emotion/react'
-import { GameTable, GameTableNavigation } from '@gamepark/react-game'
+import { DevToolsHub, GameTable, GameTableNavigation } from '@gamepark/react-game'
 import { FC } from 'react'
 import { PlayerPanels } from './players/PlayerPanels'
 
@@ -23,6 +22,7 @@ export const GameDisplay: FC<GameDisplayProps> = ({ players }) => {
         //css={css`background-color: rgba(255, 255, 255, 0.47)`}
       >
         { players > 1 && <GameTableNavigation css={navigationPosition(players)} /> }
+        {process.env.NODE_ENV === 'development' && <DevToolsHub fabBottom="calc(5em)" />}
       </GameTable>
       {players !== 1 && <PlayerPanels/>}
     </>

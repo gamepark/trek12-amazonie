@@ -1,9 +1,8 @@
-import { CustomMove, isCreateItemType, isCustomMoveType, ItemMove, MaterialGame, MaterialMove, MaterialRulesPart } from '@gamepark/rules-api'
+import { isCreateItemType, ItemMove, MaterialGame, MaterialMove, MaterialRulesPart } from '@gamepark/rules-api'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
 import { Operator, operators } from '../../material/Operator'
 import { PlayerId } from '../../Trek12AmazonieOptions'
-import { CustomMoveType } from '../CustomMoveType'
 import { Memory } from '../Memory'
 
 

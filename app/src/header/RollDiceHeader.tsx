@@ -2,5 +2,5 @@ import { FC } from 'react'
 import { Trans } from 'react-i18next'
 
 export const RollDiceHeader: FC = () => {
-  return <><Trans defaults="header.dice.rolling"></Trans></>
+  return <><Trans i18nKey="header.dice.rolling"></Trans></>
 }

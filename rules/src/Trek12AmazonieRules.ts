@@ -18,7 +18,7 @@ import { RuleId } from './rules/RuleId'
 import { PlayerId } from './Trek12AmazonieOptions'
 
 export const hideIdWhenNotRotated: HidingStrategy = (
-  item: MaterialItem, player?: PlayerId
+  item: MaterialItem, _player?: PlayerId
 ) => {
   return !item.location.rotation ? [] : ['id']
 }

@@ -1,9 +1,7 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { MaterialContext, WritingDescription } from '@gamepark/react-game'
 import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { Score } from '@gamepark/trek12-amazonie/rules/helper/Score'
-import React from 'react'
 import { SubTotalHelp } from './SubTotalHelp'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 
@@ -15,6 +13,10 @@ export enum SubTotalId {
 }
 
 export class SubTotalDescription extends WritingDescription {
+  getImages(): string[] {
+    return []
+  }
+
 
 
   height = 0.045 * EXPEDITION_MAP_SIZE
@@ -38,7 +40,7 @@ export class SubTotalDescription extends WritingDescription {
 
   }
 
-  getFrontContent(itemId: any) {
+  getFrontContent(itemId: number) {
     return <span css={itemIdStyle}>{itemId}</span>
   }
 }

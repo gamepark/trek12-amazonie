@@ -1,13 +1,15 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { faSpider } from '@fortawesome/free-solid-svg-icons/faSpider'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { WritingDescription } from '@gamepark/react-game'
-import React from 'react'
 import { SpiderHelp } from './SpiderHelp'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 
 export class SpiderDescription extends WritingDescription {
+  getImages(): string[] {
+    return []
+  }
+
   width = 0.0315 * EXPEDITION_MAP_SIZE
   height = 0.0223 * EXPEDITION_MAP_SIZE
   borderRadius = 0.3

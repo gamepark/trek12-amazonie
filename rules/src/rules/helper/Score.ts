@@ -1,6 +1,6 @@
 import { MaterialGame, MaterialRulesPart } from '@gamepark/rules-api'
-import sumBy from 'lodash/sumBy'
-import { ExplorationCardScores } from '../../material/ExplorationCard'
+import { sumBy } from 'es-toolkit'
+import { ExplorationCard, ExplorationCardScores } from '../../material/ExplorationCard'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
 import { SpecialValue } from '../../material/Operator'
@@ -57,7 +57,7 @@ export class Score extends MaterialRulesPart {
     let score = 0
     for (const ring of rings) {
       const observation = observations.find((o) => o.location.x === ring.location.id)!
-      score += ExplorationCardScores[observation.id][ring.location.x]
+      score += ExplorationCardScores[observation.id as ExplorationCard][ring.location.x!]
     }
 
     return score

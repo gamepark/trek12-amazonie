@@ -1,15 +1,17 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { WritingDescription } from '@gamepark/react-game'
-import React from 'react'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 
 export class AreaNodeDescription extends WritingDescription {
+  getImages(): string[] {
+    return []
+  }
+
   height = 0.105 * EXPEDITION_MAP_SIZE
   width = 0.105 * EXPEDITION_MAP_SIZE
   borderRadius = 4
 
-  getFrontContent(itemId: any) {
+  getFrontContent(itemId: string) {
     return (
       <div css={areaNode(itemId)}/>
     )

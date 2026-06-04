@@ -3,7 +3,7 @@ import { BoardDescription, ItemContext, MaterialContext } from '@gamepark/react-
 import { MaterialItem } from '@gamepark/rules-api'
 import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { Operator } from '@gamepark/trek12-amazonie/material/Operator'
-import range from 'lodash/range'
+import { range } from 'es-toolkit'
 import Images from '../images/Images'
 import { nodeCoordinates } from '../locator/ExplorationNodeLocator'
 import { ExplorationMapHelp } from './ExplorationMapHelp'
@@ -28,7 +28,7 @@ export class ExplorationMapDescription extends BoardDescription {
     const player = item.location.player
     return [
       { type: LocationType.PlayerIdentity, player },
-      ...nodeCoordinates.map((c, index) => ({ type: LocationType.ExpeditionNode, id: index, player })),
+      ...nodeCoordinates.map((_c, index) => ({ type: LocationType.ExpeditionNode, id: index, player })),
       ...range(4).map((x) => ({ id: Operator.MIN, type: LocationType.OperatorChoice, x, player })),
       ...range(4).map((x) => ({ id: Operator.MAX, type: LocationType.OperatorChoice, x, player })),
       ...range(4).map((x) => ({ id: Operator.MINUS, type: LocationType.OperatorChoice, x, player })),

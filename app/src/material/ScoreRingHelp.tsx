@@ -1,7 +1,6 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { MaterialHelpProps, usePlayerId, usePlayerName, useRules } from '@gamepark/react-game'
-import { ExplorationCardScores } from '@gamepark/trek12-amazonie/material/ExplorationCard'
+import { ExplorationCard, ExplorationCardScores } from '@gamepark/trek12-amazonie/material/ExplorationCard'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 import { Trek12AmazonieRules } from '@gamepark/trek12-amazonie/Trek12AmazonieRules'
 import { Trans, useTranslation } from 'react-i18next'
@@ -15,15 +14,15 @@ export const ScoreRingHelp = ({ item }: MaterialHelpProps) => {
 
   const ringScoringPosition = item.location?.x ?? 0
 
-  const scoreArray = ExplorationCardScores[rules?.material(MaterialType.ObservationCard).getItems()[item.location?.id].id]
+  const scoreArray = ExplorationCardScores[rules?.material(MaterialType.ObservationCard).getItems()[item.location?.id].id as ExplorationCard]
   return <>
     <h2>{t(`score.ring.help.title`)}</h2>
     <p css={textCss}>
       {t(`score.ring.text`)}
     </p>
     {isPlayer
-      ? <p><Trans defaults="score.ring.yours.scoring" values={{ scoring: scoreArray[ringScoringPosition] }}></Trans></p>
-      : <p><Trans defaults="score.ring.theirs.scoring" values={{ scoring: scoreArray[ringScoringPosition], player: playerName }}></Trans></p>
+      ? <p><Trans i18nKey="score.ring.yours.scoring" values={{ scoring: scoreArray[ringScoringPosition] }}></Trans></p>
+      : <p><Trans i18nKey="score.ring.theirs.scoring" values={{ scoring: scoreArray[ringScoringPosition], player: playerName }}></Trans></p>
     }
   </>
 }

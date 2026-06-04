@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { FailuresDialog, FullscreenDialog, LoadingScreen, MaterialHeader, MaterialImageLoader, Menu, useGame } from '@gamepark/react-game'
 import { MaterialGame } from '@gamepark/rules-api'
 import { RuleId } from '@gamepark/trek12-amazonie/rules/RuleId'
@@ -19,8 +18,7 @@ export default function App() {
   return (
     <>
       {!!game && <GameDisplay players={game.players.length}/>}
-      <LoadingScreen display={loading} author="Bruno Cathala & Corentin Lebrat" artist="Olivier Derouetteau & Maxime Morin" publisher="Lumberjacks"
-                     developer="Game Park & Théo Grégorio"/>
+      <LoadingScreen display={loading}/>
       <MaterialImageLoader onImagesLoad={() => setImagesLoading(false)}/>
       <MaterialHeader rulesStepsHeaders={headers} loading={loading} />
       <Menu/>

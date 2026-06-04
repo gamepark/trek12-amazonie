@@ -26,6 +26,10 @@ export class NumbersLocator extends ListLocator {
         return { y: 10 }
     }
   }
+
+  getPositionDependencies(_: Location, { rules: { players } }: MaterialContext) {
+    return { players: players.length }
+  }
 }
 
 export const numbersLocator = new NumbersLocator()

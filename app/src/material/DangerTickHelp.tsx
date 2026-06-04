@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { MaterialHelpProps, usePlayerId, usePlayerName, useRules } from '@gamepark/react-game'
 import { Score } from '@gamepark/trek12-amazonie/rules/helper/Score'
@@ -20,8 +19,8 @@ export const DangerTickHelp = ({ item }: MaterialHelpProps) => {
     </p>
     <p css={textCss}>
       {isThePlayer
-        ? <Trans defaults="danger.tick.help.yours.score" values={{ tickNumber }}></Trans>
-        : <Trans defaults="danger.tick.help.theirs.score" values={{ tickNumber, player: playerName }}></Trans>}
+        ? <Trans i18nKey="danger.tick.help.yours.score" values={{ tickNumber }}></Trans>
+        : <Trans i18nKey="danger.tick.help.theirs.score" values={{ tickNumber, player: playerName }}></Trans>}
     </p>
   </>
 }

@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { CubicDiceDescription, ItemContext } from '@gamepark/react-game'
 import { MaterialItem } from '@gamepark/rules-api'
 import Face0 from '../images/dice/yellow/0.jpg'

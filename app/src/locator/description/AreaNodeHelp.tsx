@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { faSailboat } from '@fortawesome/free-solid-svg-icons/faSailboat'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -18,7 +17,7 @@ export const AreaNodeHelp = (props: LocationHelpProps) => {
 
   return <>
     <h2>{t(`area.node.help.title`)}</h2>
-    <p css={textCss}>{isPlayer ? t(`area.node.yours.help.text`) : <Trans defaults="area.node.theirs.help.text" values={{ player: playerName }} />}</p>
+    <p css={textCss}>{isPlayer ? t(`area.node.yours.help.text`) : <Trans i18nKey="area.node.theirs.help.text" values={{ player: playerName }} />}</p>
     {isWaterField && <p css={textCss}><FontAwesomeIcon icon={faSailboat}/> {isPlayer? t(`area.node.river.help.yours.text`): t(`area.node.river.help.theirs.text`, { player: playerName })}</p>}
     {isPlayer && linkedMove !== undefined && <p>{t(`area.node.help.play.text`)}</p>}
     {isPlayer && linkedMove !== undefined &&

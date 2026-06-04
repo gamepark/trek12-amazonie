@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { MaterialHelpProps, usePlayerId, usePlayerName } from '@gamepark/react-game'
 import { Trans, useTranslation } from 'react-i18next'
@@ -13,8 +12,8 @@ export const PiranhaHelp = ({ item }: MaterialHelpProps) => {
     <h2>{t(`piranha.help.title`)}</h2>
     <p css={textCss}>
       {isThePlayer
-        ? <Trans defaults="piranha.help.yours.text"></Trans>
-        : <Trans defaults="piranha.help.theirs.text" values={{ player: playerName }}></Trans>}
+        ? <Trans i18nKey="piranha.help.yours.text"></Trans>
+        : <Trans i18nKey="piranha.help.theirs.text" values={{ player: playerName }}></Trans>}
     </p>
   </>
 }

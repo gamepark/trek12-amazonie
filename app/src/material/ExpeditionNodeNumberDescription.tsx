@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { faSpider } from '@fortawesome/free-solid-svg-icons/faSpider'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -11,12 +10,16 @@ import { ExpeditionNodeNumberHelp } from './ExpeditionNodeNumberHelp'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 
 export class ExpeditionNodeNumberDescription extends WritingDescription {
+  getImages(): string[] {
+    return []
+  }
+
   height = 0.105 * EXPEDITION_MAP_SIZE
   width = 0.105 * EXPEDITION_MAP_SIZE
   borderRadius = 4
   help = ExpeditionNodeNumberHelp
 
-  getFrontContent(itemId: any) {
+  getFrontContent(itemId: number | SpecialValue) {
     return (
       <>
         {

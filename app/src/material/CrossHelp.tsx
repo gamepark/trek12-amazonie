@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { MaterialHelpProps, usePlayerId, usePlayerName, useRules } from '@gamepark/react-game'
 import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
@@ -29,8 +28,8 @@ export const CrossHelp = ({ item }: MaterialHelpProps) => {
       {t(`cross.help.text`)}
     </p>
     {isThePlayer
-      ? <p><Trans defaults="cross.help.yours.remaining" values={{ crossesRemaining }}></Trans></p>
-      : <p><Trans defaults="cross.help.theirs.remaining" values={{ crossesRemaining, opponentName }}></Trans></p>
+      ? <p><Trans i18nKey="cross.help.yours.remaining" values={{ crossesRemaining }}></Trans></p>
+      : <p><Trans i18nKey="cross.help.theirs.remaining" values={{ crossesRemaining, opponentName }}></Trans></p>
     }
 
 

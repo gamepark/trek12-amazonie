@@ -1,5 +1,5 @@
 import { MaterialGameSetup } from '@gamepark/rules-api'
-import shuffle from 'lodash/shuffle'
+import { shuffle } from 'es-toolkit'
 import { explorationCards } from './material/ExplorationCard'
 import { LocationType } from './material/LocationType'
 import { MaterialType } from './material/MaterialType'

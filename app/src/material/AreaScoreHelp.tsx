@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { MaterialHelpProps, usePlayerId, usePlayerName } from '@gamepark/react-game'
 import { Trans, useTranslation } from 'react-i18next'
 
@@ -11,8 +10,8 @@ export const AreaScoreHelp = ({ item }: MaterialHelpProps) => {
   return <>
     <h2>{t(`area.score.help.title`)}</h2>
     {isPlayer
-      ? <p><Trans defaults="area.score.yours.text" values={{ scoring: item.id }}></Trans></p>
-      : <p><Trans defaults="area.score.theirs.text" values={{ scoring: item.id, player: playerName }}></Trans></p>
+      ? <p><Trans i18nKey="area.score.yours.text" values={{ scoring: item.id }}></Trans></p>
+      : <p><Trans i18nKey="area.score.theirs.text" values={{ scoring: item.id, player: playerName }}></Trans></p>
     }
 
   </>

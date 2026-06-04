@@ -7,6 +7,7 @@ export class PiranhaDescription extends TokenDescription {
   width = 0.0315 * EXPEDITION_MAP_SIZE
   height = 0.0223 * EXPEDITION_MAP_SIZE
   borderRadius = 0.3
+  transparency = true
 
   image = Piranha
 

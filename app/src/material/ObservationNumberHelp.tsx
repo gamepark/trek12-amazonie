@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { MaterialHelpProps } from '@gamepark/react-game'
 import { Trans, useTranslation } from 'react-i18next'
@@ -9,7 +8,7 @@ export const ObservationNumberHelp = ({ item }: MaterialHelpProps) => {
   return <>
     <h2>{t(`observation.number.help.title`)}</h2>
     <p css={textCss}>
-      <Trans defaults="observation.number.help.text" values={{ targetNumber: item.id }}></Trans>
+      <Trans i18nKey="observation.number.help.text" values={{ targetNumber: item.id }}></Trans>
       <span>{}</span>
     </p>
   </>

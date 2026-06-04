@@ -1,6 +1,6 @@
 import { MaterialGame, MaterialItem, MaterialMove, MaterialRulesPart } from '@gamepark/rules-api'
 import equal from 'fast-deep-equal'
-import maxBy from 'lodash/maxBy'
+import { maxBy } from 'es-toolkit'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
 import { SpecialValue } from '../../material/Operator'

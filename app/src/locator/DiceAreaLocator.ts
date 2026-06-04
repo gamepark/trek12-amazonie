@@ -21,6 +21,10 @@ export class DiceAreaLocator extends ListLocator {
     const { x = 0, y } = super.getItemCoordinates(item, context)
     return { x: context.type === MaterialType.YellowDice ? x : x + 3, y }
   }
+
+  getPositionDependencies(_: Location, { rules: { players } }: MaterialContext) {
+    return { players: players.length }
+  }
 }
 
 export const diceAreaLocator = new DiceAreaLocator()

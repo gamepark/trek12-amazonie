@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { MaterialTutorial, TutorialStep } from '@gamepark/react-game'
 import { MaterialContext } from '@gamepark/react-game/dist/locators'
@@ -7,7 +6,7 @@ import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { MaterialType } from '@gamepark/trek12-amazonie/material/MaterialType'
 import { Operator } from '@gamepark/trek12-amazonie/material/Operator'
 import { PlayerId } from '@gamepark/trek12-amazonie/Trek12AmazonieOptions'
-import range from 'lodash/range'
+import { range } from 'es-toolkit'
 import { Trans } from 'react-i18next'
 import Images from '../images/Images'
 import { TutorialSetup } from './TutorialSetup'
@@ -23,17 +22,17 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
   steps: TutorialStep[] = [
     {
       popup: {
-        text: () => <Trans defaults="tuto.welcome"><strong/><em/></Trans>
+        text: () => <Trans i18nKey="tuto.welcome"><strong/><em/></Trans>
       }
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.goal"><strong/><em/></Trans>
+        text: () => <Trans i18nKey="tuto.goal"><strong/><em/></Trans>
       }
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.dice"><strong/><em/></Trans>,
+        text: () => <Trans i18nKey="tuto.dice"><strong/><em/></Trans>,
         position: { x: 45, y: 5 }
       },
       focus: (game) => ({
@@ -45,7 +44,7 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.operator"><strong/><em/></Trans>,
+        text: () => <Trans i18nKey="tuto.operator"><strong/><em/></Trans>,
         position: { x: -20, y: -15 }
       },
       focus: () => ({
@@ -60,7 +59,7 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.choose.op.1"><strong/><em/><span css={iconStyle(Images.MinIcon)}/></Trans>,
+        text: () => <Trans i18nKey="tuto.choose.op.1"><strong/><em/><span css={iconStyle(Images.MinIcon)}/></Trans>,
         position: { x: -20, y: -15 }
       },
       focus: (game) => ({
@@ -75,7 +74,7 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.operator.exp"><strong/><em/></Trans>,
+        text: () => <Trans i18nKey="tuto.operator.exp"><strong/><em/></Trans>,
         position: { x: -20, y: -15 }
       },
       focus: () => ({
@@ -84,7 +83,7 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.choose.value.1"><strong/><em/></Trans>,
+        text: () => <Trans i18nKey="tuto.choose.value.1"><strong/><em/></Trans>,
         position: { x: -40, y: 15 }
       },
       focus: () => ({
@@ -97,7 +96,7 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.obs.exp"><strong/><em/></Trans>,
+        text: () => <Trans i18nKey="tuto.obs.exp"><strong/><em/></Trans>,
         position: { x: -45, y: 0 }
       },
       focus: (game) => ({
@@ -109,7 +108,7 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.obs.choose"><strong/><em/></Trans>,
+        text: () => <Trans i18nKey="tuto.obs.choose"><strong/><em/></Trans>,
         position: { x: -45, y: -10 }
       },
       focus: () => ({
@@ -122,7 +121,7 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.obs.score"><strong/><em/></Trans>,
+        text: () => <Trans i18nKey="tuto.obs.score"><strong/><em/></Trans>,
         position: { x: -45, y: -10 }
       },
       focus: (game: MaterialGame, context: MaterialContext) => this.steps[game.tutorial!.step - 1].focus!(game, context),
@@ -137,7 +136,7 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.choose.op.2"><strong/><em/><span css={iconStyle(Images.MaxIcon)}/></Trans>,
+        text: () => <Trans i18nKey="tuto.choose.op.2"><strong/><em/><span css={iconStyle(Images.MaxIcon)}/></Trans>,
         position: { x: -20, y: -15 }
       },
       focus: (game) => ({
@@ -150,14 +149,14 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.pirogue"><strong/><em/></Trans>,
+        text: () => <Trans i18nKey="tuto.pirogue"><strong/><em/></Trans>,
         position: { x: -20, y: -15 }
       },
       focus: (game: MaterialGame, context: MaterialContext) => this.steps[game.tutorial!.step - 1].focus!(game, context)
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.choose.value.2"><strong/><em/></Trans>,
+        text: () => <Trans i18nKey="tuto.choose.value.2"><strong/><em/></Trans>,
         position: { x: -40, y: 20 }
       },
       focus: () => ({
@@ -176,7 +175,7 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.path"><strong/><em/></Trans>
+        text: () => <Trans i18nKey="tuto.path"><strong/><em/></Trans>
       },
       focus: () => ({
         locations: [{ type: LocationType.Path, id: [15, 16] }]
@@ -184,19 +183,19 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.path.exp"><strong/><em/></Trans>
+        text: () => <Trans i18nKey="tuto.path.exp"><strong/><em/></Trans>
       },
       focus: (game: MaterialGame, context: MaterialContext) => this.steps[game.tutorial!.step - 1].focus!(game, context)
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.path.score"><strong/><em/></Trans>
+        text: () => <Trans i18nKey="tuto.path.score"><strong/><em/></Trans>
       },
       focus: (game: MaterialGame, context: MaterialContext) => this.steps[game.tutorial!.step - 2].focus!(game, context)
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.choose.op.3"><strong/><em/><span css={iconStyle(Images.MinusIcon)}/></Trans>,
+        text: () => <Trans i18nKey="tuto.choose.op.3"><strong/><em/><span css={iconStyle(Images.MinusIcon)}/></Trans>,
         position: { x: -20, y: -15 }
       },
       focus: (game) => ({
@@ -209,7 +208,7 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.choose.value.2"><strong/><em/></Trans>,
+        text: () => <Trans i18nKey="tuto.choose.value.2"><strong/><em/></Trans>,
         position: { x: -40, y: 15 }
       },
       focus: () => ({
@@ -228,7 +227,7 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.area"><strong/><em/></Trans>,
+        text: () => <Trans i18nKey="tuto.area"><strong/><em/></Trans>,
         position: { x: 15, y: -10 }
       },
       focus: (game) => ({
@@ -241,21 +240,21 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.area.exp"><strong/><em/></Trans>,
+        text: () => <Trans i18nKey="tuto.area.exp"><strong/><em/></Trans>,
         position: { x: 15, y: -10 }
       },
       focus: (game: MaterialGame, context: MaterialContext) => this.steps[game.tutorial!.step - 1].focus!(game, context)
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.area.score"><strong/><em/></Trans>,
+        text: () => <Trans i18nKey="tuto.area.score"><strong/><em/></Trans>,
         position: { x: 15, y: -10 }
       },
       focus: (game: MaterialGame, context: MaterialContext) => this.steps[game.tutorial!.step - 2].focus!(game, context)
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.end.1"><strong/><em/></Trans>,
+        text: () => <Trans i18nKey="tuto.end.1"><strong/><em/></Trans>,
         position: { x: -15, y: -15 }
       },
       focus: () => ({
@@ -270,7 +269,7 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.end.2"><strong/><em/></Trans>,
+        text: () => <Trans i18nKey="tuto.end.2"><strong/><em/></Trans>,
         position: { x: 30, y: -15 }
       },
       focus: () => ({
@@ -284,7 +283,7 @@ export class Tutorial extends MaterialTutorial<PlayerId, MaterialType, LocationT
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.go"><strong/><em/></Trans>
+        text: () => <Trans i18nKey="tuto.go"><strong/><em/></Trans>
       }
     }
   ]

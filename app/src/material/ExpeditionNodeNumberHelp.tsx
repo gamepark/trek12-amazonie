@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { MaterialHelpProps, usePlayerId, usePlayerName } from '@gamepark/react-game'
 import { SpecialValue } from '@gamepark/trek12-amazonie/material/Operator'
@@ -18,8 +17,8 @@ export const ExpeditionNodeNumberHelp = ({ item }: MaterialHelpProps) => {
       </p>
     )}
     <p css={textCss}>
-      {isThePlayer && <Trans defaults="exploration.node.number.yours" values={{ value: item.id }} />}
-      {!isThePlayer && <Trans defaults="exploration.node.number.theirs" values={{ value: item.id, player: playerName }}></Trans>}
+      {isThePlayer && <Trans i18nKey="exploration.node.number.yours" values={{ value: item.id }} />}
+      {!isThePlayer && <Trans i18nKey="exploration.node.number.theirs" values={{ value: item.id, player: playerName }}></Trans>}
     </p>
   </>
 }

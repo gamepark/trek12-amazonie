@@ -1,13 +1,15 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { MaterialContext, WritingDescription } from '@gamepark/react-game'
 import { LocationType } from '@gamepark/trek12-amazonie/material/LocationType'
 import { Score } from '@gamepark/trek12-amazonie/rules/helper/Score'
-import React from 'react'
 import { TotalHelp } from './TotalHelp'
 import { EXPEDITION_MAP_SIZE } from './utils/MapUtils'
 
 export class TotalDescription extends WritingDescription {
+  getImages(): string[] {
+    return []
+  }
+
 
 
   height = 0.078 * EXPEDITION_MAP_SIZE
@@ -25,7 +27,7 @@ export class TotalDescription extends WritingDescription {
       })
   }
 
-  getFrontContent(itemId: any) {
+  getFrontContent(itemId: number) {
     return <span css={itemIdStyle}>{itemId}</span>
   }
 }
