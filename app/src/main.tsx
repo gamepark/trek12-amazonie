@@ -1,5 +1,5 @@
 import { GameProvider } from '@gamepark/react-game'
-import { Trek12AmazonieOptionsSpec } from '@gamepark/trek12-amazonie/Trek12AmazonieOptions'
+import { Trek12AmazonieOptionsSpecV2 } from '@gamepark/trek12-amazonie/Trek12AmazonieOptions'
 import { Trek12AmazonieRules } from '@gamepark/trek12-amazonie/Trek12AmazonieRules'
 import { Trek12AmazonieSetup } from '@gamepark/trek12-amazonie/Trek12AmazonieSetup'
 import { StrictMode } from 'react'
@@ -16,7 +16,7 @@ createRoot(document.getElementById('root')!).render(
       game="trek12-amazonie"
       GameSetup={Trek12AmazonieSetup}
       Rules={Trek12AmazonieRules}
-      optionsSpec={Trek12AmazonieOptionsSpec}
+      optionsSpec={Trek12AmazonieOptionsSpecV2}
       material={material}
       locators={locators}
       animations={trek12AmazoniaAnimations}
