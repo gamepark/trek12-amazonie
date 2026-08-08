@@ -1,6 +1,6 @@
 {
   "name": "@gamepark/trek12-amazonie",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Trek 12 Amazonie rules for Game Park",
   "sideEffects": false,
   "type": "module",
