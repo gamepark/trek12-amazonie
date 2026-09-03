@@ -18,7 +18,7 @@ export const PlayerReminder: FC<PlayerReminderProps> = (props) => {
   if (playerNumber !== 1) {
     return (
       <div css={reminderStyle}>
-        <Avatar css={avatarStyle} playerId={player} speechBubbleProps={{ css: css`display:none;` }}/>
+        <Avatar css={avatarStyle} playerId={player} speechBubble={false}/>
         <span css={playerNameStyle}>{playerName}</span>
       </div>
     )
