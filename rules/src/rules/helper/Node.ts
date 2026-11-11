@@ -1,5 +1,5 @@
 import { MaterialGame, MaterialRulesPart } from '@gamepark/rules-api'
-import equal from 'fast-deep-equal'
+import { isEqual } from 'es-toolkit'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
 import { SpecialValue } from '../../material/Operator'
@@ -52,14 +52,14 @@ export class Node extends MaterialRulesPart {
       .material(MaterialType.Path)
       .location(LocationType.Path)
       .player(this.player)
-      .locationId((id: number[]) => equal(id, createPath(this.nodeId, nodeId)))
+      .locationId((id: number[]) => isEqual(id, createPath(this.nodeId, nodeId)))
       .length
   }
 
   isAdjacentTo(nodeId: number) {
     const p = createPath(this.nodeId, nodeId)
     return mapGraph
-      .some((path) => equal(path, p))
+      .some((path) => isEqual(path, p))
   }
 
   isValueNextTo(value: number | SpecialValue) {

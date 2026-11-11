@@ -1,6 +1,5 @@
 import { MaterialGame, MaterialItem, MaterialMove, MaterialRulesPart } from '@gamepark/rules-api'
-import equal from 'fast-deep-equal'
-import { maxBy } from 'es-toolkit'
+import { isEqual, maxBy } from 'es-toolkit'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
 import { SpecialValue } from '../../material/Operator'
@@ -88,7 +87,7 @@ export class Pathway extends MaterialRulesPart {
     } else {
       return nodes.map((item) => this.material(MaterialType.Path).createItem({
         location: {
-          id: mapGraph.find((path) => equal(path, createPath(item.location.id, this.nodeItem.location.id)))!,
+          id: mapGraph.find((path) => isEqual(path, createPath(item.location.id, this.nodeItem.location.id)))!,
           type: LocationType.Path,
           player: this.player
         }

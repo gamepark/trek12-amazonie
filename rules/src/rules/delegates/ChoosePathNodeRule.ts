@@ -1,5 +1,5 @@
 import { isCreateItemType, ItemMove, MaterialGame, MaterialMove, MaterialMoveBuilder, MaterialRulesPart } from '@gamepark/rules-api'
-import equal from 'fast-deep-equal'
+import { isEqual } from 'es-toolkit'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
 import { PlayerId } from '../../Trek12AmazonieOptions'
@@ -86,7 +86,7 @@ export class ChoosePathNodeRule extends MaterialRulesPart {
   choiceToMove(nodes: Nodes) {
     return nodes.map((node) => this.material(MaterialType.Path).createItem({
       location: {
-        id: mapGraph.find((path) => equal(path, createPath(node, this.placedNode)))!,
+        id: mapGraph.find((path) => isEqual(path, createPath(node, this.placedNode)))!,
         type: LocationType.Path,
         player: this.player
       }
